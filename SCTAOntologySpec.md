@@ -107,8 +107,8 @@
     - should point to page/side object
         + e.g. f. 15r or p. 16
 
-#FRBRItem
-
+#Item
+(item class should not be confused with structureType=item)
 ##global properties
 * type=item
 * label
@@ -116,7 +116,8 @@
     - Sorbonne ms. 253 transcriptions
 * description
 
-##FRBRItem properties
+##Item properties 
+
 * itemType
     - materialObject
     - transcription 
