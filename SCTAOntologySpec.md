@@ -82,11 +82,11 @@
 * isPartOf
     - value of isPartOf must be another Expression
 
-##structureType=collection properties
-* hasItem
+##structureType=structureCollection properties
+* hasStructureItem
 
-##structureType=Item properties
-* isPartOfCollection
+##structureType=structureItem properties
+* isPartOfStructureCollection
     - value can only be applied if Expression is not a topLevel Expression.Value must point to a toplevel Expression
 * hasBlock
 * gitRepo
@@ -96,13 +96,17 @@
 * canonicalManifestation
 * canonicalTranscription
 
-##structureType=division properties
-* isPartOfItem    
-* hasBlock
+##structureType=structureDivision properties
+* isPartOfStructureItem    
+* hasStructureBlock
 
-##structureType=block properties
-* isPartOfItem    
-* hasElement
+##structureType=structureBlock properties
+* isPartOfStructureItem    
+* hasStructureElement
+
+##structureType=structureElement properties
+* isPartOfStructureBlock    
+
 
 #Manifestation
 
@@ -353,7 +357,7 @@ Property class should categorize and organize available properties used in defin
 
 ## stuctureType properties
 * hasStructureItem
-* IsPartOfCollection
+* IsPartOfStructureCollection (value must point to topLevel Expression)
 * isPartOfStructureItem
 * hasStructureBlock
 * hasStructureElement
