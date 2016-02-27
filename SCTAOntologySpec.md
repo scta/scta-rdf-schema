@@ -1,17 +1,29 @@
-#WorkGroup
+#workGroup
 
 ##global properties
 * type=workGroup
 * label
+    - e.g. Latin Literature
 * description
 
-## workGroup type properties
+## workGroup properties
 * workGroupType 
     - e.g. latinLit 
     - e.g. greekLit
     - e.g. medievalLatinLit
     - e.g. sentencesCommentaries
-    - (these resources themselves should be classes that specify available workGroup types or work types)
+    - (these values themselves themselves should be instances of a WorkGroupType class and they should specify available children workGroup types or work types)
+    - (see below "workGroupType" class)
+* hasWorkGroup
+    - A work group conta
+* hasWork
+* levelType
+    - topLevel
+        + if a workGroup is not contained by another work group it should be listed ast topLevel
+    - part
+        + if a workGroup is contained by another workGrop it's levelType should be "part"
+* level
+    - 1,2,3
 
 #Work
 
@@ -23,7 +35,7 @@
 
 ## work type properties
 * author
-* workType (available workTypes should be determined by the WorkGroup)
+* workType (available workTypes should be determined by the available workTypes specified by the WorkGroupType)
     - e.g. Novel
     - e.g. SentencesCommentary
     - e.g. BiblicalCommentary
@@ -38,6 +50,15 @@
 
 ##expression type properties
 * expressionType
+    - e.g. availalbe expressionTypes should be enumerated in the WorkType or WorkGroupType class
+    - e.g. a Work within the WorkGroup where workGroupType="SentencesCommentaries" the value of expressionType given here must be one of the values of the availableExpressionType listed in that workGroupType. See WorkGroupType and WorkType below.
+        + Commentarius
+        + Librum
+        + Distinctio
+        + Quaestio
+        + Articulus
+        + Dubium
+* levelType
     - topLevel
     - part
     - fragment 
@@ -48,7 +69,7 @@
     - element
 * hasManifestation
 
-##expressionType=topLevel
+##expressionType->levelType=topLevel
 * level=1
     - topLevel expression must be level one
 * hasPart
@@ -171,3 +192,82 @@
     - should specify the XML schema this xml document was validated against
 * xml 
     - url to raw xml file
+
+#Secondary Classes
+The above classes (or Primary Classes) represent privileged classes that constitute the Ontology core. Secondary classes are helper classes used in further defining instances of Primary Classes. The goal of secondary classes is facilitate "favoring objection composition over class inheritance" (See Design Patterns, p. 20) 
+
+#Type
+
+##global properties
+* type=Type
+* label 
+    - e.g. "Work Group Type", "Work Type", Expression Type
+* description
+
+##Type properties
+* typeType
+    - WorkGroup
+    - Work
+    - Expression
+    - Manifestation
+    - Item
+
+#WorkGroupType
+
+##global properties
+* type=WorkGroupType
+* label 
+    - e.g. "LatinLit", "GreekLit, "MedievalLit", "SentencesCommentary", "EnglishNovels"
+* description
+
+##WorkGroupType properties
+* availableWorkGroupType
+    - e.g. where WorkGroupType is a workGroup for Medieval Commentaries available workGroupTypes might include:
+        + BiblicalCommentaries
+        + SentencesCommentaries
+* availableWorkType
+    - e.g. where WorkGroupType is a work group for Sentences Commentary available workTypes might include:
+        + Reportatio
+        + Ordinatio
+        + Abbreviatio
+* availableExpressionType
+    - a workGroup could specific a list of expression Types available for all descendent workGroups and works
+    - e.g. where WorkGroupType is Sentences Commentary available Expression types would be the following
+        + commentarius
+        + librum
+        + distinctio
+        + articulus
+        + dubium
+        + prologus
+        + generic
+        + paragraph
+        + (an expressionType should be created for each of these specified types)
+            * these types can further specify other avaiable sub expressionTypes but these sub ExpressionType should take a level property where the value is 2 or greater, so that we know which ExpressionType determines and specifies the other. See below "ExpressionType"
+                - e.g. librum -> expressionType=librum1, librum2, librum3, librum4
+                - e.g. distinctio = librum1-distinctio1, librum2-distinctio3, etc
+
+#WorkType
+
+##global properties
+* type=WorkType
+* label 
+* description
+
+##WorkType properties
+* type=WorkType
+* availableExpressionType
+    - A workType could add other availableExpressionTypes besides those inherited from the WorkGroup Type.
+
+#ExpressionType
+
+##global properties
+* type=ExpressionType
+* label 
+* description
+
+##ExpressionType properties
+
+* level
+    - 1, 2, 3, 4
+* hasAvailableExpressionType
+    - an ExpressionType can specify sub ExpressionTypes. All expressionTypes not listed as an avaiableExpression type by a workGroupType or workType must have a level 2 or greater ExpressionType. In other words, workGropuTypes and workTypes should only list level 1 ExpressionTypes as available.
