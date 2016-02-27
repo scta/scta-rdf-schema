@@ -100,7 +100,7 @@
     - earlyEdition
     - modernEdition
     - bornDigitalEdition
-* hasFRBRItem (not to be confused with structureItem above)
+* hasItem (not to be confused with structureType=Item above)
 * isManifestationOf
     - Value must be an Expression
 * page
