@@ -63,10 +63,10 @@
     - part
     - fragment 
 * structureType
-    - collection
-    - item
-    - block
-    - element
+    - structureCollection
+    - sturctureItem
+    - sturctureBlock
+    - sturctureElement
 * hasManifestation
 
 ##expressionType->levelType=topLevel
@@ -188,13 +188,15 @@
 * type=Document
 * label = TEI Transcription of Sorbonne ms 253
 * description
+
+## Document properties
 * validatedBy
     - should specify the XML schema this xml document was validated against
 * xml 
     - url to raw xml file
 
-#Secondary Classes
-The above classes (or Primary Classes) represent privileged classes that constitute the Ontology core. Secondary classes are helper classes used in further defining instances of Primary Classes. The goal of secondary classes is facilitate "favoring objection composition over class inheritance" (See Design Patterns, p. 20) 
+#Type Classes
+The above classes (Primary Classes) represent privileged classes that constitute the Ontology core. Type classes are helper classes used in further defining instances of Primary Classes. The goal of type classes is facilitate "favoring objection composition over class inheritance" (See Design Patterns, p. 20) 
 
 #Type
 
@@ -266,8 +268,97 @@ The above classes (or Primary Classes) represent privileged classes that constit
 * description
 
 ##ExpressionType properties
-
 * level
     - 1, 2, 3, 4
-* hasAvailableExpressionType
+* availableExpressionType
     - an ExpressionType can specify sub ExpressionTypes. All expressionTypes not listed as an avaiableExpression type by a workGroupType or workType must have a level 2 or greater ExpressionType. In other words, workGropuTypes and workTypes should only list level 1 ExpressionTypes as available.
+
+#ManifestationType
+
+##global properties
+* type=ManifestationType
+* label 
+* description
+
+##ManifestationType properties
+* availableManifestType
+    - MsWitness
+    - Incunabula
+    - EarlyModernPrinting
+    - ModernPrinting
+    - BornDigitalEdition
+
+#ItemType
+
+##global properties
+* type=ItemType
+* label 
+* description
+
+##ItemType properties
+* availableItemType
+    - material
+    - transcription
+
+# Property Classes
+Property class should categorize and organize available properties used in definiting Primary and Type Classes
+
+## global properties
+* type
+* label
+* description
+
+##availableType properties
+* availableWorkType
+* availableWorkGroupType
+* availableExpressionType
+* availableManifestationType
+* availableItemType
+
+##type properties  
+* workGroupType
+* workType
+* expressionType
+* manifestationType
+* itemType
+* typeType
+* itemType
+* levelType
+* structureType
+
+## part properties
+* hasPart
+* isPartOf
+* level
+
+## linkingProperties
+* hasManifestation
+* isManifestationOf
+* hasItem
+* isItemOf
+* hasDocument
+
+##Item->type->transcription properties
+* xml
+* html
+* plaintext
+* json
+
+##publicationInfo properties
+* author
+* editor
+* creationDate
+* version
+* status
+
+## stuctureType properties
+* hasStructureItem
+* IsPartOfCollection
+* isPartOfStructureItem
+* hasStructureBlock
+* hasStructureElement
+* isPartOfStructureBlock
+
+
+
+
