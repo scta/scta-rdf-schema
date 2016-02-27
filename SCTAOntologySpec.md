@@ -14,12 +14,15 @@
     - e.g. sentencesCommentaries
     - (these values themselves themselves should be instances of a WorkGroupType class and they should specify available children workGroup types or work types)
     - (see below "workGroupType" class)
-* hasWorkGroup
-    - A work group conta
+* isPartOf
+    - if the workGroup is not a levelType=topLevel and level=1 it must specify its parent part. This must be another workGroup.
+* hasPart
+    - a work group can take either another workGroup or a work as its direct part (or child)
 * hasWork
+    - every work group should list every Work contained within it no matter what level
 * levelType
     - topLevel
-        + if a workGroup is not contained by another work group it should be listed ast topLevel
+        + if a workGroup is not contained by another work group it should be listed as "topLevel"
     - part
         + if a workGroup is contained by another workGrop it's levelType should be "part"
 * level
@@ -50,7 +53,7 @@
 
 ##expression type properties
 * expressionType
-    - e.g. availalbe expressionTypes should be enumerated in the WorkType or WorkGroupType class
+    - e.g. available expressionTypes should be enumerated in the WorkType or WorkGroupType class
     - e.g. a Work within the WorkGroup where workGroupType="SentencesCommentaries" the value of expressionType given here must be one of the values of the availableExpressionType listed in that workGroupType. See WorkGroupType and WorkType below.
         + Commentarius
         + Librum
@@ -87,7 +90,7 @@
 
 ##structureType=structureItem properties
 * isPartOfStructureCollection
-    - value can only be applied if Expression is not a topLevel Expression.Value must point to a toplevel Expression
+    - value can only be applied if Expression is not a topLevel Expression.Value must point to a topLevel Expression
 * hasBlock
 * gitRepo
 * status
@@ -116,7 +119,7 @@
     - e.g. Sorbonne ms. 253
 * description
     - e.g. Sorbonne witness to paragraph 4
-    - e.g. Sorbonne witness to quote ta-52-yu
+    - e.g. Sorbonne witness to quote `<quote id>`
 
 ##manifestation properties
 * manfestationType
@@ -166,7 +169,7 @@
 * label = "Git Hub Development Repository"
 * description
 
-##Repository properites
+##Repository properties
 * repoUrl
 * version 
     - value of version should correspond to a version resource for each tagged moment in the source history (i.e. each release)
@@ -237,7 +240,7 @@ The above classes (Primary Classes) represent privileged classes that constitute
         + Ordinatio
         + Abbreviatio
 * availableExpressionType
-    - a workGroup could specific a list of expression Types available for all descendent workGroups and works
+    - a workGroup could specific a list of expression Types available for all descendant workGroups and works
     - e.g. where WorkGroupType is Sentences Commentary available Expression types would be the following
         + commentarius
         + librum
@@ -248,7 +251,7 @@ The above classes (Primary Classes) represent privileged classes that constitute
         + generic
         + paragraph
         + (an expressionType should be created for each of these specified types)
-            * these types can further specify other avaiable sub expressionTypes but these sub ExpressionType should take a level property where the value is 2 or greater, so that we know which ExpressionType determines and specifies the other. See below "ExpressionType"
+            * these types can further specify other available sub expressionTypes but these sub ExpressionType should take a level property where the value is 2 or greater, so that we know which ExpressionType determines and specifies the other. See below "ExpressionType"
                 - e.g. librum -> expressionType=librum1, librum2, librum3, librum4
                 - e.g. distinctio = librum1-distinctio1, librum2-distinctio3, etc
 
@@ -269,6 +272,7 @@ The above classes (Primary Classes) represent privileged classes that constitute
 ##global properties
 * type=ExpressionType
 * label 
+    - e.g. Distinctio
 * description
 
 ##ExpressionType properties
@@ -276,6 +280,19 @@ The above classes (Primary Classes) represent privileged classes that constitute
     - 1, 2, 3, 4
 * availableExpressionType
     - an ExpressionType can specify sub ExpressionTypes. All expressionTypes not listed as an avaiableExpression type by a workGroupType or workType must have a level 2 or greater ExpressionType. In other words, workGropuTypes and workTypes should only list level 1 ExpressionTypes as available.
+    - for example, the ExpressionType "Distinctio" might could have the availableExpresssionTypes. Only Expression with the expressionType "distinctio" could also have the expressionType="librum1-distinctio1"
+        + librum1-distinctio1
+            * level2
+        + librum2-distinctio 15
+            * level=2
+    - another example for English Novels could be the level 1 expressionType Chapter. Chapters could specify sub ExpresionTypes
+        + FirstChapter
+        + LastChapter
+        + MiddleChapter
+        + Chapter2
+    - These further specifications are useful to the study of sub genres.
+        + What if a person wanted to study the differences in opening chapters among all novels in the English Novel Work group?
+        + They could only do this if we had a way to query all expression with the expressionType Chapter that also have the expressionType "Chapter1"
 
 #ManifestationType
 
@@ -305,7 +322,7 @@ The above classes (Primary Classes) represent privileged classes that constitute
     - transcription
 
 # Property Classes
-Property class should categorize and organize available properties used in definiting Primary and Type Classes
+Property class should categorize and organize available properties used in defining Primary and Type Classes
 
 ## global properties
 * type
