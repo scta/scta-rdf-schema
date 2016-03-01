@@ -1,3 +1,7 @@
+#Primary Classes
+
+Primary classes represent the ontology core. They are followed by helper classes (Type Classes and Property Classes).
+
 #workGroup
 
 ##global properties
@@ -5,6 +9,7 @@
 * label
     - e.g. Latin Literature
 * description
+
 
 ## workGroup properties
 * workGroupType 
@@ -27,6 +32,8 @@
         + if a workGroup is contained by another workGrop it's levelType should be "part"
 * level
     - 1,2,3
+* citation
+
 
 #Work
 
@@ -36,12 +43,14 @@
     - e.g. Adam Wodeham Ordinatio, Moby Dick
 * description
 
+
 ## work type properties
 * author
 * workType (available workTypes should be determined by the available workTypes specified by the WorkGroupType)
     - e.g. Novel
     - e.g. SentencesCommentary
     - e.g. BiblicalCommentary
+* citation
 
 #Expression
 
@@ -50,6 +59,7 @@
 * label
     - e.g. Wodeham Oxford Ordinatio
 * description
+
 
 ##expression type properties
 * expressionType
@@ -71,6 +81,7 @@
     - sturctureBlock
     - sturctureElement
 * hasManifestation
+* citation
 
 ##expressionType->levelType=topLevel
 * level=1
@@ -131,6 +142,7 @@
 * hasItem (not to be confused with structureType=Item above)
 * isManifestationOf
     - Value must be an Expression
+* citation  
 * page
     - should point to page/side object
         + e.g. f. 15r or p. 16
@@ -160,7 +172,26 @@
 * edition
 * hasDocument, isPartOfDocument, isComposedFromDocument
     - only transcriptions of manifestations of expressions with the structureType=item should take a hasDocument property, expressions with a structureType=division should take a isPartOfDocumentProperty and expressions with a structureType=collection should take two or more isComposedFromDocument properties.
+* hasZone
+    - should be point to the Zones on which this transcription falls.
+    - this is mostl easily applied at the paragraph level. A paragraph that extends over from one page to the next should have two zones, each zone demarcating the coordinate regions on the respective surface falls
 
+##itemType=materialObject
+* hasNote (not to be confused with Annotation in IIIF/Open Annotation)
+    - should point to a Note class, note classes by definition are material inscriptions on a particular material item and therefore should only be attached at the ItemLevel
+
+#Note 
+##global properties
+* type=Note
+* label
+* description
+
+##Note Propertes
+* isOnItem
+    - should point to the materiObject item for the manifestation of the expression that the note most closely refers to. 
+    - Thus, a note close connected to a paragraph, should apply to the materialObject item for the manifestation of the expression of the paragraph this notation is most closely connected. If the note is more general and does not apply to a particular pargraph, it should be connected a point higher in the expression hierarchy (i.e. OHCO).
+* hasZone
+    - should point to the Zone coordinate region on which the notation falls
 
 #Repository
 
@@ -202,6 +233,80 @@
 * xml 
     - url to raw xml file
 
+#Zone
+
+##global properties
+* type=Zone
+* label = Zone for 
+* description
+
+##Zone properties
+
+* isOnRegion
+    - marginRight
+    - marginCenter
+    - marginLeft
+    - marginBottom
+    - marginTop
+    - column
+* isOnSurface    
+* isOnCanvas
+* order
+    - default=1, where there is more than one zone for a given resource, (for example a paragraph that crosses from one column to the next) the zone should be given a order number so that the zones can be ordered correctly.
+
+#Region
+##global properties
+* type=region
+* label
+    - marginRight
+    - marginLeft
+
+##Region Properties
+* hasZone
+* isOnSurface
+* isOnCanvas
+* regionType
+    - margin
+    - column
+    - etc.
+
+#Surface
+##global properties
+* type=suface
+* label
+    - f. 1r
+
+##surface properties
+* hasZone
+* hasRegion
+* isOnCanvas
+* isPartOf
+    - surface should be the smallest unit in the material hierarchy, contained by folio, quire, codex, etc. In modern text, it should normally correspond to a page.
+
+#Material
+##global properties
+* type=material
+* label
+    - f. 1r
+
+##Material properties
+* materialType =   
+    - folio
+    - quire
+    - codex
+* hasSurface
+    - should list every surface contained within this material. So for any given Material object of the type Folio, there should be two "hasSurface" properties
+* hasCanvas
+* hasPart
+    - can contain surface
+    - or another material part
+* levelType
+    - topLevel
+        + topLevel material cannot be contained by another material class. (i.e. the codex should not be contained by anything else.)
+    - part
+* level
+    - codex should be level 1, generally quire would be level 2
+
 #Type Classes
 The above classes (Primary Classes) represent privileged classes that constitute the Ontology core. Type classes are helper classes used in further defining instances of Primary Classes. The goal of type classes is facilitate "favoring objection composition over class inheritance" (See Design Patterns, p. 20) 
 
@@ -210,7 +315,7 @@ The above classes (Primary Classes) represent privileged classes that constitute
 ##global properties
 * type=Type
 * label 
-    - e.g. "Work Group Type", "Work Type", Expression Type
+    - e.g. "Work Group Type", "Work Type", "Expression Type"
 * description
 
 ##Type properties
@@ -371,6 +476,7 @@ Property class should categorize and organize available properties used in defin
 * creationDate
 * version
 * status
+* citatin
 
 ## stuctureType properties
 * hasStructureItem
