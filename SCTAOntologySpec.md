@@ -60,7 +60,6 @@ Primary classes represent the ontology core. They are followed by helper classes
     - e.g. Wodeham Oxford Ordinatio
 * description
 
-
 ##expression type properties
 * expressionType
     - e.g. available expressionTypes should be enumerated in the WorkType or WorkGroupType class
@@ -95,6 +94,16 @@ Primary classes represent the ontology core. They are followed by helper classes
     - value of hasPart must be another Expression
 * isPartOf
     - value of isPartOf must be another Expression
+* next
+    - next should point to the next expression on the same level of the content hierarchy
+    - next property does not apply to a topLevel expression
+* previous
+    - next should point to the next expression on the same level of the content hierarchy
+    - previous property does not apply to a topLevel expression
+* sectionOrderNumber
+    - the order sequence position number among sibling expression parts
+* totalOrderNumber
+    - the order sequence position number among all expression parts on this level.
 
 ##structureType=structureCollection properties
 * hasStructureItem
@@ -109,6 +118,8 @@ Primary classes represent the ontology core. They are followed by helper classes
 * currentEdition
 * canonicalManifestation
 * canonicalTranscription
+* structureItemOrderNumber
+    - the order sequence position number among all expression whose structureType=structureItem.
 
 ##structureType=structureDivision properties
 * isPartOfStructureItem    
@@ -117,9 +128,14 @@ Primary classes represent the ontology core. They are followed by helper classes
 ##structureType=structureBlock properties
 * isPartOfStructureItem    
 * hasStructureElement
+* structureBlockTotalOrderNumber
+    - the order sequence position number among all expression whose structureType=structureBlock.
+* structureBlockRelativeOrderNumber
+    - a project/editorial team may decide that blocks (e.g. paragraphs) should have a canonical number relative to another division within the content hierarchy (for example relative to the structureItem level)
 
 ##structureType=structureElement properties
 * isPartOfStructureBlock    
+
 
 
 #Manifestation
@@ -139,16 +155,19 @@ Primary classes represent the ontology core. They are followed by helper classes
     - earlyEdition
     - modernEdition
     - bornDigitalEdition
-* hasItem (not to be confused with structureType=Item above)
+* hasItem (not to be confused with structureType=structureItem above)
 * isManifestationOf
     - Value must be an Expression
 * citation  
-* page
-    - should point to page/side object
+* surface
+    - should point to each page/side object that this manifestation falls on.
         + e.g. f. 15r or p. 16
+        + see Surface class below.
+* startsOnSurface
+* endsOnSurface
 
 #Item
-(item class should not be confused with structureType=item)
+(item class should not be confused with structureType=structureItem)
 ##global properties
 * type=item
 * label
@@ -174,7 +193,7 @@ Primary classes represent the ontology core. They are followed by helper classes
     - only transcriptions of manifestations of expressions with the structureType=item should take a hasDocument property, expressions with a structureType=division should take a isPartOfDocumentProperty and expressions with a structureType=collection should take two or more isComposedFromDocument properties.
 * hasZone
     - should be point to the Zones on which this transcription falls.
-    - this is mostl easily applied at the paragraph level. A paragraph that extends over from one page to the next should have two zones, each zone demarcating the coordinate regions on the respective surface falls
+    - this is most easily applied at the paragraph level. A paragraph that extends over from one page to the next should have two zones, each zone demarcating the coordinate regions on the respective surface falls
 
 ##itemType=materialObject
 * hasNote (not to be confused with Annotation in IIIF/Open Annotation)
@@ -186,7 +205,7 @@ Primary classes represent the ontology core. They are followed by helper classes
 * label
 * description
 
-##Note Propertes
+##Note Properties
 * isOnItem
     - should point to the materiObject item for the manifestation of the expression that the note most closely refers to. 
     - Thus, a note close connected to a paragraph, should apply to the materialObject item for the manifestation of the expression of the paragraph this notation is most closely connected. If the note is more general and does not apply to a particular pargraph, it should be connected a point higher in the expression hierarchy (i.e. OHCO).
