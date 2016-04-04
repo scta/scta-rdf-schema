@@ -51,13 +51,19 @@ Primary classes represent the ontology core. They are followed by helper classes
     - e.g. SentencesCommentary
     - e.g. BiblicalCommentary
 * citation
+* hasExpression
+* hasCanonicalExpression
+* hasCanonicalTranscription
 
 #Expression
 
 ##global properties
 * type=expression
 * label
-    - e.g. Wodeham Oxford Ordinatio
+    - e.g. Wodeham Oxford Reportatio
+    - e.g. Wodheam Abbreviatio
+    - Beethoven's 9th 1st Redaction
+    - Beethoven's 9th 2nd Redaction
 * description
 
 ##expression type properties
@@ -80,6 +86,8 @@ Primary classes represent the ontology core. They are followed by helper classes
     - sturctureBlock
     - sturctureElement
 * hasManifestation
+* hasCanonicalManifestation
+* hasCanonicalTranscription
 * citation
 
 ##expressionType->levelType=topLevel
