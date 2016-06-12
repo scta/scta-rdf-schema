@@ -2,69 +2,70 @@
 
 Primary classes represent the ontology core. They are followed by helper classes (Type Classes and Property Classes).
 
+# Resource
+* Resource is a generic that all subsequent resources inherit from. Therefore any resource can have the following properties
+* rdf:type
+* dc:title
+* dc:description
+
 #workGroup
 
 ##global properties
-* type=workGroup
-* label
+* rdf:type=workGroup
+* dc:title
     - e.g. Latin Literature
-* description
+* dc:description
 
 
 ## workGroup properties
-* workGroupType 
+* sctap:workGroupType 
     - e.g. latinLit 
     - e.g. greekLit
     - e.g. medievalLatinLit
     - e.g. sentencesCommentaries
     - (these values themselves themselves should be instances of a WorkGroupType class and they should specify available children workGroup types or work types)
     - (see below "workGroupType" class)
-* isPartOf
-    - if the workGroup is not a levelType=topLevel and level=1 it must specify its parent part. This must be another workGroup.
-* hasPart
+* dcterms:isPartOf
+    - if the workGroup is not level=1 it must specify its parent part. This must be another workGroup.
+* dcterms:hasPart
     - a work group can take either another workGroup or a work as its direct part (or child)
-* hasWork
-    - every work group should list every Work contained within it no matter what level
-* levelType
-    - topLevel
-        + if a workGroup is not contained by another work group it should be listed as "topLevel"
-    - part
-        + if a workGroup is contained by another workGrop it's levelType should be "part"
-* level
+* sctap:hasExpression
+    - every work group should list every expression contained within it, no matter what level
+* sctap:level
     - 1,2,3
-* citation
-
+* sctap:citation
+    - a string offering a best practice example of how this should be cited
 
 #Work
 
 ##global properties
-* type=work
-* label
+* rdf:type=work
+* dc:title
     - e.g. Adam Wodeham Ordinatio, Moby Dick
-* description
+* dc:description
 
 
 ## work type properties
-* author
-* workType (available workTypes should be determined by the available workTypes specified by the WorkGroupType)
-    - e.g. Novel
-    - e.g. SentencesCommentary
-    - e.g. BiblicalCommentary
-* citation
-* hasExpression
-* hasCanonicalExpression
-* hasCanonicalTranscription
+* role:author
+* sctap:citation
+* sctap:hasExpression
+* sctap:hasCanonicalExpression
+* sctap:level
 
 #Expression
 
 ##global properties
-* type=expression
-* label
+* rdf:type=expression
+* dc:title
     - e.g. Wodeham Oxford Reportatio
     - e.g. Wodheam Abbreviatio
     - Beethoven's 9th 1st Redaction
     - Beethoven's 9th 2nd Redaction
-* description
+    - Moby Dick the Novel
+    - Moby Dick the Screen Play
+* dc:description
+* role:author
+* sctap:status
 
 ##expression type properties
 * expressionType
@@ -390,9 +391,9 @@ The above classes (Primary Classes) represent privileged classes that constitute
 #WorkType
 
 ##global properties
-* type=WorkType
-* label 
-* description
+* rdf: type=WorkType
+* dc:title
+* dc:description
 
 ##WorkType properties
 * type=WorkType
