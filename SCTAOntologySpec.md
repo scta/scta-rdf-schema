@@ -1,21 +1,20 @@
-#Primary Classes
+# Primary Classes
 
 Primary classes represent the ontology core. They are followed by helper classes (Type Classes and Property Classes).
 
 # Resource
 * Resource is a generic that all subsequent resources inherit from. Therefore any resource can have the following properties
-* rdf:type
-* dc:title
-* dc:description
+    - rdf:type
+    - dc:title
+    - dc:description
 
-#workGroup
+# workGroup
 
-##global properties
+## global resource properties
 * rdf:type=workGroup
 * dc:title
     - e.g. Latin Literature
 * dc:description
-
 
 ## workGroup properties
 * sctap:workGroupType 
@@ -36,25 +35,29 @@ Primary classes represent the ontology core. They are followed by helper classes
 * sctap:citation
     - a string offering a best practice example of how this should be cited
 
-#Work
+# Work
 
-##global properties
+## global resource properties
 * rdf:type=work
 * dc:title
     - e.g. Adam Wodeham Ordinatio, Moby Dick
 * dc:description
 
 
-## work type properties
+## Work type properties
 * role:author
+* dcterms:isPartOf
+    - a work should indicate the immediate parent workGroup of which it is a part.
+* dcterms:hasPart
+    - a Work (unlike a WorkGroup) can take no workGroups or Works as children and thus can only have a top level Expression as its immediate child part.
 * sctap:citation
 * sctap:hasExpression
 * sctap:hasCanonicalExpression
 * sctap:level
 
-#Expression
+# Expression
 
-##global properties
+## global resource properties
 * rdf:type=expression
 * dc:title
     - e.g. Wodeham Oxford Reportatio
@@ -64,290 +67,249 @@ Primary classes represent the ontology core. They are followed by helper classes
     - Moby Dick the Novel
     - Moby Dick the Screen Play
 * dc:description
-* role:author
-* sctap:status
 
-##expression type properties
-* expressionType
+## expression type properties
+* role:author
+* dcterms:isPartOf
+    - a top level expression should point to the immediate parent Work (or WorkGroup) that contains the top level expression as a direct child
+* dcterms:hasPart
+    - the top level expression should list the immediate 2nd level child Expressions
+* sctap:status
+* sctap:expressionType
     - e.g. available expressionTypes should be enumerated in the WorkType or WorkGroupType class
     - e.g. a Work within the WorkGroup where workGroupType="SentencesCommentaries" the value of expressionType given here must be one of the values of the availableExpressionType listed in that workGroupType. See WorkGroupType and WorkType below.
-        + Commentarius
-        + Librum
-        + Distinctio
-        + Quaestio
-        + Articulus
-        + Dubium
-* levelType
-    - topLevel
-    - part
-    - fragment 
-* structureType
+* sctap:structureType
     - structureCollection
     - sturctureItem
     - sturctureBlock
     - sturctureElement
-* hasManifestation
-* hasCanonicalManifestation
-* hasCanonicalTranscription
-* citation
-
-##expressionType->levelType=topLevel
-* level=1
-    - topLevel expression must be level one
-* hasPart
-    - object of hasPart must be another expression
-
-##expressionType=part
-* level
-* hasPart
-    - value of hasPart must be another Expression
-* isPartOf
-    - value of isPartOf must be another Expression
-* next
+* sctap:hasManifestation
+* sctap:hasCanonicalManifestation
+* sctap:hasCanonicalTranscription
+* sctap:citation
+* sctap:next
     - next should point to the next expression on the same level of the content hierarchy
-    - next property does not apply to a topLevel expression
-* previous
+    - obviously, a top level expression would not a have a next property because there is be definition now sibling of Expression of a top level Expression
+* sctap:previous
     - next should point to the next expression on the same level of the content hierarchy
-    - previous property does not apply to a topLevel expression
-* sectionOrderNumber
-    - the order sequence position number among sibling expression parts
-* totalOrderNumber
-    - the order sequence position number among all expression parts on this level.
+    - again, previous property does not apply to a top level Expression
+* sctap:sectionOrderNumber
+    - the order sequence position number among sibling Expression parts
+* sctap:totalOrderNumber
+    - the order sequence position number among all Expression parts on this level.
+* sctap:level
+    - the level of the expression within the Expression hierarchy
+* sctap:isPartOfTopLevelExpression
+    - all non top level Expressions should point to the top level Expression of which they are a part. 
 
-##structureType=structureCollection properties
+## structureType=structureCollection properties
 * hasStructureItem
 
-##structureType=structureItem properties
+## structureType=structureItem properties
 * isPartOfStructureCollection
     - value can only be applied if Expression is not a topLevel Expression.Value must point to a topLevel Expression
-* hasBlock
-* gitRepo
-* status
-* generalEditor
-* currentEdition
-* canonicalManifestation
-* canonicalTranscription
-* structureItemOrderNumber
-    - the order sequence position number among all expression whose structureType=structureItem.
+* sctap:hasStructureBlock
+* sctap:gitRepo
 
-##structureType=structureDivision properties
-* isPartOfStructureItem    
-* hasStructureBlock
+## structureType=structureDivision properties
+* sctap:isPartOfStructureItem    
+* sctap:hasStructureBlock
 
-##structureType=structureBlock properties
-* isPartOfStructureItem    
-* hasStructureElement
-* structureBlockTotalOrderNumber
-    - the order sequence position number among all expression whose structureType=structureBlock.
-* structureBlockRelativeOrderNumber
-    - a project/editorial team may decide that blocks (e.g. paragraphs) should have a canonical number relative to another division within the content hierarchy (for example relative to the structureItem level)
+## structureType=structureBlock properties
+* sctap:isPartOfStructureItem    
+* sctap:hasStructureElement
 
-##structureType=structureElement properties
+## structureType=structureElement properties
 * isPartOfStructureBlock    
 
+# Manifestation
 
-
-#Manifestation
-
-##global properties
-* type=manifestation
-* label
+## global properties
+* rdf:type=manifestation
+* dc:title
     - e.g. Sorbonne ms. 253
-* description
+* dc:description
     - e.g. Sorbonne witness to paragraph 4
     - e.g. Sorbonne witness to quote `<quote id>`
 
-##manifestation properties
-* manfestationType
+## manifestation properties
+* sctap:manfestationType
     - manuscript
     - incunabula
     - earlyEdition
     - modernEdition
     - bornDigitalEdition
-* hasItem (not to be confused with structureType=structureItem above)
-* isManifestationOf
+* sctap:hasTranscription
+* sctap:hasMaterialObject
+* sctap:isManifestationOf
     - Value must be an Expression
-* citation  
-* surface
+* sctap:surface
     - should point to each page/side object that this manifestation falls on.
         + e.g. f. 15r or p. 16
         + see Surface class below.
-* startsOnSurface
-* endsOnSurface
+* sctap:startsOnSurface
+* sctap:endsOnSurface
 
-#Item
-(item class should not be confused with structureType=structureItem)
-##global properties
-* type=item
-* label
-    - Sorbonne ms. 253 material witness
+# Transcription
+
+## global resource properties
+* rdf:type=transcription
+* dc:title
     - Sorbonne ms. 253 transcriptions
-* description
+* dc:description
 
-##Item properties 
+## Transcription properties 
 
-* itemType
-    - materialObject
-    - transcription 
-        + i.e. digital transcription of manifestation
+* sctap:transcriptionType
+    - diplomatic
+    - critical
+* sctap:hasXML
+* sctap:hasDocument
 
-##itemType=transcription
-* xml
-* plainText
-* json
-* editor
-* status
-* edition
-* hasDocument, isPartOfDocument, isComposedFromDocument
-    - only transcriptions of manifestations of expressions with the structureType=item should take a hasDocument property, expressions with a structureType=division should take a isPartOfDocumentProperty and expressions with a structureType=collection should take two or more isComposedFromDocument properties.
-* hasZone
+* sctap:hasZone
     - should be point to the Zones on which this transcription falls.
-    - this is most easily applied at the paragraph level. A paragraph that extends over from one page to the next should have two zones, each zone demarcating the coordinate regions on the respective surface falls
-
-##itemType=materialObject
-* hasNote (not to be confused with Annotation in IIIF/Open Annotation)
-    - should point to a Note class, note classes by definition are material inscriptions on a particular material item and therefore should only be attached at the ItemLevel
+    - this is most easily applied at the paragraph level. A paragraph that extends over from one page to the next should have two zones, each zone demarcating the coordinate regions on the respective surface falls.
+    - (TODO: note I'm not yet sure if it logically more precise for a Manifestation to take a hasZone property rather than a Transcription resource. Or perhaps both.)
 
 #Note 
+
 ##global properties
-* type=Note
-* label
-* description
+* rdf:type=Note
+* dc:title
+* dc: description
 
 ##Note Properties
-* isOnItem
-    - should point to the materiObject item for the manifestation of the expression that the note most closely refers to. 
-    - Thus, a note close connected to a paragraph, should apply to the materialObject item for the manifestation of the expression of the paragraph this notation is most closely connected. If the note is more general and does not apply to a particular pargraph, it should be connected a point higher in the expression hierarchy (i.e. OHCO).
+
+* sctap:isOnMaterialObject
+    - should point to the materiObject for the Manifestation of the Expression that the note most closely refers to. 
+    - Thus, a note close connected to a paragraph, should apply to the materialObject  for the Manifestation of the Expression of the paragraph this notation is most closely connected. If the note is more general and does not apply to a particular pargraph, it should be connected a point higher in the Expression hierarchy (i.e. OHCO).
 * hasZone
-    - should point to the Zone coordinate region on which the notation falls
+    - should point to the Zone abstract coordinate region on which the notation falls.
 
 #Repository
 
 ##global properties
-* type=repository
-* label = "Git Hub Development Repository"
-* description
+* rdf:type=repository
+* dc:title = "Git Hub Development Repository"
+* dc:description
 
 ##Repository properties
-* repoUrl
-* version 
-    - value of version should correspond to a version resource for each tagged moment in the source history (i.e. each release)
-* current
+* sctap:repoUrl
+* sctap:hasVersion 
+    - value of hasVersion should correspond to a version resource for each tagged moment in the source history (i.e. each release)
+* sctap:current
     - value of current should point to version which is the top of the source history tree, i.e. the most recent release.
-* isRepoOf
+* sctap:isRepoOf
     - Value should be point to Expression with the structureType=item
 
 #Version
 
 ##global properties
-* type=version
-* label = Version 1.0.0
-* description
+* rdf:type=version
+* dc:title = Version 1.0.0
+* dc:description
 
 ## Version properties
-* hasDocument
+* sctap:hasDocument
     - should point to document resource (i.e. each xml file contained in the repository at this point in the commit history)
 
 #Document
 
 ##global properties
-* type=Document
-* label = TEI Transcription of Sorbonne ms 253
-* description
+* rdf:type=Document
+* dc:title = TEI Transcription of Sorbonne ms 253
+* dc:description
 
 ## Document properties
-* validatedBy
+* sctap:validatedBy
     - should specify the XML schema this xml document was validated against
-* xml 
+* sctap:hasXML 
     - url to raw xml file
 
 #Zone
 
 ##global properties
-* type=Zone
-* label = Zone for 
-* description
+* rdf:type=Zone
+* dc:label = Zone for XXXX
+* dc:description
 
 ##Zone properties
 
-* isOnRegion
+* sctap:isOnRegion
     - marginRight
     - marginCenter
     - marginLeft
     - marginBottom
     - marginTop
     - column
-* isOnSurface    
-* isOnCanvas
-* order
+* sctap:isOnSurface    
+* sctap:isOnCanvas
+* sctap:order
     - default=1, where there is more than one zone for a given resource, (for example a paragraph that crosses from one column to the next) the zone should be given a order number so that the zones can be ordered correctly.
 
 #Region
 ##global properties
-* type=region
-* label
+* rdf:type=region
+* dc:title
     - marginRight
     - marginLeft
 
 ##Region Properties
-* hasZone
-* isOnSurface
-* isOnCanvas
-* regionType
+* sctap:hasZone
+* sctap:isOnSurface
+* sctap:isOnCanvas
+* sctap:regionType
     - margin
     - column
     - etc.
 
 #Surface
 ##global properties
-* type=suface
-* label
+* rdf:type=suface
+* dc:title
     - f. 1r
 
 ##surface properties
-* hasZone
-* hasRegion
-* isOnCanvas
-* isPartOf
+* sctap:hasZone
+* sctap:hasRegion
+* sctap:isOnCanvas
+* sctap:isPartOf
     - surface should be the smallest unit in the material hierarchy, contained by folio, quire, codex, etc. In modern text, it should normally correspond to a page.
 
-#Material
+#MaterialObject
 ##global properties
-* type=material
-* label
+* rdf:type=material
+* dc:title
     - f. 1r
 
-##Material properties
-* materialType =   
+##MaterialObject properties
+* sctap:materialType =   
     - folio
     - quire
     - codex
-* hasSurface
+* sctap:hasSurface
     - should list every surface contained within this material. So for any given Material object of the type Folio, there should be two "hasSurface" properties
-* hasCanvas
-* hasPart
+* sctap:hasCanvas
+* dc:hasPart
     - can contain surface
-    - or another material part
-* levelType
-    - topLevel
-        + topLevel material cannot be contained by another material class. (i.e. the codex should not be contained by anything else.)
-    - part
+    - or another materialObject part
 * level
-    - codex should be level 1, generally quire would be level 2
+    - codex should be level 1, generally quire would be level 2, etc.
 
 #Type Classes
+
 The above classes (Primary Classes) represent privileged classes that constitute the Ontology core. Type classes are helper classes used in further defining instances of Primary Classes. The goal of type classes is facilitate "favoring objection composition over class inheritance" (See Design Patterns, p. 20) 
 
 #Type
 
 ##global properties
-* type=Type
-* label 
+* rdf:type=Type
+* dc:title
     - e.g. "Work Group Type", "Work Type", "Expression Type"
-* description
+* dc:description
 
 ##Type properties
-* typeType
+* sctap:typeType
     - WorkGroup
     - Work
     - Expression
@@ -357,22 +319,22 @@ The above classes (Primary Classes) represent privileged classes that constitute
 #WorkGroupType
 
 ##global properties
-* type=WorkGroupType
-* label 
+* rdf:type=WorkGroupType
+* dc:title
     - e.g. "LatinLit", "GreekLit, "MedievalLit", "SentencesCommentary", "EnglishNovels"
-* description
+* dc:description
 
 ##WorkGroupType properties
-* availableWorkGroupType
+* sctap:availableWorkGroupType
     - e.g. where WorkGroupType is a workGroup for Medieval Commentaries available workGroupTypes might include:
         + BiblicalCommentaries
         + SentencesCommentaries
-* availableWorkType
+* sctap:availableWorkType
     - e.g. where WorkGroupType is a work group for Sentences Commentary available workTypes might include:
         + Reportatio
         + Ordinatio
         + Abbreviatio
-* availableExpressionType
+* sctap:availableExpressionType
     - a workGroup could specific a list of expression Types available for all descendant workGroups and works
     - e.g. where WorkGroupType is Sentences Commentary available Expression types would be the following
         + commentarius
@@ -396,22 +358,21 @@ The above classes (Primary Classes) represent privileged classes that constitute
 * dc:description
 
 ##WorkType properties
-* type=WorkType
-* availableExpressionType
+* sctap:availableExpressionType
     - A workType could add other availableExpressionTypes besides those inherited from the WorkGroup Type.
 
 #ExpressionType
 
 ##global properties
-* type=ExpressionType
-* label 
+* rdf:type=ExpressionType
+* dc:title
     - e.g. Distinctio
-* description
+* dc:description
 
 ##ExpressionType properties
-* level
+* sctap:level
     - 1, 2, 3, 4
-* availableExpressionType
+* sctap:availableExpressionType
     - an ExpressionType can specify sub ExpressionTypes. All expressionTypes not listed as an avaiableExpression type by a workGroupType or workType must have a level 2 or greater ExpressionType. In other words, workGropuTypes and workTypes should only list level 1 ExpressionTypes as available.
     - for example, the ExpressionType "Distinctio" might could have the availableExpresssionTypes. Only Expression with the expressionType "distinctio" could also have the expressionType="librum1-distinctio1"
         + librum1-distinctio1
@@ -430,12 +391,12 @@ The above classes (Primary Classes) represent privileged classes that constitute
 #ManifestationType
 
 ##global properties
-* type=ManifestationType
-* label 
-* description
+* rdf:type=ManifestationType
+* dc:title
+* dc:description
 
 ##ManifestationType properties
-* availableManifestType
+* sctap:availableManifestType
     - MsWitness
     - Incunabula
     - EarlyModernPrinting
@@ -445,12 +406,12 @@ The above classes (Primary Classes) represent privileged classes that constitute
 #ItemType
 
 ##global properties
-* type=ItemType
-* label 
-* description
+* rdf:type=ItemType
+* dc:title
+* dc:description
 
 ##ItemType properties
-* availableItemType
+* rdf:availableItemType
     - material
     - transcription
 
@@ -458,61 +419,63 @@ The above classes (Primary Classes) represent privileged classes that constitute
 Property class should categorize and organize available properties used in defining Primary and Type Classes
 
 ## global properties
-* type
-* label
-* description
+* rdf:type
+* dc:title
+* dc:description
 
 ##availableType properties
-* availableWorkType
-* availableWorkGroupType
-* availableExpressionType
-* availableManifestationType
-* availableItemType
+* sctap:availableWorkType
+* sctap:availableWorkGroupType
+* sctap:availableExpressionType
+* sctap:availableManifestationType
+* sctap:availableItemType
 
 ##type properties  
-* workGroupType
-* workType
-* expressionType
-* manifestationType
-* itemType
-* typeType
-* itemType
-* levelType
-* structureType
+* sctap:workGroupType
+* sctap:workType
+* sctap:expressionType
+* sctap:manifestationType
+* sctap:transcriptionType
+* sctap:materialObjectType
+* sctap:typeType
+* sctap:structureType
 
 ## part properties
-* hasPart
-* isPartOf
-* level
+* dc:hasPart
+* dc:isPartOf
+* sctap:level
 
 ## linkingProperties
-* hasManifestation
-* isManifestationOf
-* hasItem
-* isItemOf
-* hasDocument
+* sctap:hasManifestation
+* sctap:isManifestationOf
+* sctap:hasTranscription
+* sctap:isTranscriptionOf
+* sctap:hasMaterialObject
+* sctap:isMaterialObjectOf
+* sctap:hasDocument
 
-##Item->type->transcription properties
-* xml
-* html
-* plaintext
-* json
+##transcription properties
+* sctap:hasXML
+* sctap:hasHTML
+* sctap:hasPlainText
+* sctap:hasJSON
 
 ##publicationInfo properties
-* author
-* editor
-* creationDate
-* version
-* status
-* citatin
+* role:author
+* role:editor
+* sctap:creationDate
+* sctap:version
+* sctap:status
+* sctap:citation
 
 ## stuctureType properties
-* hasStructureItem
-* IsPartOfStructureCollection (value must point to topLevel Expression)
-* isPartOfStructureItem
-* hasStructureBlock
-* hasStructureElement
-* isPartOfStructureBlock
+* sctap:isPartOfTopLevelExpression
+* sctap:hasStructureItem
+* sctap:isPartOfStructureItem
+* sctap:hasStructureBlock
+* sctap:isPartOfStructureBlock
+* sctap:hasStructureElement
+
 
 
 
