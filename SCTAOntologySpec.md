@@ -17,8 +17,8 @@ Primary classes represent the ontology core. They are followed by helper classes
 * dc:description
 
 ## workGroup properties
-* sctap:workGroupType 
-    - e.g. latinLit 
+* sctap:workGroupType
+    - e.g. latinLit
     - e.g. greekLit
     - e.g. medievalLatinLit
     - e.g. sentencesCommentaries
@@ -100,7 +100,7 @@ Primary classes represent the ontology core. They are followed by helper classes
 * sctap:level
     - the level of the expression within the Expression hierarchy
 * sctap:isPartOfTopLevelExpression
-    - all non top level Expressions should point to the top level Expression of which they are a part. 
+    - all non top level Expressions should point to the top level Expression of which they are a part.
 
 ## structureType=structureCollection properties
 * hasStructureItem
@@ -158,7 +158,7 @@ Primary classes represent the ontology core. They are followed by helper classes
     - Sorbonne ms. 253 transcriptions
 * dc:description
 
-## Transcription properties 
+## Transcription properties
 
 * sctap:transcriptionType
     - diplomatic
@@ -171,40 +171,40 @@ Primary classes represent the ontology core. They are followed by helper classes
     - this is most easily applied at the paragraph level. A paragraph that extends over from one page to the next should have two zones, each zone demarcating the coordinate regions on the respective surface falls.
     - (TODO: note I'm not yet sure if it logically more precise for a Manifestation to take a hasZone property rather than a Transcription resource. Or perhaps both.)
 
-#Note 
+# Note
 
-##global properties
+## global properties
 * rdf:type=Note
 * dc:title
 * dc: description
 
-##Note Properties
+## Note Properties
 
 * sctap:isOnMaterialObject
-    - should point to the materiObject for the Manifestation of the Expression that the note most closely refers to. 
+    - should point to the materiObject for the Manifestation of the Expression that the note most closely refers to.
     - Thus, a note close connected to a paragraph, should apply to the materialObject  for the Manifestation of the Expression of the paragraph this notation is most closely connected. If the note is more general and does not apply to a particular pargraph, it should be connected a point higher in the Expression hierarchy (i.e. OHCO).
 * hasZone
     - should point to the Zone abstract coordinate region on which the notation falls.
 
-#Repository
+# Repository
 
-##global properties
+## global properties
 * rdf:type=repository
 * dc:title = "Git Hub Development Repository"
 * dc:description
 
-##Repository properties
+## Repository properties
 * sctap:repoUrl
-* sctap:hasVersion 
+* sctap:hasVersion
     - value of hasVersion should correspond to a version resource for each tagged moment in the source history (i.e. each release)
 * sctap:current
     - value of current should point to version which is the top of the source history tree, i.e. the most recent release.
 * sctap:isRepoOf
     - Value should be point to Expression with the structureType=item
 
-#Version
+# Version
 
-##global properties
+## global properties
 * rdf:type=version
 * dc:title = Version 1.0.0
 * dc:description
@@ -213,9 +213,9 @@ Primary classes represent the ontology core. They are followed by helper classes
 * sctap:hasDocument
     - should point to document resource (i.e. each xml file contained in the repository at this point in the commit history)
 
-#Document
+# Document
 
-##global properties
+## global properties
 * rdf:type=Document
 * dc:title = TEI Transcription of Sorbonne ms 253
 * dc:description
@@ -223,17 +223,17 @@ Primary classes represent the ontology core. They are followed by helper classes
 ## Document properties
 * sctap:validatedBy
     - should specify the XML schema this xml document was validated against
-* sctap:hasXML 
+* sctap:hasXML
     - url to raw xml file
 
-#Zone
+# Zone
 
-##global properties
+## global properties
 * rdf:type=Zone
 * dc:label = Zone for XXXX
 * dc:description
 
-##Zone properties
+## Zone properties
 
 * sctap:isOnRegion
     - marginRight
@@ -247,14 +247,17 @@ Primary classes represent the ontology core. They are followed by helper classes
 * sctap:order
     - default=1, where there is more than one zone for a given resource, (for example a paragraph that crosses from one column to the next) the zone should be given a order number so that the zones can be ordered correctly.
 
-#Region
-##global properties
+# Region
+
+## global properties
+
 * rdf:type=region
 * dc:title
     - marginRight
     - marginLeft
 
-##Region Properties
+## Region Properties
+
 * sctap:hasZone
 * sctap:isOnSurface
 * sctap:isOnCanvas
@@ -263,26 +266,32 @@ Primary classes represent the ontology core. They are followed by helper classes
     - column
     - etc.
 
-#Surface
-##global properties
+# Surface
+
+## global properties
+
 * rdf:type=suface
 * dc:title
     - f. 1r
 
-##surface properties
+## surface properties
+
 * sctap:hasZone
 * sctap:hasRegion
 * sctap:isOnCanvas
 * sctap:isPartOf
     - surface should be the smallest unit in the material hierarchy, contained by folio, quire, codex, etc. In modern text, it should normally correspond to a page.
 
-#MaterialObject
-##global properties
+# MaterialObject
+
+## global properties
+
 * rdf:type=material
 * dc:title
     - f. 1r
 
-##MaterialObject properties
+## MaterialObject properties
+
 * sctap:materialType =   
     - folio
     - quire
@@ -296,19 +305,19 @@ Primary classes represent the ontology core. They are followed by helper classes
 * level
     - codex should be level 1, generally quire would be level 2, etc.
 
-#Type Classes
+# Type Classes
 
-The above classes (Primary Classes) represent privileged classes that constitute the Ontology core. Type classes are helper classes used in further defining instances of Primary Classes. The goal of type classes is facilitate "favoring objection composition over class inheritance" (See Design Patterns, p. 20) 
+The above classes (Primary Classes) represent privileged classes that constitute the Ontology core. Type classes are helper classes used in further defining instances of Primary Classes. The goal of type classes is facilitate "favoring objection composition over class inheritance" (See Design Patterns, p. 20)
 
-#Type
+# Type
 
-##global properties
+## global properties
 * rdf:type=Type
 * dc:title
     - e.g. "Work Group Type", "Work Type", "Expression Type"
 * dc:description
 
-##Type properties
+## Type properties
 * sctap:typeType
     - WorkGroup
     - Work
@@ -316,15 +325,16 @@ The above classes (Primary Classes) represent privileged classes that constitute
     - Manifestation
     - Item
 
-#WorkGroupType
+# WorkGroupType
 
-##global properties
+## global properties
 * rdf:type=WorkGroupType
 * dc:title
     - e.g. "LatinLit", "GreekLit, "MedievalLit", "SentencesCommentary", "EnglishNovels"
 * dc:description
 
-##WorkGroupType properties
+## WorkGroupType properties
+
 * sctap:availableWorkGroupType
     - e.g. where WorkGroupType is a workGroup for Medieval Commentaries available workGroupTypes might include:
         + BiblicalCommentaries
@@ -350,26 +360,30 @@ The above classes (Primary Classes) represent privileged classes that constitute
                 - e.g. librum -> expressionType=librum1, librum2, librum3, librum4
                 - e.g. distinctio = librum1-distinctio1, librum2-distinctio3, etc
 
-#WorkType
+# WorkType
 
-##global properties
+## global properties
+
 * rdf: type=WorkType
 * dc:title
 * dc:description
 
-##WorkType properties
+## WorkType properties
+
 * sctap:availableExpressionType
     - A workType could add other availableExpressionTypes besides those inherited from the WorkGroup Type.
 
-#ExpressionType
+# ExpressionType
 
-##global properties
+## global properties
+
 * rdf:type=ExpressionType
 * dc:title
     - e.g. Distinctio
 * dc:description
 
-##ExpressionType properties
+## ExpressionType properties
+
 * sctap:level
     - 1, 2, 3, 4
 * sctap:availableExpressionType
@@ -388,14 +402,16 @@ The above classes (Primary Classes) represent privileged classes that constitute
         + What if a person wanted to study the differences in opening chapters among all novels in the English Novel Work group?
         + They could only do this if we had a way to query all expression with the expressionType Chapter that also have the expressionType "Chapter1"
 
-#ManifestationType
+# ManifestationType
 
-##global properties
+## global properties
+
 * rdf:type=ManifestationType
 * dc:title
 * dc:description
 
-##ManifestationType properties
+## ManifestationType properties
+
 * sctap:availableManifestType
     - MsWitness
     - Incunabula
@@ -403,34 +419,40 @@ The above classes (Primary Classes) represent privileged classes that constitute
     - ModernPrinting
     - BornDigitalEdition
 
-#ItemType
+# ItemType
 
-##global properties
+## global properties
+
 * rdf:type=ItemType
 * dc:title
 * dc:description
 
-##ItemType properties
+## ItemType properties
+
 * rdf:availableItemType
     - material
     - transcription
 
 # Property Classes
+
 Property class should categorize and organize available properties used in defining Primary and Type Classes
 
 ## global properties
+
 * rdf:type
 * dc:title
 * dc:description
 
-##availableType properties
+## availableType properties
+
 * sctap:availableWorkType
 * sctap:availableWorkGroupType
 * sctap:availableExpressionType
 * sctap:availableManifestationType
 * sctap:availableItemType
 
-##type properties  
+## type properties  
+
 * sctap:workGroupType
 * sctap:workType
 * sctap:expressionType
@@ -441,11 +463,13 @@ Property class should categorize and organize available properties used in defin
 * sctap:structureType
 
 ## part properties
+
 * dc:hasPart
 * dc:isPartOf
 * sctap:level
 
 ## linkingProperties
+
 * sctap:hasManifestation
 * sctap:isManifestationOf
 * sctap:hasTranscription
@@ -455,12 +479,14 @@ Property class should categorize and organize available properties used in defin
 * sctap:hasDocument
 
 ##transcription properties
+
 * sctap:hasXML
 * sctap:hasHTML
 * sctap:hasPlainText
 * sctap:hasJSON
 
 ##publicationInfo properties
+
 * role:author
 * role:editor
 * sctap:creationDate
@@ -469,14 +495,10 @@ Property class should categorize and organize available properties used in defin
 * sctap:citation
 
 ## stuctureType properties
+
 * sctap:isPartOfTopLevelExpression
 * sctap:hasStructureItem
 * sctap:isPartOfStructureItem
 * sctap:hasStructureBlock
 * sctap:isPartOfStructureBlock
 * sctap:hasStructureElement
-
-
-
-
-
