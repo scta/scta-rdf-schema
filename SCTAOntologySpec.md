@@ -3,10 +3,18 @@
 Primary classes represent the ontology core. They are followed by helper classes (Type Classes and Property Classes).
 
 # Resource
-* Resource is a generic that all subsequent resources inherit from. Therefore any resource can have the following properties
-    - rdf:type
-    - dc:title
-    - dc:description
+* Resource is a generic that all subsequent resources inherit from.
+
+## Global Resource Properties
+* rdf:type=expression
+* dc:title
+    - e.g. Wodeham Oxford Reportatio
+    - e.g. Wodheam Abbreviatio
+    - Beethoven's 9th 1st Redaction
+    - Beethoven's 9th 2nd Redaction
+    - Moby Dick the Novel
+    - Moby Dick the Screen Play
+* dc:description
 
 # workGroup
 
@@ -55,18 +63,17 @@ Primary classes represent the ontology core. They are followed by helper classes
 * sctap:hasCanonicalExpression
 * sctap:level
 
-# Expression
 
-## global resource properties
-* rdf:type=expression
-* dc:title
-    - e.g. Wodeham Oxford Reportatio
-    - e.g. Wodheam Abbreviatio
-    - Beethoven's 9th 1st Redaction
-    - Beethoven's 9th 2nd Redaction
-    - Moby Dick the Novel
-    - Moby Dick the Screen Play
-* dc:description
+|[Structures](#structures)|[Expression](#expression)|[Manifestation](#manifestation)|[Transcription](#transcription)|
+|----------||----------|-------------|
+|[TopLevelCollection](#toplevelcollection)|[TopLevelCollectionExpression](toplevelcollectionexpression)|[TopLevelCollectionManifestation](#toplevelcollectionmanifestation)|[TopLevelCollectionTranscription](#toplevelcollectiontranscription)|
+|[Collection](#collection)|[ExpressionCollection](#expressioncollectin)|[ManifestationCollection](#manifestationcollection)|[TranscriptionCollection](#transcriptioncollection)|
+|[Item](#item)|[ExpressionItem](#expressionitem)|[ManifestationItem](#manifestationitem)|[TranscriptionItem](#transcriptionitem)|
+|[Division](#division])|[ExpressionDivision](#expressiondivision)|[ManifestationDivision](#manifestationdivision)|[TranscriptionDivision](#transcriptindivision)|
+|[Block](#block)|[ExpressionBlock](#expressionblock)|[ManifestationBlock](#manifestationblock)|[ItemBlock](#itemblock)|
+|[Element](#element)|[ExpressionElement](#expressionelement)|[ManifestationElement](#manifestationelement)|[ItemElement](#itemelement)|
+
+# Expression
 
 ## expression type properties
 * role:author
