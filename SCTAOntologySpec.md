@@ -2,29 +2,30 @@
 
 Primary classes represent the ontology core. They are followed by helper classes (Type Classes and Property Classes).
 
-# Resource
-* Resource is a generic that all subsequent resources inherit from.
+## Resource
 
-## Global Resource Properties
-* rdf:type=expression
+All resources inherit the global properties of the generic resource type
+
+* rdf:type
+  - http://scta.info/resource/workGroup
+  - http://scta.info/resource/work
+  - http://scta.info/resource/expression
+  - http://scta.info/resource/manifestation
+  - http://scta.info/resource/transcription
+  - etc.
 * dc:title
-    - e.g. Wodeham Oxford Reportatio
-    - e.g. Wodheam Abbreviatio
-    - Beethoven's 9th 1st Redaction
-    - Beethoven's 9th 2nd Redaction
-    - Moby Dick the Novel
-    - Moby Dick the Screen Play
+  - e.g. Wodeham Oxford Reportatio
+  - e.g. Wodheam Abbreviatio
+  - Beethoven's 9th 1st Redaction
+  - Beethoven's 9th 2nd Redaction
+  - Moby Dick the Novel
+  - Moby Dick the Screen Play
 * dc:description
+* ldp:inbox
 
-# workGroup
 
-## global resource properties
-* rdf:type=workGroup
-* dc:title
-    - e.g. Latin Literature
-* dc:description
+## workGroup
 
-## workGroup properties
 * sctap:workGroupType
     - e.g. latinLit
     - e.g. greekLit
@@ -43,16 +44,8 @@ Primary classes represent the ontology core. They are followed by helper classes
 * sctap:citation
     - a string offering a best practice example of how this should be cited
 
-# Work
+## Work
 
-## global resource properties
-* rdf:type=work
-* dc:title
-    - e.g. Adam Wodeham Ordinatio, Moby Dick
-* dc:description
-
-
-## Work type properties
 * role:author
 * dcterms:isPartOf
     - a work should indicate the immediate parent workGroup of which it is a part.
@@ -63,7 +56,7 @@ Primary classes represent the ontology core. They are followed by helper classes
 * sctap:hasCanonicalExpression
 * sctap:level
 
-
+## Text Resources Chart
 
 | | [Expression](#expression) | [Manifestation](#manifestation) | [Transcription](#transcription) |
 | ---------- | ---------- | ------------- | ------------- |
@@ -74,12 +67,13 @@ Primary classes represent the ontology core. They are followed by helper classes
 | [StructureBlock](#structureblock) | [ExpressionBlock](#expressionblock) | [ManifestationBlock](#manifestationblock) | [ItemBlock](#itemblock) |
 | [StructureElement](#structureelement) | [ExpressionElement](#expressionelement) | [ManifestationElement](#manifestationelement) | [ItemElement](#itemelement) |
 
-# Global Text Resource Properties
+## Global Text Resource Properties
+
 * role:author
 * role:editor
 * sctap:citation
 
-# Expression
+## Expression
 
 * rdf:type=http://scta.info/resource/expression
 * sctap:status
@@ -91,7 +85,7 @@ Primary classes represent the ontology core. They are followed by helper classes
 * sctap:isPartOfTopLevelExpression <!-- I would like to see this change just isPartOfTopLevel and become a property of structures -->
     - all non top level Expressions should point to the top level Expression of which they are a part.
 
-# Manifestation
+## Manifestation
 
 * sctap:manfestationType
     - manuscript
@@ -111,7 +105,8 @@ Primary classes represent the ontology core. They are followed by helper classes
 * sctap:startsOnSurface
 * sctap:endsOnSurface
 
-# Transcription
+## Transcription
+
 * sctap:transcriptionType
     - diplomatic
     - critical
@@ -127,7 +122,8 @@ Primary classes represent the ontology core. They are followed by helper classes
     - this is most easily applied at the paragraph level. A paragraph that extends over from one page to the next should have two zones, each zone demarcating the coordinate regions on the respective surface falls.
     - (TODO: note I'm not yet sure if it logically more precise for a Manifestation to take a hasZone property rather than a Transcription resource. Or perhaps both.)
 
-# Global Structure properties
+## Global Structure properties
+
 * sctap:structureType
     - structureCollection
     - sturctureItem
@@ -153,42 +149,44 @@ Primary classes represent the ontology core. They are followed by helper classes
 * sctap:level
     - the level of the expression within the Expression hierarchy
 
-# TopLevelStructureCollection
+## TopLevelStructureCollection
+
 * sctap:hasStructureItem
 
-# StructureCollection
+## StructureCollection
+
 * sctap:hasStructureItem
 
-# StructureItem
+## StructureItem
+
 * sctap:hasStructureBlock
 
-# StructureDivision
+## StructureDivision
+
 * sctap:hasStructureBlock
 
-# StructureBlock
+## StructureBlock
+
 * sctap:isPartOfStructureItem
 * sctap:hasStructureElement
 
-# StructureElement
+## StructureElement
+
 * sctap:isPartOfStructureBlock
 
 ---
-TODO below still needs review
 
-# Note
+Below Needs Substantial Review and Revision
+
+---
+
+## Note
 
 * sctap:isOnMaterialObject
     - should point to the materiObject for the Manifestation of the Expression that the note most closely refers to.
     - Thus, a note close connected to a paragraph, should apply to the materialObject  for the Manifestation of the Expression of the paragraph this notation is most closely connected. If the note is more general and does not apply to a particular pargraph, it should be connected a point higher in the Expression hierarchy (i.e. OHCO).
 * hasZone
     - should point to the Zone abstract coordinate region on which the notation falls.
-
-# Repository
-
-## global properties
-* rdf:type=repository
-* dc:title = "Git Hub Development Repository"
-* dc:description
 
 ## Repository properties
 * sctap:repoUrl
@@ -199,36 +197,11 @@ TODO below still needs review
 * sctap:isRepoOf
     - Value should be point to Expression with the structureType=item
 
-# Version
-
-## global properties
-* rdf:type=version
-* dc:title = Version 1.0.0
-* dc:description
-
-## Version properties
-* sctap:hasDocument
-    - should point to document resource (i.e. each xml file contained in the repository at this point in the commit history)
-
-# Document
-
-## global properties
-* rdf:type=Document
-* dc:title = TEI Transcription of Sorbonne ms 253
-* dc:description
-
 ## Document properties
 * sctap:validatedBy
     - should specify the XML schema this xml document was validated against
 * sctap:hasXML
     - url to raw xml file
-
-# Zone
-
-## global properties
-* rdf:type=Zone
-* dc:label = Zone for XXXX
-* dc:description
 
 ## Zone properties
 
@@ -244,15 +217,6 @@ TODO below still needs review
 * sctap:order
     - default=1, where there is more than one zone for a given resource, (for example a paragraph that crosses from one column to the next) the zone should be given a order number so that the zones can be ordered correctly.
 
-# Region
-
-## global properties
-
-* rdf:type=region
-* dc:title
-    - marginRight
-    - marginLeft
-
 ## Region Properties
 
 * sctap:hasZone
@@ -263,29 +227,13 @@ TODO below still needs review
     - column
     - etc.
 
-# Surface
-
-## global properties
-
-* rdf:type=suface
-* dc:title
-    - f. 1r
-
-## surface properties
+## Surface properties
 
 * sctap:hasZone
 * sctap:hasRegion
 * sctap:isOnCanvas
 * sctap:isPartOf
     - surface should be the smallest unit in the material hierarchy, contained by folio, quire, codex, etc. In modern text, it should normally correspond to a page.
-
-# MaterialObject
-
-## global properties
-
-* rdf:type=material
-* dc:title
-    - f. 1r
 
 ## MaterialObject properties
 
