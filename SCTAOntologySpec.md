@@ -64,14 +64,15 @@ Primary classes represent the ontology core. They are followed by helper classes
 * sctap:level
 
 
-|[Structures](#structures)|[Expression](#expression)|[Manifestation](#manifestation)|[Transcription](#transcription)|
-|----------||----------|-------------|
-|[TopLevelCollection](#toplevelcollection)|[TopLevelCollectionExpression](toplevelcollectionexpression)|[TopLevelCollectionManifestation](#toplevelcollectionmanifestation)|[TopLevelCollectionTranscription](#toplevelcollectiontranscription)|
-|[Collection](#collection)|[ExpressionCollection](#expressioncollectin)|[ManifestationCollection](#manifestationcollection)|[TranscriptionCollection](#transcriptioncollection)|
-|[Item](#item)|[ExpressionItem](#expressionitem)|[ManifestationItem](#manifestationitem)|[TranscriptionItem](#transcriptionitem)|
-|[Division](#division])|[ExpressionDivision](#expressiondivision)|[ManifestationDivision](#manifestationdivision)|[TranscriptionDivision](#transcriptindivision)|
-|[Block](#block)|[ExpressionBlock](#expressionblock)|[ManifestationBlock](#manifestationblock)|[ItemBlock](#itemblock)|
-|[Element](#element)|[ExpressionElement](#expressionelement)|[ManifestationElement](#manifestationelement)|[ItemElement](#itemelement)|
+
+| [Structures](#structures) | [Expression](#expression) | [Manifestation](#manifestation) | [Transcription](#transcription) |
+| ---------- | ---------- | ------------- |
+| [TopLevelCollection](#toplevelcollection) | [TopLevelCollectionExpression](toplevelcollectionexpression) | [TopLevelCollectionManifestation](#toplevelcollectionmanifestation) |  [TopLevelCollectionTranscription](#toplevelcollectiontranscription) |
+| [Collection](#collection) | [ExpressionCollection](#expressioncollection) | [ManifestationCollection](#manifestationcollection) | [TranscriptionCollection](#transcriptioncollection) |
+| [Item](#item) | [ExpressionItem](#expressionitem) | [ManifestationItem](#manifestationitem) | [TranscriptionItem](#transcriptionitem) |
+| [Division](#division]) | [ExpressionDivision](#expressiondivision) | [ManifestationDivision](#manifestationdivision) | [TranscriptionDivision](#transcriptindivision) |
+| [Block](#block) | [ExpressionBlock](#expressionblock) | [ManifestationBlock](#manifestationblock) | [ItemBlock](#itemblock) |
+| [Element](#element) | [ExpressionElement](#expressionelement) | [ManifestationElement](#manifestationelement) | [ItemElement](#itemelement) |
 
 # Expression
 
