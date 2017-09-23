@@ -65,36 +65,81 @@ Primary classes represent the ontology core. They are followed by helper classes
 
 
 
-| [Structures](#structures) | [Expression](#expression) | [Manifestation](#manifestation) | [Transcription](#transcription) |
+| | [Expression](#expression) | [Manifestation](#manifestation) | [Transcription](#transcription) |
 | ---------- | ---------- | ------------- | ------------- |
-| [TopLevelCollection](#toplevelcollection) | [TopLevelCollectionExpression](toplevelcollectionexpression) | [TopLevelCollectionManifestation](#toplevelcollectionmanifestation) |  [TopLevelCollectionTranscription](#toplevelcollectiontranscription) |
-| [Collection](#collection) | [ExpressionCollection](#expressioncollection) | [ManifestationCollection](#manifestationcollection) | [TranscriptionCollection](#transcriptioncollection) |
-| [Item](#item) | [ExpressionItem](#expressionitem) | [ManifestationItem](#manifestationitem) | [TranscriptionItem](#transcriptionitem) |
-| [Division](#division]) | [ExpressionDivision](#expressiondivision) | [ManifestationDivision](#manifestationdivision) | [TranscriptionDivision](#transcriptindivision) |
-| [Block](#block) | [ExpressionBlock](#expressionblock) | [ManifestationBlock](#manifestationblock) | [ItemBlock](#itemblock) |
-| [Element](#element) | [ExpressionElement](#expressionelement) | [ManifestationElement](#manifestationelement) | [ItemElement](#itemelement) |
+| [TopLevelStructureCollection](#toplevelstructurecollection | [TopLevelCollectionExpression](toplevelcollectionexpression) | [TopLevelCollectionManifestation](#toplevelcollectionmanifestation) |  [TopLevelCollectionTranscription](#toplevelcollectiontranscription) |
+| [StructureCollection](#structurecollection) | [ExpressionCollection](#expressioncollection) | [ManifestationCollection](#manifestationcollection) | [TranscriptionCollection](#transcriptioncollection) |
+| [StructureItem](#structureitem) | [ExpressionItem](#expressionitem) | [ManifestationItem](#manifestationitem) | [TranscriptionItem](#transcriptionitem) |
+| [StructureDivision](#structuredivision]) | [ExpressionDivision](#expressiondivision) | [ManifestationDivision](#manifestationdivision) | [TranscriptionDivision](#transcriptiondivision) |
+| [StructureBlock](#structureblock) | [ExpressionBlock](#expressionblock) | [ManifestationBlock](#manifestationblock) | [ItemBlock](#itemblock) |
+| [StructureElement](#structureelement) | [ExpressionElement](#expressionelement) | [ManifestationElement](#manifestationelement) | [ItemElement](#itemelement) |
+
+# Global Text Resource Properties
+* role:author
+* role:editor
+* sctap:citation
 
 # Expression
 
-## expression type properties
-* role:author
-* dcterms:isPartOf
-    - a top level expression should point to the immediate parent Work (or WorkGroup) that contains the top level expression as a direct child
-* dcterms:hasPart
-    - the top level expression should list the immediate 2nd level child Expressions
+* rdf:type=http://scta.info/resource/expression
 * sctap:status
 * sctap:expressionType
     - e.g. available expressionTypes should be enumerated in the WorkType or WorkGroupType class
     - e.g. a Work within the WorkGroup where workGroupType="SentencesCommentaries" the value of expressionType given here must be one of the values of the availableExpressionType listed in that workGroupType. See WorkGroupType and WorkType below.
+* sctap:hasManifestation
+* sctap:hasCanonicalManifestation
+* sctap:isPartOfTopLevelExpression <!-- I would like to see this change just isPartOfTopLevel and become a property of structures -->
+    - all non top level Expressions should point to the top level Expression of which they are a part.
+
+# Manifestation
+
+* sctap:manfestationType
+    - manuscript
+    - incunabula
+    - earlyEdition
+    - modernEdition
+    - bornDigitalEdition
+* sctap:hasCanonicalTranscription
+* sctap:hasTranscription
+* sctap:isManifestationOf
+    - Value must be an Expression
+* sctap:hasMaterialObject
+* sctap:surface
+    - should point to each page/side object that this manifestation falls on.
+        + e.g. f. 15r or p. 16
+        + see Surface class below.
+* sctap:startsOnSurface
+* sctap:endsOnSurface
+
+# Transcription
+* sctap:transcriptionType
+    - diplomatic
+    - critical
+    - translation
+* sctap:isTranscriptionOf
+* sctap:hasXML
+* sctap:hasDocument
+* sctap:plaintext
+* sctap:status
+
+* sctap:hasZone
+    - should point to the Zones on which this transcription falls.
+    - this is most easily applied at the paragraph level. A paragraph that extends over from one page to the next should have two zones, each zone demarcating the coordinate regions on the respective surface falls.
+    - (TODO: note I'm not yet sure if it logically more precise for a Manifestation to take a hasZone property rather than a Transcription resource. Or perhaps both.)
+
+# Global Structure properties
 * sctap:structureType
     - structureCollection
     - sturctureItem
     - sturctureBlock
     - sturctureElement
-* sctap:hasManifestation
-* sctap:hasCanonicalManifestation
-* sctap:hasCanonicalTranscription
-* sctap:citation
+* dcterms:isPartOf
+    - a top level expression should point to the immediate parent Work (or WorkGroup) that contains the top level expression as a direct child
+* dcterms:hasPart
+  - the top level expression should list the immediate 2nd level child Expressions
+* isPartOfTopLevelStructure
+  - alias of isPartOfTopLevelExpression, isPartOfTopLevelManifestation, isPartOfTopLevelTranscription
+  - applies at every level accept structureCollection level 1
 * sctap:next
     - next should point to the next expression on the same level of the content hierarchy
     - obviously, a top level expression would not a have a next property because there is be definition now sibling of Expression of a top level Expression
@@ -107,86 +152,30 @@ Primary classes represent the ontology core. They are followed by helper classes
     - the order sequence position number among all Expression parts on this level.
 * sctap:level
     - the level of the expression within the Expression hierarchy
-* sctap:isPartOfTopLevelExpression
-    - all non top level Expressions should point to the top level Expression of which they are a part.
 
-## structureType=structureCollection properties
-* hasStructureItem
+# TopLevelStructureCollection
+* sctap:hasStructureItem
 
-## structureType=structureItem properties
-* isPartOfStructureCollection
-    - value can only be applied if Expression is not a topLevel Expression.Value must point to a topLevel Expression
-* sctap:hasStructureBlock
-* sctap:gitRepo
+# StructureCollection
+* sctap:hasStructureItem
 
-## structureType=structureDivision properties
-* sctap:isPartOfStructureItem    
+# StructureItem
 * sctap:hasStructureBlock
 
-## structureType=structureBlock properties
-* sctap:isPartOfStructureItem    
+# StructureDivision
+* sctap:hasStructureBlock
+
+# StructureBlock
+* sctap:isPartOfStructureItem
 * sctap:hasStructureElement
 
-## structureType=structureElement properties
-* isPartOfStructureBlock    
+# StructureElement
+* sctap:isPartOfStructureBlock
 
-# Manifestation
-
-## global properties
-* rdf:type=manifestation
-* dc:title
-    - e.g. Sorbonne ms. 253
-* dc:description
-    - e.g. Sorbonne witness to paragraph 4
-    - e.g. Sorbonne witness to quote `<quote id>`
-
-## manifestation properties
-* sctap:manfestationType
-    - manuscript
-    - incunabula
-    - earlyEdition
-    - modernEdition
-    - bornDigitalEdition
-* sctap:hasTranscription
-* sctap:hasMaterialObject
-* sctap:isManifestationOf
-    - Value must be an Expression
-* sctap:surface
-    - should point to each page/side object that this manifestation falls on.
-        + e.g. f. 15r or p. 16
-        + see Surface class below.
-* sctap:startsOnSurface
-* sctap:endsOnSurface
-
-# Transcription
-
-## global resource properties
-* rdf:type=transcription
-* dc:title
-    - Sorbonne ms. 253 transcriptions
-* dc:description
-
-## Transcription properties
-
-* sctap:transcriptionType
-    - diplomatic
-    - critical
-* sctap:hasXML
-* sctap:hasDocument
-
-* sctap:hasZone
-    - should be point to the Zones on which this transcription falls.
-    - this is most easily applied at the paragraph level. A paragraph that extends over from one page to the next should have two zones, each zone demarcating the coordinate regions on the respective surface falls.
-    - (TODO: note I'm not yet sure if it logically more precise for a Manifestation to take a hasZone property rather than a Transcription resource. Or perhaps both.)
+---
+TODO below still needs review
 
 # Note
-
-## global properties
-* rdf:type=Note
-* dc:title
-* dc: description
-
-## Note Properties
 
 * sctap:isOnMaterialObject
     - should point to the materiObject for the Manifestation of the Expression that the note most closely refers to.
