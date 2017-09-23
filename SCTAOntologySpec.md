@@ -66,7 +66,7 @@ Primary classes represent the ontology core. They are followed by helper classes
 
 
 | [Structures](#structures) | [Expression](#expression) | [Manifestation](#manifestation) | [Transcription](#transcription) |
-| ---------- | ---------- | ------------- |
+| ---------- | ---------- | ------------- | ------------- |
 | [TopLevelCollection](#toplevelcollection) | [TopLevelCollectionExpression](toplevelcollectionexpression) | [TopLevelCollectionManifestation](#toplevelcollectionmanifestation) |  [TopLevelCollectionTranscription](#toplevelcollectiontranscription) |
 | [Collection](#collection) | [ExpressionCollection](#expressioncollection) | [ManifestationCollection](#manifestationcollection) | [TranscriptionCollection](#transcriptioncollection) |
 | [Item](#item) | [ExpressionItem](#expressionitem) | [ManifestationItem](#manifestationitem) | [TranscriptionItem](#transcriptionitem) |
