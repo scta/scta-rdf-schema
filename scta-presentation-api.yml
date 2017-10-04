@@ -1,0 +1,160 @@
+swagger: "2.0"
+
+info:
+  version: 1.0.0
+  title: SCTA API
+  description: An SCTA API
+
+schemes:
+  - http
+host: scta.info
+basePath: /api/presentation/1.0/
+
+paths:
+  /workGroup/{shortid}:
+    get:
+      summary: "Gets information for resource"
+      description: "Returns presentation info for given workGroups"
+      parameters:
+        - name: shortid
+          description: shortid of workgroup
+          in: path
+          required: true
+          type: string
+      responses:
+        "200":
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/WorkGroup'
+  /work/{shortid}:
+    get:
+      summary: "Gets information for work"
+      description: "Returns presentation info for given work"
+      parameters:
+        - name: shortid
+          description: shortid of work
+          in: path
+          required: true
+          type: string
+      responses:
+        "200":
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Work'
+  /expression/{shortid}:
+    get:
+      summary: "Gets information for expression"
+      description: "Returns presentation info for given expression"
+      parameters:
+        - name: shortid
+          description: shortid of expression
+          in: path
+          required: true
+          type: string
+      responses:
+        "200":
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Expression'
+  /manifestation/{shortid}:
+    get:
+      summary: "Gets information for manifestation"
+      description: "Returns presentation info for given manifestation"
+      parameters:
+        - name: shortid
+          description: shortid of maifestation
+          in: path
+          required: true
+          type: string
+      responses:
+        "200":
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Manifestation'
+  /transcription/{shortid}:
+    get:
+      summary: "Gets information for transcription"
+      description: "Returns presentation info for given transcription"
+      parameters:
+        - name: shortid
+          description: shortid of transcription
+          in: path
+          required: true
+          type: string
+      responses:
+        "200":
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Transcription'
+definitions:
+  Resource:
+    type: object
+    required:
+      - id
+      - label
+    properties:
+      id:
+        type: string
+      label:
+        type: string
+      hasParts:
+        type: array
+        items:
+          type: object
+      isPartOf:
+        type: string
+  WorkGroup:
+    type: object
+    allOf:
+      - $ref: "#/definitions/Resource" # has all properties of resource
+      - properties:
+          expressions:
+            type: array
+            items:
+              $ref: '#/definitions/Expression'
+  Work:
+    type: object
+    allOf:
+      - $ref: "#/definitions/Resource" # has all properties of resource
+      - properties:
+          expressions:
+            type: array
+            items:
+              $ref: '#/definitions/Expression'
+  Expression:
+    type: object
+    allOf:
+      - $ref: "#/definitions/Resource" # has all properties of resource
+      - properties:
+          manifestations:
+            type: array
+            items:
+              $ref: '#/definitions/Manifestation'
+          canonicalManifestation:
+            $ref: '#/definitions/Manifestation'
+          canonicalTranscription:
+            $ref: '#/definitions/Transcription'
+          structureType: # collection, item, division, block, element
+            type: string
+  Manifestation:
+    type: object
+    allOf:
+      - $ref: "#/definitions/Resource" # has all properties of resource
+      - properties:
+          transcriptions:
+            type: array
+            items:
+              $ref: '#/definitions/Transcription'
+          canonicalTranscription:
+            $ref: '#/definitions/Transcription'
+          structureType: # collection, item, division, block, element
+            type: string
+  Transcription:
+    type: object
+    allOf:
+      - $ref: "#/definitions/Resource" # has all properties of resource
+      - properties:
+          xml: # return the string of the url where the xml doc for the transcription can be found
+            type: string
+          structureType: # collection, item, division, block, element
+            type: string

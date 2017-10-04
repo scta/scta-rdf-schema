@@ -1,0 +1,93 @@
+swagger: "2.0"
+
+info:
+  version: 1.0.0
+  title: SCTA API
+  description: An SCTA API
+
+schemes:
+  - http
+host: scta.info
+basePath: /api/presentation/1.0/
+
+paths:
+  /resource/{shortid}:
+    get:
+      summary:
+      description: "Redirects to appropriate route based on resource type"
+  /workGroup/{shortid}:
+    get:
+      summary: "Gets information for resource"
+      description: "Returns a list of all workGroups"
+  workGroup/{shortid}:
+    get:
+      summary: "Gets information for resource"
+      description: "Returns data for the workGroup"
+  work:
+    get:
+      summary: "Gets information for resource"
+      description: "Returns a list all works"
+  work/{shortid}:
+    get:
+      summary: "Gets information for resource"
+      description: "Returns a list all works"
+
+definitions:
+  Resource:
+    discriminator: resourceType
+    required:
+      - id
+      - label
+      - resourceType
+    properties:
+      id:
+        type: string
+      label:
+        type: string
+      resourceType:
+        type: string
+      hasPart:
+        type: list
+      isPartOf:
+        type: string
+  WorkGroup:
+    allOf:
+      - $ref: "#/definitions/Resource" # has all properties of resource
+      - properties: #extra properties for workGroups
+          hasPart:
+            type: list
+          expressions:
+            type: list
+  Work:
+    allOf:
+      - $ref: "#/definitions/Resource" # has all properties of resource
+      - properties: #extra properties for work
+          hasPart:
+            type: list
+          isPartOf:
+            type: string
+          expressions:
+            type: list
+  Expression:
+    allOf:
+      - $ref: "#/definitions/Resource" # has all properties of resource
+      - properties: #extra properties for work
+          hasPart:
+            type: list
+          isPartOf:
+            type: string
+          manifestations:
+            type: list
+            # should take a list of objects that have id, title, and author, editor, of manifestation
+          canonical_manifestation:
+            type: string
+          canonical_transcription:
+            type: string
+  Manifestation:
+    allOf:
+      - $ref: "#/definitions/Resource" # has all properties of resource
+      - properties: #extra properties for work
+          transcriptions:
+            type: list
+          canonical_transcription:
+            type: string

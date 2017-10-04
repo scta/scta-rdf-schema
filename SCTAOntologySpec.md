@@ -21,6 +21,7 @@ All resources inherit the global properties of the generic resource type
   - Moby Dick the Novel
   - Moby Dick the Screen Play
 * dc:description
+* sctap:shortId
 * ldp:inbox
 
 
@@ -57,6 +58,8 @@ All resources inherit the global properties of the generic resource type
 * sctap:level
 
 ## Text Resources Chart
+
+TODO: prose summary of how x and y axis relate to individual resources and available properties.
 
 | | [Expression](#expression) | [Manifestation](#manifestation) | [Transcription](#transcription) |
 | ---------- | ---------- | ------------- | ------------- |
