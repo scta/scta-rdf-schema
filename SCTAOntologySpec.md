@@ -183,6 +183,17 @@ Below Needs Substantial Review and Revision
 
 ---
 
+Note on reference and quotation Properties (needs review)
+
+The current working assumption is that `refs` get an `isInstanceOf` property
+when they do NOT have a `@corresp` but do have an an `@ana`
+but when, they have a `@corresp`, the quote is the `instanceOf` and the ref takes the
+`isReferenceTo` property.  
+Likewise, when they should not have a `source` assertion when they have a `@corresp`,
+for again the quote is the instanceOf and the ref the source can be found by following
+the `isReferenceTo` property to the quotation in question
+        
+
 ## Note
 
 * sctap:isOnMaterialObject
