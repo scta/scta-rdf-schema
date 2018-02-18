@@ -1,4 +1,20 @@
 # Summary
 
 * [Introduction](README.md)
-
+* [SCTA RDF Schema 0.0.0 Documentation (Codename: lightening_oak)](scta-rdf-schema.md)
+  * [Primary Classes](scta-rdf-schema.md#primary-classes)
+  * [Resource](scta-rdf-schema.md#resource)
+  * [workGroup](scta-rdf-schema.md#workgroup)
+  * [Work](scta-rdf-schema.md#workgroup)
+  * [Text Resources Chart](scta-rdf-schema.md#text-resources-chart)
+  * [Global Text Resource Properties](scta-rdf-schema.md#global-text-resource-properties)
+  * [Expression](scta-rdf-schema.md#expression)
+  * [Manifestation](scta-rdf-schema.md#manifestation)
+  * [Transcription](scta-rdf-schema.md#transcription)
+  * [Global Structure properties](scta-rdf-schema.md#global-structure-properties)
+  * [TopLevelStructureCollection](scta-rdf-schema.md#toplevelstructurecollection)
+  * [StructureCollection](scta-rdf-schema.md#structurecollection)
+  * [StructureItem](scta-rdf-schema.md#structureitem)
+  * [StructureDivision](scta-rdf-schema.md#structuredivision)
+  * [StructureBlock](scta-rdf-schema.md#structureblock)
+  * [StructureElement](scta-rdf-schema.md#structureelement)
