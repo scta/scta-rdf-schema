@@ -1,7 +1,7 @@
 # Summary
 
 * [Introduction](README.md)
-* [SCTA RDF Schema 0.0.0 Documentation (Codename: lightening_oak)](scta-rdf-schema.md)
+* [0.0.0 Codename: lightening_oak](scta-rdf-schema.md)
   * [Primary Classes](scta-rdf-schema.md#primary-classes)
   * [Resource](scta-rdf-schema.md#resource)
   * [workGroup](scta-rdf-schema.md#workgroup)
