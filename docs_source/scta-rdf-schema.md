@@ -226,6 +226,10 @@ This would allow a query like the following. Show me all the quotes of Augustine
 
 The query would the `@source` attribute of the `quote` to find the quotes, and then check for references for this quote using the `corresp` or `isReferenceTo` property, and then check to see if the source for this reference is from Lombard.
 
+This also mean that a ref with a corresp attribute could be wrapped in a `cit` tag with its own `bibl`. The `bibl` for the quote should a default modern reference for the actual quote. The `ref` that directly corresponds should take no `cit` or `bibl` because it is covered by the `quote` but the second `ref` with an `@source` and `@corresp` can take its own `bibl` which is the modern citation patter for the reference.
+
+See Gracilis pg-b1q13 for a quotation of Apuleius through Augustine's city of God for another good example.
+
 
 
 ## Note
