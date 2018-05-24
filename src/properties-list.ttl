@@ -1,0 +1,212 @@
+@prefix scta: <http://scta.info/> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix dbpedia: <http://dbpedia.org/ontology/>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dc: <http://purl.org/dc/elements/1.1/>.
+@prefix role: <http://www.loc.gov/loc.terms/relators/>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+@prefix sctar: <http://scta.info/resource/> .
+@prefix sctap: <http://scta.info/property/> .
+
+###############################################
+#########Begin Property Info ##################
+###############################################
+
+sctap:pubInfo
+	rdf:type rdfs:Property ;
+	rdfs:domain sctar:item .
+
+	rdf:type
+		rdfs:subPropertyOf sctap:pubInfo .
+
+	sctap:status
+		rdfs:subPropertyOf sctap:pubInfo ;
+		rdfs:dataType rdfs:Literal . # enumerated woudl be better: expects working draft, final draft, reviewed
+
+	dc:title
+		rdfs:subPropertyOf sctap:pubInfo .
+
+	role:AUT
+		rdfs:subPropertyOf sctap:pubInfo .
+
+	role:EDT
+		rdfs:subPropertyOf sctap:pubInfo .
+
+sctap:contentInfo
+	rdf:type rdfs:Property ;
+	rdfs:domain sctar:text .
+   	#rdfs:range scta:element .
+
+  dc:description
+		rdfs:subPropertyOf sctap:contentInfo .
+
+	sctap:questionTitle
+		rdfs:subPropertyOf sctap:contentInfo .
+
+	sctap:quotes
+		rdfs:subPropertyOf sctap:contentInfo ;
+		owl:inverseOf sctap:isQuotedBy .
+
+	sctap:quotedBy
+		rdfs:subPropertyOf sctap:contentInfo ;
+		owl:inverseOf sctap:quotes .
+
+	sctap:mentions
+		rdfs:subPropertyOf sctap:contentInfo ;
+		owl:inverseOf sctap:isMentionedBy .
+
+	sctap:mentionedBy
+		rdfs:subPropertyOf sctap:contentInfo ;
+		owl:inverseOf sctap:mentions .
+
+	sctap:references
+		rdfs:subPropertyOf sctap:contentInfo ;
+		owl:inverseOf sctap:isReferencedBy .
+
+	sctap:referencedBy
+		rdfs:subPropertyOf sctap:contentInfo ;
+		owl:inverseOf sctap:references .
+
+	sctap:abbreviates
+		rdfs:subPropertyOf sctap:contentInfo ;
+		owl:inverseOf sctap:isAbbreviatedBy .
+
+	sctap:abbreviatedBy
+		rdfs:subPropertyOf sctap:contentInfo ;
+		owl:inverseOf sctap:abbreviates .
+
+	sctap:referencedBy
+		rdfs:subPropertyOf sctap:contentInfo ;
+		owl:inverseOf sctap:references .
+
+sctap:linkingInfo
+	rdf:type rdfs:Property ;
+	rdfs:domain sctar:text .
+
+	rdfs:seeAlso
+		rdfs:subPropertyOf sctap:linkingInfo .
+
+	dcterms:hasPart
+		rdfs:subPropertyOf sctap:linkingInfo .
+
+	dcterms:isPartOf
+		rdfs:subPropertyOf sctap:linkingInfo .
+
+
+	sctap:isTranscriptionOf
+    rdf:type rdfs:Property ;
+		rdfs:subPropertyOf sctap:linkingInfo ;
+    owl:inverseOf sctap:hasTranscription ;
+    rdfs:label "Is Transcription Of" ;
+    dc:description "Indicates a manifestation for a given transcription" ;
+    rdfs:domain sctar:transcription ;
+    rdfs:range sctar:manifestation .
+
+	sctap:hasTranscription
+    rdf:type rdfs:Property ;
+		rdfs:subPropertyOf sctap:linkingInfo ;
+    owl:inverseOf sctap:isTranscriptionOf ;
+    rdfs:label "Has Transcription" ;
+    dc:description "Indicates a transcription of a given manifestation" ;
+    rdfs:domain sctar:manifestation ;
+    rdfs:range sctar:transcription .
+
+	sctap:hasManifestation
+    rdf:type rdfs:Property ;
+		rdfs:subPropertyOf sctap:linkingInfo ;
+		owl:inverseOf sctap:isManifestationOf ;
+    rdfs:label "Has Manifestation" ;
+    dc:description "Indicates a manifestion of a given expression" ;
+    rdfs:domain sctar:expression ;
+    rdfs:range sctar:manifestation .
+
+	sctap:isManifestationOf
+    rdf:type rdfs:Property ;
+		rdfs:subPropertyOf sctap:linkingInfo ;
+		owl:inverseOf sctap:hasManifestation ;
+    rdfs:label "Is Manifestion Of" ;
+    dc:description "Indicates an expression for a given manifestation" ;
+    rdfs:domain sctar:manifestation ;
+    rdfs:range sctar:expression .
+
+	sctap:hasExpression
+		rdfs:subPropertyOf sctap:linkingInfo ;
+		owl:inverseOf sctap:hasManifestation .
+
+	sctap:isExpressionOf
+		rdfs:subPropertyOf sctap:linkingInfo ;
+		owl:inverseOf sctap:hasExpression .
+
+
+####################################################
+###########Properties for Reference Types###########
+####################################################
+###########mostly all apart of the pubInfo data stream#######
+
+	sctap:personType
+	    rdfs:subPropertyOf sctap:pubInfo ;
+	    rdfs:label "Name Type" ;
+	    rdfs:domain sctar:person .
+
+  sctap:quotationType
+    rdfs:subPropertyOf sctap:pubInfo ;
+    rdfs:label "Quotation Type" ;
+    rdfs:domain sctar:quotation .
+
+	sctap:quotationSource # this property should indicate the list source that he quote was retrieved from I.e. auctoritates, vulguate, custom, etc
+		rdfs:subPropertyOf sctap:pubInfo ;
+	    rdfs:label "Quotation Source" ;
+	    rdfs:domain sctar:quotation ;
+	    rdfs:dataType rdfs:Literal .
+
+	sctap:citation #not sure what the function of this is
+		rdfs:subPropertyOf sctap:pubInfo ;
+		rdfs:domain sctar:quotation .
+
+	sctap:workType
+	    rdfs:subPropertyOf sctap:pubInfo ;
+	    rdfs:label "Work Type" ;
+	    rdfs:domain sctar:work .
+
+	sctap:workAuthor
+	    rdfs:subPropertyOf sctap:pubInfo ;
+	    rdfs:label "Work Author" ;
+	    rdfs:domain sctar:work .
+
+	sctap:fromBiblicalBook
+		rdfs:subPropertyOf sctap:pubInfo ;
+		rdfs:domain sctar:quotation ;
+		rdfs:range sctar:biblicalBook .
+
+	sctap:fromBiblicalChapter
+		rdfs:subPropertyOf sctap:pubInfo ;
+		rdfs:domain sctar:quotation ;
+		rdfs:range sctar:biblicalChapter .
+
+	sctap:fromBiblicalVerse
+		rdfs:subPropertyOf sctap:pubInfo ;
+		rdfs:domain sctar:quotation ;
+		rdfs:range sctar:biblicalVerse .
+
+	sctap:fromWork
+		rdfs:subPropertyOf sctap:pubInfo ;
+		rdfs:domain sctar:quotation ;
+		rdfs:range sctar:work .
+
+	sctap:fromWorkBook
+		rdfs:subPropertyOf sctap:pubInfo ;
+		rdfs:domain sctar:quotation ;
+		rdfs:range sctar:workBook .
+
+	sctap:fromWorkChapter
+		rdfs:subPropertyOf sctap:pubInfo ;
+		rdfs:domain sctar:quotation ;
+		rdfs:range sctar:workChapter .
+
+	sctap:quotation
+		rdfs:subPropertyOf sctap:pubInfo .

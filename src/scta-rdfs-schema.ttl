@@ -1,0 +1,167 @@
+@prefix scta: <http://scta.info/> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix dbpedia: <http://dbpedia.org/ontology/>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dc: <http://purl.org/dc/elements/1.1/>.
+@prefix role: <http://www.loc.gov/loc.terms/relators/>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+@prefix sctar: <http://scta.info/resource/> .
+@prefix sctap: <http://scta.info/property/> .
+
+######################################################
+# CORE CLASSES
+######################################################
+
+sctar:workGroup
+		rdf:type rdfs:Class ;
+		rdfs:label "Work Group" ;
+		dc:description "A Work Group that can contain nested WorkGroups or Works and must contain at least one Expression" .
+
+sctar:work
+		rdf:type rdfs:Class ;
+		rdfs:label "Work" ;
+		dc:description "A FRBR Work which is the lowest level WorkGroup; it can contain no other workGroups or Works and can only contain Expressions" .
+
+sctar:expression
+		rdf:type rdfs:Class ;
+		rdfs:label "Expression" ;
+		dc:description "a FRBR Expression of a FRBR Work" .
+
+sctar:manifestation
+		rdf:type rdfs:Class ;
+		rdfs:label "Manifestation" ;
+		dc:description "a FRBR Manifestation of a FRBR Expression" .
+
+sctar:transcription
+		rdf:type rdfs:Class ;
+		rdfs:label "Transcription" ;
+		dc:description "a Transcription resource corresponding to FRBR Manifestation" .
+
+######################################################
+# StructureType Classes
+######################################################
+
+sctar:structureType
+		rdf:type rdfs:Class ;
+		rdfs:label "Structure Type" ;
+		dc:description: "The structureType property is used to divide an Expression (and subsequently a Manifestation and Item) hierarchy, no matter its actual structure, into three privileged parts. A top level expression (normally a top level structureCollection), a structureItem level, and structureBlock level. In addition to these three privileged points, there are structureCollections which contain structureItems and structureDivision which are contained by structureItems but are not structureBlocks" .
+
+		sctar:structureCollection
+			rdf:type sctar:structureType ;
+			rdfs:subClassOf sctar:structureType ;
+			rdfs:label "Structure Collection" ;
+	    dc:description "a resource with a structureType of structureCollection contains as descendants at least one structureItem" .
+
+	  sctar:structureItem
+			rdf:type sctar:structureType ;
+			rdfs:subClassOf sctar:structureType ;
+			rdfs:label "Structure Item" ;
+	    dc:description "a resource with a structureType of structureDivision contains as descendants at least one structureBlock; it is normally the privileged division with the expression hierarchy" .
+
+	  sctar:structureDivision
+			rdf:type sctar:structureType ;
+			rdfs:subClassOf sctar:structureType ;
+			rdfs:label "Structure Division" ;
+	    dc:description "a resource with a structureType of structureDivision contains as descendants at least one structureBlock as is contained with a structureItem" .
+
+	  sctar:structureBlock
+			rdf:type sctar:structureType ;
+			rdfs:subClassOf sctar:structureType ;
+			rdfs:label "Structure Block" ;
+	    dc:description "a resource with a structureType of structureBlock is the lowest level in the nested expression hierarchy; it can only contain expressionElements but it has now direct children" .
+
+	  sctar:structureElement
+			rdf:type sctar:structureType ;
+			rdfs:subClassOf sctar:structureType ;
+			rdfs:label "Structure Element" ;
+	    dc:description "a resource with a structureType of structureElement is an element contained with a structureBlock, but they are not part of a hierachy, thus they do not have a parentPart or childParts, they simply have a isPartOfStructureBlock property" .
+
+				sctar:structureElementType
+					rdfs:subClassOf sctar:structureElement ;
+					rdfs:label "Structure Element Type" .
+
+						sctar:structureElementQuote
+							rdfs:subClassOf sctar:structureElementType ;
+							rdfs:label "Structure Element Quote" .
+
+							sctar:structureElementName
+								rdfs:subClassOf sctar:structureElementType ;
+								rdfs:label "Structure Element Name" .
+
+							sctar:structureElementTitle
+								rdfs:subClassOf sctar:structureElementType ;
+								rdfs:label "Structure Element Title" .
+
+							sctar:structureElementRef
+								rdfs:subClassOf sctar:structureElementType ;
+								rdfs:label "Structure Element Ref" .
+
+
+##############################################
+#######Begin Reference Resource Classes###########
+##############################################
+
+sctar:reference
+	rdf:type rdfs:Class ;
+	rdfs:label "A generic reference resource class" .
+
+	sctar:person
+		rdfs:subClassOf sctar:reference .
+
+	sctar:work
+		rdfs:subClassOf sctar:reference .
+
+	sctar:quotation
+		rdfs:subClassOf sctar:reference .
+
+sctar:referenceType
+	rdf:type rdfs:Class ;
+	rdfs:label "reference type" ;
+	dc:description "a generence class for categorizing reference types" .
+
+
+sctar:scholastic
+	rdfs:subClassOf sctar:referenceType ;
+	rdfs:label "Scholastic" .
+
+sctar:classical
+	rdfs:subClassOf sctar:referenceType ;
+	rdfs:label "Classical" .
+
+sctar:biblical
+	rdfs:subClassOf sctar:referenceType ;
+	rdfs:label "biblical" .
+
+sctar:patristic
+	rdfs:subClassOf sctar:referenceType ;
+	rdfs:label "patristic" .
+
+
+## subclass resources pertaining mostly to Works and Quotation Properties
+## TODO: needs some reconsideration
+
+sctar:workBook
+	rdf:type rdfs:Class ;
+	rdfs:subClassOf sctar:reference .
+
+sctar:workType
+	rdf:type rdfs:Class ;
+	rdfs:subClassOf sctar:reference .
+
+
+sctar:workChapter
+	rdf:type rdfs:Class ;
+	rdfs:subClassOf sctar:reference .
+
+sctar:biblicalBook
+	rdf:type rdfs:Class ;
+	rdfs:subClassOf sctar:reference .
+
+sctar:biblicalChapter
+	rdf:type rdfs:Class ;
+	rdfs:subClassOf sctar:reference .

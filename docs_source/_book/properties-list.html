@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>0.0.0 Codename: lightening_oak · GitBook</title>
+        <title>Properties List · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="scta-rdf-schema.html" />
+    <link rel="next" href="properties-list.html" />
     
     
-    <link rel="prev" href="./" />
+    <link rel="prev" href="resource-type-types.html" />
     
 
     </head>
@@ -102,7 +102,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2" data-path="scta-rdf-schema.html">
+        <li class="chapter " data-level="1.2" data-path="scta-rdf-schema.html">
             
                 <a href="scta-rdf-schema.html">
             
@@ -116,7 +116,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.2.1" data-path="scta-rdf-schema.html">
+        <li class="chapter " data-level="1.2.1" data-path="scta-rdf-schema.html">
             
                 <a href="scta-rdf-schema.html">
             
@@ -427,7 +427,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3" data-path="properties-list.html">
+        <li class="chapter active" data-level="1.2.3" data-path="properties-list.html">
             
                 <a href="properties-list.html">
             
@@ -819,7 +819,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >0.0.0 Codename: lightening_oak</a>
+        <a href="." >Properties List</a>
     </h1>
 </div>
 
@@ -834,371 +834,926 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="resource-types">Resource Types</h1>
-<h2 id="resource">Resource</h2>
-<p>All resources inherit the global properties of the generic resource type</p>
+                                <h1 id="property-list">Property List</h1>
+<h1 id="a">A</h1>
 <ul>
-<li>rdf:type<ul>
-<li><a href="http://scta.info/resource/workGroup" target="_blank">http://scta.info/resource/workGroup</a></li>
-<li><a href="http://scta.info/resource/work" target="_blank">http://scta.info/resource/work</a></li>
-<li><a href="http://scta.info/resource/expression" target="_blank">http://scta.info/resource/expression</a></li>
-<li><a href="http://scta.info/resource/manifestation" target="_blank">http://scta.info/resource/manifestation</a></li>
-<li><a href="http://scta.info/resource/transcription" target="_blank">http://scta.info/resource/transcription</a></li>
-<li>etc.</li>
+<li>sctap:availableExpressionType<ul>
+<li>Domain<ul>
+<li>sctar:expressionType</li>
 </ul>
 </li>
-<li>dc:title<ul>
-<li>e.g. Wodeham Oxford Reportatio</li>
-<li>e.g. Wodheam Abbreviatio</li>
-<li>Beethoven&apos;s 9th 1st Redaction</li>
-<li>Beethoven&apos;s 9th 2nd Redaction</li>
-<li>Moby Dick the Novel</li>
-<li>Moby Dick the Screen Play</li>
+<li>Range<ul>
+<li>sctar:expressionType</li>
 </ul>
 </li>
-<li>dc:description</li>
-<li>sctap:shortId</li>
-<li>ldp:inbox</li>
 </ul>
-<h2 id="workgroup">workGroup</h2>
+</li>
+<li><p>sctap:availableManifestationType</p>
 <ul>
-<li>dcterms:isPartOf<ul>
-<li>if the workGroup is not level=1 it must specify its parent part. This must be another workGroup.</li>
+<li>Domain<ul>
+<li>sctar:expressionType</li>
 </ul>
 </li>
-<li>dcterms:hasPart<ul>
-<li>a work group can take either another workGroup or a work as its direct part (or child)</li>
-</ul>
-</li>
-<li>sctap:hasExpression<ul>
-<li>every work group should list every expression contained within it, no matter what level</li>
-</ul>
-</li>
-<li>sctap:level<ul>
-<li>1,2,3</li>
-</ul>
-</li>
-<li>sctap:citation<ul>
-<li>a string offering a best practice example of how this should be cited</li>
+<li>Range<ul>
+<li>sctar:expressionType</li>
 </ul>
 </li>
 </ul>
-<h2 id="work">Work</h2>
+</li>
+<li><p>role:author</p>
 <ul>
-<li>role:author</li>
-<li>dcterms:isPartOf<ul>
-<li>a work should indicate the immediate parent workGroup of which it is a part.</li>
+<li>Domain<ul>
+<li>sctar:expression</li>
+<li>sctar:manifestation</li>
+<li>sctar:transcription</li>
 </ul>
 </li>
-<li>dcterms:hasPart<ul>
-<li>a Work (unlike a WorkGroup) can take no workGroups or Works as children and thus can only have a top level Expression as its immediate child part.</li>
+<li>Range<ul>
+<li>sctar:person<h1 id="b">B</h1>
+</li>
 </ul>
 </li>
-<li>sctap:citation</li>
-<li>sctap:hasExpression</li>
-<li>sctap:hasCanonicalExpression</li>
-<li>sctap:level</li>
 </ul>
-<h2 id="text-resources-chart">Text Resources Chart</h2>
-<p>TODO: prose summary of how x and y axis relate to individual resources and available properties.</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th><a href="#expression">Expression</a></th>
-<th><a href="#manifestation">Manifestation</a></th>
-<th><a href="#transcription">Transcription</a></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="#toplevelstructurecollection">TopLevelStructureCollection</a></td>
-<td><a href="toplevelcollectionexpression">TopLevelCollectionExpression</a></td>
-<td><a href="#toplevelcollectionmanifestation">TopLevelCollectionManifestation</a></td>
-<td><a href="#toplevelcollectiontranscription">TopLevelCollectionTranscription</a></td>
-</tr>
-<tr>
-<td><a href="#structurecollection">StructureCollection</a></td>
-<td><a href="#expressioncollection">ExpressionCollection</a></td>
-<td><a href="#manifestationcollection">ManifestationCollection</a></td>
-<td><a href="#transcriptioncollection">TranscriptionCollection</a></td>
-</tr>
-<tr>
-<td><a href="#structureitem">StructureItem</a></td>
-<td><a href="#expressionitem">ExpressionItem</a></td>
-<td><a href="#manifestationitem">ManifestationItem</a></td>
-<td><a href="#transcriptionitem">TranscriptionItem</a></td>
-</tr>
-<tr>
-<td><a href="#structuredivision">StructureDivision</a></td>
-<td><a href="#expressiondivision">ExpressionDivision</a></td>
-<td><a href="#manifestationdivision">ManifestationDivision</a></td>
-<td><a href="#transcriptiondivision">TranscriptionDivision</a></td>
-</tr>
-<tr>
-<td><a href="#structureblock">StructureBlock</a></td>
-<td><a href="#expressionblock">ExpressionBlock</a></td>
-<td><a href="#manifestationblock">ManifestationBlock</a></td>
-<td><a href="#itemblock">ItemBlock</a></td>
-</tr>
-<tr>
-<td><a href="#structureelement">StructureElement</a></td>
-<td><a href="#expressionelement">ExpressionElement</a></td>
-<td><a href="#manifestationelement">ManifestationElement</a></td>
-<td><a href="#itemelement">ItemElement</a></td>
-</tr>
-</tbody>
-</table>
-<h2 id="global-text-resource-properties">Global Text Resource Properties</h2>
-<ul>
-<li>role:author</li>
-<li>role:editor (is this global? I think maybe only a manifestation can have an editor)</li>
-<li>role:contributor</li>
-<li>sctap:citation</li>
+</li>
 </ul>
-<h2 id="expression">Expression</h2>
+<h1 id="c">C</h1>
 <ul>
-<li>rdf:type=<a href="http://scta.info/resource/expression" target="_blank">http://scta.info/resource/expression</a></li>
-<li>sctap:status</li>
+<li>sctap:canvasPagedType</li>
+<li>sctap:citation (not used)</li>
+<li><p>sctap:creationDate</p>
+<ul>
+<li>I&apos;m not sure this is being used</li>
+</ul>
+</li>
+<li><p>role:contributor</p>
+<ul>
+<li>Domain<ul>
+<li>sctar:expression</li>
+<li>sctar:manifestation</li>
+<li>sctar:transcription</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>sctar:person</li>
+</ul>
+</li>
+<li>Note<ul>
+<li>range could be changed to blank node which then indicates a sctar:person plus other kinds of information like the nature and scope of the contribution etc.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="d">D</h1>
+<ul>
+<li>dc:description<ul>
+<li>Domain (object type)<ul>
+<li>global</li>
+</ul>
+</li>
+<li>Range (predicate type)<ul>
+<li>&quot;string&quot;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="e">E</h1>
+<ul>
+<li>role:editor<ul>
+<li>Domain<ul>
+<li>sctar:manifestation</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>sctar:person</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
 <li>sctap:expressionType<ul>
-<li>e.g. available expressionTypes should be enumerated in the WorkType or WorkGroupType class</li>
-<li>e.g. a Work within the WorkGroup where workGroupType=&quot;SentencesCommentaries&quot; the value of expressionType given here must be one of the values of the availableExpressionType listed in that workGroupType. See WorkGroupType and WorkType below.</li>
+<li>Domain<ul>
+<li>sctar:expression</li>
 </ul>
 </li>
-<li>sctap:hasManifestation</li>
-<li>sctap:hasCanonicalManifestation</li>
-<li>sctap:isPartOfTopLevelExpression <!-- I would like to see this change just isPartOfTopLevel and become a property of structures --><ul>
-<li>all non top level Expressions should point to the top level Expression of which they are a part.</li>
+<li>Range<ul>
+<li>sctar:expressionType</li>
 </ul>
 </li>
 </ul>
-<h2 id="manifestation">Manifestation</h2>
+</li>
+</ul>
+<h1 id="h">H</h1>
 <ul>
-<li>sctap:manfestationType<ul>
-<li>manuscript</li>
-<li>incunabula</li>
-<li>earlyEdition</li>
-<li>modernEdition</li>
-<li>bornDigitalEdition</li>
+<li>sctap:hasStructureBlock<ul>
+<li>Domain<ul>
+<li>sctar:expression (where structureType = structureItem or structureDivision)<ul>
+<li>Range<ul>
+<li>sctar:expression (where structureType=structureBlock)</li>
 </ul>
 </li>
-<li>sctap:hasCanonicalTranscription</li>
-<li>sctap:hasTranscription</li>
+</ul>
+</li>
+<li>sctar:manifestation (where structureType = structureItem or structureDivision)<ul>
+<li>Range<ul>
+<li>sctar:manifestation (where structureType=structureBlock)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>sctar:transcription (where structureType = structureItem or structureDivision)<ul>
+<li>Range<ul>
+<li>sctar:transcription (where structureType=structureBlock)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>sctar:expression (where structureType=structureBlock)</li>
+<li>sctar:manifestation (where structureType=structureBlock)</li>
+<li>sctar:transcription (where structureType=structureBlock)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>sctap:hasStructureDivision<ul>
+<li>Domain<ul>
+<li>sctar:expression (where structureType = structureItem or structureDivision)<ul>
+<li>Range<ul>
+<li>sctar:expression (where structureType=structureDivision)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>sctar:manifestation (where structureType = structureItem or structureDivision)<ul>
+<li>Range<ul>
+<li>sctar:manifestation (where structureType=structureDivision)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>sctar:transcription (where structureType = structureItem or structureDivision)<ul>
+<li>Range<ul>
+<li>sctar:transcription (where structureType=structureDivision)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>sctar:expression (where structureType=structureDivision)</li>
+<li>sctar:manifestation (where structureType=structureDivision)</li>
+<li>sctar:transcription (where structureType=structureDivision)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>sctap:hasStructureElement<ul>
+<li>Domain<ul>
+<li>sctar:expression (where structureType = structureBlock)<ul>
+<li>Range<ul>
+<li>sctar:expression (where structureType=structureElement)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>sctar:manifestation (where structureType = structureBlock)<ul>
+<li>Range<ul>
+<li>sctar:manifestation (where structureType=structureElement)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>sctar:transcription (where structureType = structureBlock)<ul>
+<li>Range<ul>
+<li>sctar:transcription (where structureType=structureElement)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>sctar:expression (where structureType=structureElement)</li>
+<li>sctar:manifestation (where structureType=structureElement)</li>
+<li>sctar:transcription (where structureType=structureElement)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>sctap:hasStructureItem<ul>
+<li>Domain<ul>
+<li>sctar:expression (where structureType = structureCollection)<ul>
+<li>Range<ul>
+<li>sctar:expression (where structureType=structureItem)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>sctar:manifestation (where structureType = structureCollection)<ul>
+<li>Range<ul>
+<li>sctar:manifestation (where structureType=structureItem)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>sctar:transcription (where structureType = structureCollection)<ul>
+<li>Range<ul>
+<li>sctar:transcription (where structureType=structureItem)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>sctar:expression (where structureType=structureItem)</li>
+<li>sctar:manifestation (where structureType=structureItem)</li>
+<li>sctar:transcription (where structureType=structureItem)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>sctap:hasXML</li>
+<li>sctap:hasHTML</li>
+<li>sctap:hasJSON</li>
+<li><p>sctap:hasDocument</p>
+</li>
+<li><p>sctap:hasCanonicalCodexItem</p>
+</li>
+<li>sctap:hasCodexItem</li>
+<li>sctap:hasSurface</li>
+<li>sctap:hasOfficialManifest</li>
+</ul>
+<ul>
+<li><p>dc:hasPart</p>
+<ul>
+<li>Domain<ul>
+<li>scta:workGroup<ul>
+<li>Range<ul>
+<li>sctar:workGroup</li>
+<li>sctar:work</li>
+<li>sctar:expression</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>scta:work<ul>
+<li>Range<ul>
+<li>sctar:expression</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>scta:expression (where structureType != structureBlock)<ul>
+<li>Range<ul>
+<li>sctar:expression</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>scta:manifestation (where structureType != structureBlock)<ul>
+<li>Range<ul>
+<li>sctar:manifestation</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>scta:transcription (where structureType != structureBlock)<ul>
+<li>Range<ul>
+<li>sctar:transcription</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>sctar:workGroup</li>
+<li>sctar:work</li>
+<li>sctar:expression</li>
+<li>scta:manifestation</li>
+<li>scta:transcription</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>sctap:hasManifestation</p>
+<ul>
+<li>Domain<ul>
+<li>sctar:expression</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>sctar:manifestation</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>sctap:hasCanonicalManifestation<ul>
+<li>Domain<ul>
+<li>sctar:expression</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>sctar:manifestation</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>sctap:hasTranscription<ul>
+<li>Domain<ul>
+<li>sctar:manifestation</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>sctar:transcription</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>sctap:hasCanonicalTranscription</p>
+<ul>
+<li>Domain<ul>
+<li>sctar:manifestation</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>sctar:transcription</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>hasSlug</p>
+<ul>
+<li>used in manifestation level (not sure if this is needed)</li>
+<li>hasn&apos;t this be replaced by shortId</li>
+</ul>
+</li>
+</ul>
+<h1 id="i">I</h1>
+<ul>
+<li>ldp:inbox<ul>
+<li>Domain<ul>
+<li>Global</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>url</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>sctap:ipfsHash<ul>
+<li>Domain<ul>
+<li>sctar:transcription</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>&quot;string&quot;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>sctap:isCodexItemOf<ul>
+<li>Domain<ul>
+<li>sctar:codexItem</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>sctar:codex</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
 <li>sctap:isManifestationOf<ul>
-<li>Value must be an Expression</li>
+<li>Domain<ul>
+<li>sctar:manifestation</li>
 </ul>
 </li>
-<li>sctap:hasMaterialObject</li>
-<li>sctap:surface<ul>
-<li>should point to each page/side object that this manifestation falls on.<ul>
-<li>e.g. f. 15r or p. 16</li>
-<li>see Surface class below.</li>
+<li>Range<ul>
+<li>sctar:expression</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>sctap:startsOnSurface</li>
-<li>sctap:endsOnSurface</li>
 </ul>
-<h2 id="transcription">Transcription</h2>
+<ul>
+<li>sctap:isMemberOf<ul>
+<li>Domain<ul>
+<li>sctar:workGroup (where level !=1)<ul>
+<li>Range<ul>
+<li>sctar:workGroup</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>sctar:work<ul>
+<li>Range<ul>
+<li>sctar:workGroup</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>sctar:expression (where level != 1)<ul>
+<li>Range<ul>
+<li>sctar:expression (where level != 1)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>sctar:expression (where level = 1)<ul>
+<li>Range<ul>
+<li>sctar:work</li>
+<li>sctar:workGroup</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>sctar:manifestation (where level != 1)<ul>
+<li>Range:<ul>
+<li>sctar:manifestation</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>sctar:transcription (where level != 1)<ul>
+<li>Range:<ul>
+<li>sctar:transcription</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>sctar:workGroup</li>
+<li>sctar:work</li>
+<li>sctar:expression</li>
+<li>sctar:manifestation</li>
+<li>sctar:transcription</li>
+</ul>
+</li>
+<li>Notes<ul>
+<li>Note that manifestations and transcriptions are not allowed to be members of workGroups or works. If one wants to find all manifestations in a work group, they should ask for all expression that are members of a work group and then find all manifestations of those expressions</li>
+<li>toplevel expressions are allowed to be a member of workgroups and works because they are both level 1 of expression hierarchy and lowest level of the group hierarchy. (workGroup-&gt;work-&gt;expression, and topLevelCollection-&gt;collection-item-div-block-element)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>sctap:isTranscriptionOf<ul>
+<li>Domain<ul>
+<li>sctar:transcription</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>sctar:transcription</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>sctap:isPartOfStructureBlock<ul>
+<li>Domain<ul>
+<li>sctar:expression (where structureType=structureElement)<ul>
+<li>Range<ul>
+<li>sctar:expression (where structureType=structureBlock)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>sctar:manifestation (where structureType=structureElement)<ul>
+<li>Range<ul>
+<li>sctar:manifestation (where structureType=structureBlock)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>sctar:transcription (where structureType=structureElement)<ul>
+<li>Range<ul>
+<li>sctar:transcription (where structureType=structureBlock)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>sctar:expression (where structureType=structureBlock)</li>
+<li>sctar:manifestation (where structureType=structureBlock)</li>
+<li>sctar:transcription (where structureType=structureBlock)</li>
+</ul>
+</li>
+<li>Note<ul>
+<li>this seem redundant with dc:isPart of unless structureElement is not always a direct child of structureBlock. Perhaps if a quote has another quote as part then this would be needed. But right now all structureElements are reduced to a flat list that are the direct children of structureBlock, so dc:isPartOf would always give the same result as isPartOfStructureBlock</li>
+</ul>
+</li>
+<li>Candidate for Revision<ul>
+<li>Proposed changes<ul>
+<li>Keep but document that this is identical to dc:hasPart at this level</li>
+<li>or Delete</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>sctap:isPartOfStructureItem<ul>
+<li>Domain<ul>
+<li>sctar:expression (where structureType=structureBlock or structureElement)<ul>
+<li>Range<ul>
+<li>sctar:expression (where structureType=structureItem)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>sctar:manifestation (where structureType=structureBlock or structureElement)<ul>
+<li>Range<ul>
+<li>sctar:manifestation (where structureType=structureItem)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>sctar:transcription (where structureType=structureBlock or structureElement)<ul>
+<li>Range<ul>
+<li>sctar:transcription (where structureType=structureItem)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>sctar:expression (where structureType=structureItem)</li>
+<li>sctar:manifestation (where structureType=structureItem)</li>
+<li>sctar:transcription (where structureType=structureItem)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>sctap:isPartOfTopLevelExpression<ul>
+<li>Domain<ul>
+<li>sctar:expression</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>sctar:expression (where structureType=structureCollection and level=1)</li>
+</ul>
+</li>
+<li>Notes<ul>
+<li>this a short cut property, any query could get here by asking for an expression that is level 1. But this property gives a direct reference to the topLevelExpression by pointing to the resource. Finding the same resource requires a two step query: Find an expression that the current node is a memberOf then give me the expression that has a level one</li>
+<li>the designation of &quot;expression&quot; also seems necessary since it is will be assumed that we are looking for a top level expression when the subject of the property is an expression</li>
+</ul>
+</li>
+<li>Candidate for Revision<ul>
+<li>Proposed Change<ul>
+<li>sctap:isPartOfTopLevelCollection, where range (expression, manifestation, transcription) is determined by the domain.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>sctap:isPartOfTopLevelManifestation<ul>
+<li>Domain<ul>
+<li>sctar:manifestation</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>sctar:manifestation (where structureType=structureCollection and level=1)</li>
+</ul>
+</li>
+<li>Notes<ul>
+<li>see Notes for sctap:isPartOfTopLevelExpression</li>
+</ul>
+</li>
+<li>Candidate for Revision<ul>
+<li>Proposed Change<ul>
+<li>sctap:isPartOfTopLevelCollection</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>sctap:isPartOfTopLevelTranscription<ul>
+<li>Domain<ul>
+<li>sctar:transcription</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>sctar:transcription (where structureType=structureCollection and level=1)</li>
+</ul>
+</li>
+<li>Notes<ul>
+<li>see Notes for sctap:isPartOfTopLevelExpression</li>
+</ul>
+</li>
+<li>Candidate for Revision<ul>
+<li>Proposed Change<ul>
+<li>sctap:isPartOfTopLevelCollection</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>dc:isPartOf<ul>
+<li>Domain<ul>
+<li>scta:workGroup (where workGroup != top level work group is not a top level workGroup)<ul>
+<li>Range<ul>
+<li>sctar:workGroup</li>
+<li>sctar:work</li>
+<li>sctar:expression</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>scta:work<ul>
+<li>Range<ul>
+<li>sctar:expression</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>scta:expression<ul>
+<li>Range<ul>
+<li>sctar:expression</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>scta:manifestation<ul>
+<li>Range<ul>
+<li>sctar:manifestation</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>scta:transcription<ul>
+<li>Range<ul>
+<li>sctar:transcription</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>sctar:workGroup</li>
+<li>sctar:work</li>
+<li>sctar:expression</li>
+<li>scta:manifestation</li>
+<li>scta:transcription</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="l">L</h1>
+<ul>
+<li><p>sctap:level</p>
+<ul>
+<li>Domain<ul>
+<li>sctar:expression</li>
+<li>sctar:manifestation</li>
+<li>sctar:transcription</li>
+<li>(could also apply to workGroup and work, but work would be the lowest level, as topLevelExpress has level 1)</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>integer</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>sctap:longTitle</p>
+</li>
+</ul>
+<h1 id="m">M</h1>
+<ul>
+<li>sctap:materialObjectType (not sure this is used)</li>
+<li>sctap:manifestationType<ul>
+<li>Domain (object type)<ul>
+<li>sctar:manifestation</li>
+</ul>
+</li>
+<li>Range (predicate type)<ul>
+<li>sctar:manifestationType</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="n">N</h1>
+<ul>
+<li>sctap:next<ul>
+<li>Domain</li>
+<li>sctar:expression (structureType != topLevel Collection )<ul>
+<li>Range<ul>
+<li>sctar:expression</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>sctar:manifestation (structureType != topLevel Collection )<ul>
+<li>Range<ul>
+<li>sctar:manifestation</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>sctar:transcription (structureType != topLevel Collection )<ul>
+<li>Range<ul>
+<li>sctar:transcription</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>sctar:surface<ul>
+<li>Range<ul>
+<li>sctar:surface</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Notes/Questions<ul>
+<li>would something with structureType=structureElement takes next and previous???</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="o">O</h1>
+<h1 id="p">P</h1>
+<ul>
+<li>sctap:plaintext<ul>
+<li>Domain  <ul>
+<li>sctar:transcription</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>url</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="s">S</h1>
+<ul>
+<li><p>sctap:status
+currently being at expression level
+but I think it should apply only to transcription level</p>
+<ul>
+<li>Domain<ul>
+<li>sctar:transcription</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>&quot;string&quot;: &quot;draft&quot;</li>
+<li>&quot;string&quot;: &quot;private-draft&quot;</li>
+<li>&quot;string&quot;: &quot;reviewed&quot;</li>
+<li>&quot;string&quot;: &quot;not-started&quot;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>sctap:structureType</p>
+<ul>
+<li>Domain (object type)<ul>
+<li>sctar:expression</li>
+<li>sctar:manifestation</li>
+<li>sctar:transcription</li>
+<li>(role of work is unclear)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>sctap:shortId<ul>
+<li>sctap:sectionOrderNumber</li>
+<li>Domain<ul>
+<li>sctar:expression</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>integer</li>
+</ul>
+</li>
+<li>Notes<ul>
+<li>Should the domain only be expression. I think so. If so, should &quot;level&quot; be restricted to expression as well.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="t">T</h1>
+<ul>
+<li>sctap:totalOrderNumber<ul>
+<li>Domain<ul>
+<li>sctar:expression</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>integer</li>
+</ul>
+</li>
+<li>Notes<ul>
+<li>Should the domain only be expression. I think so. If so, should &quot;level&quot; be restricted to expression as well.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>dc:title<ul>
+<li>Domain (object type)<ul>
+<li>global</li>
+</ul>
+</li>
+<li>Range (predicate type)<ul>
+<li>&quot;string&quot;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <ul>
 <li>sctap:transcriptionType<ul>
-<li>diplomatic</li>
-<li>critical</li>
-<li>translation</li>
+<li>Domain (object type)<ul>
+<li>sctar:transcription</li>
 </ul>
 </li>
-<li>sctap:isTranscriptionOf</li>
-<li>sctap:hasXML</li>
-<li>sctap:hasDocument</li>
-<li>sctap:plaintext</li>
-<li><p>sctap:status</p>
+<li>Range (predicate type)<ul>
+<li>sctar:transcriptionType</li>
+<li>or Literal, &quot;critical&quot;, &quot;translation&quot;, &quot;diplomatic&quot;</li>
+</ul>
 </li>
-<li><p>sctap:hasZone</p>
+</ul>
+</li>
+</ul>
 <ul>
-<li>should point to the Zones on which this transcription falls.</li>
-<li>this is most easily applied at the paragraph level. A paragraph that extends over from one page to the next should have two zones, each zone demarcating the coordinate regions on the respective surface falls.</li>
-<li>(TODO: note I&apos;m not yet sure if it logically more precise for a Manifestation to take a hasZone property rather than a Transcription resource. Or perhaps both.)</li>
+<li>rdf:type<ul>
+<li>Domain (object type)<ul>
+<li>global</li>
+</ul>
+</li>
+<li>Range (predicate type)<ul>
+<li>&quot;string&quot;</li>
 </ul>
 </li>
 </ul>
-<h2 id="global-structure-properties">Global Structure properties</h2>
+</li>
+</ul>
+<h1 id="u">U</h1>
+<h1 id="v">V</h1>
 <ul>
-<li>sctap:structureType<ul>
-<li>structureCollection</li>
-<li>sturctureItem</li>
-<li>sturctureBlock</li>
-<li>sturctureElement</li>
+<li>sctap:version<ul>
+<li>Domain<ul>
+<li>sctar:transcription</li>
 </ul>
 </li>
-<li>dcterms:isPartOf<ul>
-<li>a top level expression should point to the immediate parent Work (or WorkGroup) that contains the top level expression as a direct child</li>
-</ul>
-</li>
-<li>dcterms:hasPart<ul>
-<li>the top level expression should list the immediate 2nd level child Expressions</li>
-</ul>
-</li>
-<li>isPartOfTopLevelStructure<ul>
-<li>alias of isPartOfTopLevelExpression, isPartOfTopLevelManifestation, isPartOfTopLevelTranscription</li>
-<li>applies at every level accept structureCollection level 1</li>
-</ul>
-</li>
-<li>sctap:next<ul>
-<li>next should point to the next expression on the same level of the content hierarchy</li>
-<li>obviously, a top level expression would not a have a next property because there is be definition now sibling of Expression of a top level Expression</li>
-</ul>
-</li>
-<li>sctap:previous<ul>
-<li>next should point to the next expression on the same level of the content hierarchy</li>
-<li>again, previous property does not apply to a top level Expression</li>
-</ul>
-</li>
-<li>sctap:sectionOrderNumber<ul>
-<li>the order sequence position number among sibling Expression parts</li>
-</ul>
-</li>
-<li>sctap:totalOrderNumber<ul>
-<li>the order sequence position number among all Expression parts on this level.</li>
-</ul>
-</li>
-<li>sctap:level<ul>
-<li>the level of the expression within the Expression hierarchy</li>
+<li>Range<ul>
+<li>&quot;string&quot;</li>
 </ul>
 </li>
 </ul>
-<h2 id="toplevelstructurecollection">TopLevelStructureCollection</h2>
-<ul>
-<li>sctap:hasStructureItem</li>
-</ul>
-<h2 id="structurecollection">StructureCollection</h2>
-<ul>
-<li>sctap:hasStructureItem</li>
-</ul>
-<h2 id="structureitem">StructureItem</h2>
-<ul>
-<li>sctap:hasStructureBlock</li>
-</ul>
-<h2 id="structuredivision">StructureDivision</h2>
-<ul>
-<li>sctap:hasStructureBlock</li>
-</ul>
-<h2 id="structureblock">StructureBlock</h2>
-<ul>
-<li>sctap:isPartOfStructureItem</li>
-<li>sctap:hasStructureElement</li>
-</ul>
-<h2 id="structureelement">StructureElement</h2>
-<ul>
-<li>sctap:isPartOfStructureBlock</li>
-</ul>
-<h2 id="codex">codex</h2>
-<ul>
-<li>sctap:hasCanonicalCodexItem</li>
-<li>hasCanonicalCodexItem</li>
-<li>sctap:hasSurface</li>
-</ul>
-<h2 id="codexitem">codexItem</h2>
-<ul>
-<li>canvasPagedType</li>
-<li>hasOfficialManifest</li>
-<li>isCodexItemOf</li>
-</ul>
-<h2 id="person">person</h2>
-<ul>
-<li>hasInstance</li>
-<li>personType</li>
-<li>owl:sameAs (this should be global)</li>
-</ul>
-<hr>
-<p>Below Needs Substantial Review and Revision</p>
-<hr>
-<p>Note on reference and quotation Properties (needs review)</p>
-<p>The current working assumption is that <code>refs</code> get an <code>isInstanceOf</code> property
-when they do NOT have a <code>@corresp</code> but do have an an <code>@ana</code> or an <code>@target</code></p>
-<p>but when, they have a <code>@corresp</code>, the quote is the <code>instanceOf</code> and the ref takes the
-<code>isReferenceTo</code> property.  </p>
-<p>Likewise, when they have a <code>@corresp</code> they should not have an <code>@ana</code> or <code>@source</code>
-for again the quote is the instanceOf and the ref the source can be found by following
-the <code>isReferenceTo</code> property to the quotation in question.</p>
-<p>However, there is a complication.</p>
-<p>Sometimes we have something like this:</p>
-<blockquote>
-<p>Item, <quote>omnia dona sunt omnibus commu-
-nia</quote>, sicut dicit <ref>Gregorius</ref> et <ref>Magister in littera</ref>;
-sed denominatio angelicorum ordinum flt a donis
-gratuitis: ergo oinnia nomina eoruin debent esse
-communia, quemadmoduin et dona.</p>
-</blockquote>
-<p>In this case the quote is from Gregory and the gregory ref should have an <code>@corresp</code> but no <code>@ana</code> or <code>@target</code> because it will inherit this from the quote. But the Magister ref applies to the quote, but in a way is a reference to the place where Lombard quotes Gregory.
-In this case, it seem like the ref should have an <code>@corresp</code> and a <code>@target</code></p>
-<p>Similar example:</p>
-<blockquote>
-<p>Item, <quote>omnia dona sunt omnibus commu-
-nia</quote>, sicut dicit <ref>Magister in littera</ref>;
-sed denominatio angelicorum ordinum flt a donis
-gratuitis: ergo oinnia nomina eoruin debent esse
-communia, quemadmoduin et dona.</p>
-</blockquote>
-<p>In this case Bonavanture the author, uses a ref to Lombard as the reference for a quote by Gregory and Gregory remains unnamed.</p>
-<p>For this reason, a <code>&lt;ref&gt;</code> should be allowed to take a <code>@target</code> property at the same time that is has an <code>@corresp</code>.</p>
-<p>This basically means, here is a quote, without its own source. But here is a ref for this quote that points to the proxy source for the quote.</p>
-<p>This would allow a query like the following. Show me all the quotes of Augustine that are quotations referenced through or attributed to Lombard.</p>
-<p>The query would the <code>@source</code> attribute of the <code>quote</code> to find the quotes, and then check for references for this quote using the <code>corresp</code> or <code>isReferenceTo</code> property, and then check to see if the source for this reference is from Lombard.</p>
-<p>This also mean that a ref with a corresp attribute could be wrapped in a <code>cit</code> tag with its own <code>bibl</code>. The <code>bibl</code> for the quote should a default modern reference for the actual quote. The <code>ref</code> that directly corresponds should take no <code>cit</code> or <code>bibl</code> because it is covered by the <code>quote</code> but the second <code>ref</code> with an <code>@source</code> and <code>@corresp</code> can take its own <code>bibl</code> which is the modern citation patter for the reference.</p>
-<p>See Gracilis pg-b1q13 for a quotation of Apuleius through Augustine&apos;s city of God for another good example.</p>
-<h2 id="note">Note</h2>
-<ul>
-<li>sctap:isOnMaterialObject<ul>
-<li>should point to the materiObject for the Manifestation of the Expression that the note most closely refers to.</li>
-<li>Thus, a note close connected to a paragraph, should apply to the materialObject  for the Manifestation of the Expression of the paragraph this notation is most closely connected. If the note is more general and does not apply to a particular pargraph, it should be connected a point higher in the Expression hierarchy (i.e. OHCO).</li>
-</ul>
-</li>
-<li>hasZone<ul>
-<li>should point to the Zone abstract coordinate region on which the notation falls.</li>
-</ul>
 </li>
 </ul>
-<h2 id="zone-properties">Zone properties</h2>
-<ul>
-<li>sctap:isOnRegion<ul>
-<li>marginRight</li>
-<li>marginCenter</li>
-<li>marginLeft</li>
-<li>marginBottom</li>
-<li>marginTop</li>
-<li>column</li>
-</ul>
-</li>
-<li>sctap:isOnSurface    </li>
-<li>sctap:isOnCanvas</li>
-<li>sctap:order<ul>
-<li>default=1, where there is more than one zone for a given resource, (for example a paragraph that crosses from one column to the next) the zone should be given a order number so that the zones can be ordered correctly.</li>
-</ul>
-</li>
-</ul>
-<h2 id="region-properties">Region Properties</h2>
-<ul>
-<li>sctap:hasZone</li>
-<li>sctap:isOnSurface</li>
-<li>sctap:isOnCanvas</li>
-<li>sctap:regionType<ul>
-<li>margin</li>
-<li>column</li>
-<li>etc.</li>
-</ul>
-</li>
-</ul>
-<h2 id="surface-properties">Surface properties</h2>
-<ul>
-<li>sctap:hasZone</li>
-<li>sctap:hasRegion</li>
-<li>sctap:isOnCanvas</li>
-<li>sctap:isPartOf<ul>
-<li>surface should be the smallest unit in the material hierarchy, contained by folio, quire, codex, etc. In modern text, it should normally correspond to a page.</li>
-</ul>
-</li>
-</ul>
+<h1 id="w">W</h1>
 
                                 
                                 </section>
@@ -1226,12 +1781,12 @@ communia, quemadmoduin et dona.</p>
 
             
                 
-                <a href="./" class="navigation navigation-prev " aria-label="Previous page: Introduction">
+                <a href="resource-type-types.html#transcriptiontype" class="navigation navigation-prev " aria-label="Previous page: personType">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="scta-rdf-schema.html" class="navigation navigation-next " aria-label="Next page: Resource Types">
+                <a href="properties-list.html#a" class="navigation navigation-next " aria-label="Next page: A">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1242,7 +1797,7 @@ communia, quemadmoduin et dona.</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"0.0.0 Codename: lightening_oak","level":"1.2","depth":1,"next":{"title":"Resource Types","level":"1.2.1","depth":2,"path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md","articles":[{"title":"Resource","level":"1.2.1.1","depth":3,"anchor":"#resource","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#resource","articles":[]},{"title":"workGroup","level":"1.2.1.2","depth":3,"anchor":"#workgroup","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#workgroup","articles":[]},{"title":"Work","level":"1.2.1.3","depth":3,"anchor":"#work","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#work","articles":[]},{"title":"Text Resources Chart","level":"1.2.1.4","depth":3,"anchor":"#text-resources-chart","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#text-resources-chart","articles":[]},{"title":"Global Text Resource Properties","level":"1.2.1.5","depth":3,"anchor":"#global-text-resource-properties","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#global-text-resource-properties","articles":[]},{"title":"Expression","level":"1.2.1.6","depth":3,"anchor":"#expression","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#expression","articles":[]},{"title":"Manifestation","level":"1.2.1.7","depth":3,"anchor":"#manifestation","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#manifestation","articles":[]},{"title":"Transcription","level":"1.2.1.8","depth":3,"anchor":"#transcription","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#transcription","articles":[]},{"title":"Global Structure properties","level":"1.2.1.9","depth":3,"anchor":"#global-structure-properties","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#global-structure-properties","articles":[]},{"title":"TopLevelStructureCollection","level":"1.2.1.10","depth":3,"anchor":"#toplevelstructurecollection","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#toplevelstructurecollection","articles":[]},{"title":"StructureCollection","level":"1.2.1.11","depth":3,"anchor":"#structurecollection","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#structurecollection","articles":[]},{"title":"StructureItem","level":"1.2.1.12","depth":3,"anchor":"#structureitem","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#structureitem","articles":[]},{"title":"StructureDivision","level":"1.2.1.13","depth":3,"anchor":"#structuredivision","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#structuredivision","articles":[]},{"title":"StructureBlock","level":"1.2.1.14","depth":3,"anchor":"#structureblock","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#structureblock","articles":[]},{"title":"StructureElement","level":"1.2.1.15","depth":3,"anchor":"#structureelement","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#structureelement","articles":[]},{"title":"codex","level":"1.2.1.16","depth":3,"anchor":"#codex","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#codex","articles":[]},{"title":"codexItem","level":"1.2.1.17","depth":3,"anchor":"#codex","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#codex","articles":[]}]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"scta-rdf-schema.md","mtime":"2018-05-24T01:47:40.288Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-05-24T20:11:13.900Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Properties List","level":"1.2.3","depth":2,"next":{"title":"A","level":"1.2.3.1","depth":3,"anchor":"#a","path":"properties-list.md","ref":"properties-list.md#a","articles":[]},"previous":{"title":"personType","level":"1.2.2.4","depth":3,"anchor":"#transcriptiontype","path":"resource-type-types.md","ref":"resource-type-types.md#transcriptiontype","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"properties-list.md","mtime":"2018-05-24T20:11:03.818Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-05-24T20:11:13.900Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
