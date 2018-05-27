@@ -103,7 +103,7 @@ sctar:surface
 
 sctar:zone
 	rdfs:subClassOf sctar:resource ;
-	rdfs:label "Zone" .
+	rdfs:label "Zone" ;
 	dc:description: "a Zone on a material surface and must have a isPartOfSurface property" .
 
 sctar:icodex
