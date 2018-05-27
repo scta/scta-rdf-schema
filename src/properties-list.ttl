@@ -173,6 +173,10 @@ sctap:isPartOfSurface
 	rdfs:domain sctar:zone ;
 	rdfs:range sctar:surface .
 
+sctap:isPartOfTopLevelExpression
+	rdfs:domain sctar:expression ;
+	rdfs:range sctar:expression .
+
 sctap:isQuotedBy
 	rdfs:domain sctar:expression ;
 	rdfs:range sctar:expression ;
@@ -224,6 +228,11 @@ sctap:isManifestationOf
   rdfs:domain sctar:manifestation ;
   rdfs:range sctar:expression .
 
+# L
+sctap:longTitle
+	rdf:type rdfs:Property ;
+	rdfs:domain sctar:expression ;
+	rdfs:range rdfs:Literal
 # M
 
 sctap:mentions
@@ -264,6 +273,11 @@ sctap:references
 rdfs:seeAlso
 	rdfs:subPropertyOf sctap:linkingInfo .
 
+stap:shortId
+	rdf:type rdfs:Property ;
+	rdfs:domain sctar:resource ;
+	rdfs:range rdfs:Literal .
+	
 sctap:status
 	rdf:type rdfs:Property ;
 	rdfs:dataType rdfs:Literal ;

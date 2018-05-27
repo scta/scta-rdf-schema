@@ -984,21 +984,18 @@
 </li>
 <li>sctap:hasCanonicalTranscription</li>
 <li>sctap:hasTranscription</li>
-<li>sctap:isManifestationOf<ul>
+<li><p>sctap:isManifestationOf</p>
+<ul>
 <li>Value must be an Expression</li>
 </ul>
 </li>
-<li>sctap:hasMaterialObject</li>
-<li>sctap:surface<ul>
-<li>should point to each page/side object that this manifestation falls on.<ul>
-<li>e.g. f. 15r or p. 16</li>
-<li>see Surface class below.</li>
-</ul>
+<li><p>sctap:startsOnSurface</p>
 </li>
-</ul>
+<li><p>sctap:endsOnSurface</p>
 </li>
-<li>sctap:startsOnSurface</li>
-<li>sctap:endsOnSurface</li>
+<li><p>sctap:isOnSurface (only at item, block, and element level)</p>
+</li>
+<li>sctap:isOnZone (only block, and element level)</li>
 </ul>
 <h2 id="transcription">Transcription</h2>
 <ul>
@@ -1012,15 +1009,7 @@
 <li>sctap:hasXML</li>
 <li>sctap:hasDocument</li>
 <li>sctap:plaintext</li>
-<li><p>sctap:status</p>
-</li>
-<li><p>sctap:hasZone</p>
-<ul>
-<li>should point to the Zones on which this transcription falls.</li>
-<li>this is most easily applied at the paragraph level. A paragraph that extends over from one page to the next should have two zones, each zone demarcating the coordinate regions on the respective surface falls.</li>
-<li>(TODO: note I&apos;m not yet sure if it logically more precise for a Manifestation to take a hasZone property rather than a Transcription resource. Or perhaps both.)</li>
-</ul>
-</li>
+<li>sctap:status</li>
 </ul>
 <h2 id="global-structure-properties">Global Structure properties</h2>
 <ul>
@@ -1092,17 +1081,15 @@
 <ul>
 <li>sctap:isPartOfStructureBlock</li>
 </ul>
-<h2 id="codex">codex</h2>
+<h2 id="marginalnote">marginalNote</h2>
 <ul>
-<li>sctap:hasCanonicalCodexItem</li>
-<li>hasCanonicalCodexItem</li>
-<li>sctap:hasSurface</li>
-</ul>
-<h2 id="codexitem">codexItem</h2>
-<ul>
-<li>canvasPagedType</li>
-<li>hasOfficialManifest</li>
-<li>isCodexItemOf</li>
+<li>isPartOfStructureBlock</li>
+<li>isPartOfTopLevelManifestation</li>
+<li>structureType=structureElement</li>
+<li>structureElementType=structureElementMarginalNote</li>
+<li>structureElementText</li>
+<li>isOnSurface</li>
+<li>isOnZone</li>
 </ul>
 <h2 id="person">person</h2>
 <ul>
@@ -1110,6 +1097,120 @@
 <li>personType</li>
 <li>owl:sameAs (this should be global)</li>
 </ul>
+<h1 id="material-structure-classes">Material Structure Classes</h1>
+<p>| <a href="#codex">Codex</a> | <a href="#codexitem">icodex</a> |
+| <a href="#quire">Quire</a> | <a href="#quireitem">iquire</a> |
+| <a href="#folio">Folio</a> | <a href="#folioitem">ifolio</a>] |
+| <a href="#surface">Surface</a> | <a href="#surfaceitem">isurface</a> |
+| <a href="#zone">zone</a> | <a href="#zoneitem">item</a> |</p>
+<h2 id="codex">codex</h2>
+<ul>
+<li>sctap:hasCanonicalCodexItem</li>
+<li>sctap:hasSurface<ul>
+<li>range: sctar:surface</li>
+</ul>
+</li>
+<li><p>dc:hasPart</p>
+<ul>
+<li>range: e.g, sctar:quire</li>
+</ul>
+</li>
+<li><p>structureType=structureCollection</p>
+</li>
+</ul>
+<h2 id="quire">quire</h2>
+<ul>
+<li>sctap:hasCanonicalQuireItem</li>
+<li>sctap:hasSurface<ul>
+<li>range: sctar:surface</li>
+</ul>
+</li>
+<li>dc:hasPart<ul>
+<li>range: e.g sctar:folio, surface</li>
+</ul>
+</li>
+<li>materialStructureType=materialStructureCollection</li>
+</ul>
+<h2 id="folio">folio</h2>
+<ul>
+<li>sctap:hasCanonicalFolioItem</li>
+<li>sctap:hasSurface<ul>
+<li>range: sctar:surface</li>
+</ul>
+</li>
+<li>dc:hasPart<ul>
+<li>range: sctar:quire or sctar:codex</li>
+</ul>
+</li>
+<li>materialStructureType=materialStructureCollection</li>
+</ul>
+<h2 id="surface-properties">Surface properties</h2>
+<ul>
+<li>sctap:isPartOfCodex</li>
+<li>sctap:next</li>
+<li>sctap:previous</li>
+<li>sctap:isPartOf<ul>
+<li>e.g. folio, quire, or codex</li>
+</ul>
+</li>
+<li>materialStructureType=materialStructureItem</li>
+</ul>
+<h2 id="zone-properties">Zone properties</h2>
+<ul>
+<li>sctap:zoneType<ul>
+<li>marginRight</li>
+<li>marginCenter</li>
+<li>marginLeft</li>
+<li>marginBottom</li>
+<li>marginTop</li>
+<li>column</li>
+<li>line</li>
+<li>general</li>
+</ul>
+</li>
+<li>sctap:isPartOfSurface</li>
+<li>dc:isPartOf<ul>
+<li>range: sctar:surface, or line is part of column, marginal note could be part of margin</li>
+</ul>
+</li>
+<li>materialStructureType=materialStructureBlock</li>
+<li>height</li>
+<li>width</li>
+<li>lrx</li>
+<li>lry</li>
+<li>ulx</li>
+<li><p>uly</p>
+</li>
+<li><p>Note on position/order</p>
+<ul>
+<li>sctap:order?<ul>
+<li>default=1, where there is more than one zone for a given resource, (for example a paragraph that crosses from one column to the next) the zone should be given a order number so that the zones can be ordered correctly.</li>
+<li>I think this should be removed and the manifestation pointing to more than one zone should indicate the order using a blank node, e.g hasZone-&gt;:bn-&gt;zone and order</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="icodex">icodex</h2>
+<ul>
+<li>canvasPagedType</li>
+<li>hasOfficialManifest</li>
+<li>isCodexItemOf</li>
+<li>sctap:hasISurface<ul>
+<li>range: sctar:isurface</li>
+</ul>
+</li>
+<li>dc:hasPart<ul>
+<li>range: sctar:iquire</li>
+</ul>
+</li>
+<li>materialStructureType=materialStructureCollection</li>
+</ul>
+<h2 id="iquire">iquire</h2>
+<h2 id="ifolio">ifolio</h2>
+<h2 id="isurface">isurface</h2>
+<h2 id="izone">izone</h2>
+<h1 id="elementquotation-and-reference-relations">ElementQuotation and Reference Relations</h1>
 <hr>
 <p>Below Needs Substantial Review and Revision</p>
 <hr>
@@ -1147,58 +1248,6 @@ communia, quemadmoduin et dona.</p>
 <p>The query would the <code>@source</code> attribute of the <code>quote</code> to find the quotes, and then check for references for this quote using the <code>corresp</code> or <code>isReferenceTo</code> property, and then check to see if the source for this reference is from Lombard.</p>
 <p>This also mean that a ref with a corresp attribute could be wrapped in a <code>cit</code> tag with its own <code>bibl</code>. The <code>bibl</code> for the quote should a default modern reference for the actual quote. The <code>ref</code> that directly corresponds should take no <code>cit</code> or <code>bibl</code> because it is covered by the <code>quote</code> but the second <code>ref</code> with an <code>@source</code> and <code>@corresp</code> can take its own <code>bibl</code> which is the modern citation patter for the reference.</p>
 <p>See Gracilis pg-b1q13 for a quotation of Apuleius through Augustine&apos;s city of God for another good example.</p>
-<h2 id="note">Note</h2>
-<ul>
-<li>sctap:isOnMaterialObject<ul>
-<li>should point to the materiObject for the Manifestation of the Expression that the note most closely refers to.</li>
-<li>Thus, a note close connected to a paragraph, should apply to the materialObject  for the Manifestation of the Expression of the paragraph this notation is most closely connected. If the note is more general and does not apply to a particular pargraph, it should be connected a point higher in the Expression hierarchy (i.e. OHCO).</li>
-</ul>
-</li>
-<li>hasZone<ul>
-<li>should point to the Zone abstract coordinate region on which the notation falls.</li>
-</ul>
-</li>
-</ul>
-<h2 id="zone-properties">Zone properties</h2>
-<ul>
-<li>sctap:isOnRegion<ul>
-<li>marginRight</li>
-<li>marginCenter</li>
-<li>marginLeft</li>
-<li>marginBottom</li>
-<li>marginTop</li>
-<li>column</li>
-</ul>
-</li>
-<li>sctap:isOnSurface    </li>
-<li>sctap:isOnCanvas</li>
-<li>sctap:order<ul>
-<li>default=1, where there is more than one zone for a given resource, (for example a paragraph that crosses from one column to the next) the zone should be given a order number so that the zones can be ordered correctly.</li>
-</ul>
-</li>
-</ul>
-<h2 id="region-properties">Region Properties</h2>
-<ul>
-<li>sctap:hasZone</li>
-<li>sctap:isOnSurface</li>
-<li>sctap:isOnCanvas</li>
-<li>sctap:regionType<ul>
-<li>margin</li>
-<li>column</li>
-<li>etc.</li>
-</ul>
-</li>
-</ul>
-<h2 id="surface-properties">Surface properties</h2>
-<ul>
-<li>sctap:hasZone</li>
-<li>sctap:hasRegion</li>
-<li>sctap:isOnCanvas</li>
-<li>sctap:isPartOf<ul>
-<li>surface should be the smallest unit in the material hierarchy, contained by folio, quire, codex, etc. In modern text, it should normally correspond to a page.</li>
-</ul>
-</li>
-</ul>
 
                                 
                                 </section>
@@ -1242,7 +1291,7 @@ communia, quemadmoduin et dona.</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"0.0.0 Codename: lightening_oak","level":"1.2","depth":1,"next":{"title":"Resource Types","level":"1.2.1","depth":2,"path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md","articles":[{"title":"Resource","level":"1.2.1.1","depth":3,"anchor":"#resource","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#resource","articles":[]},{"title":"workGroup","level":"1.2.1.2","depth":3,"anchor":"#workgroup","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#workgroup","articles":[]},{"title":"Work","level":"1.2.1.3","depth":3,"anchor":"#work","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#work","articles":[]},{"title":"Text Resources Chart","level":"1.2.1.4","depth":3,"anchor":"#text-resources-chart","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#text-resources-chart","articles":[]},{"title":"Global Text Resource Properties","level":"1.2.1.5","depth":3,"anchor":"#global-text-resource-properties","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#global-text-resource-properties","articles":[]},{"title":"Expression","level":"1.2.1.6","depth":3,"anchor":"#expression","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#expression","articles":[]},{"title":"Manifestation","level":"1.2.1.7","depth":3,"anchor":"#manifestation","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#manifestation","articles":[]},{"title":"Transcription","level":"1.2.1.8","depth":3,"anchor":"#transcription","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#transcription","articles":[]},{"title":"Global Structure properties","level":"1.2.1.9","depth":3,"anchor":"#global-structure-properties","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#global-structure-properties","articles":[]},{"title":"TopLevelStructureCollection","level":"1.2.1.10","depth":3,"anchor":"#toplevelstructurecollection","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#toplevelstructurecollection","articles":[]},{"title":"StructureCollection","level":"1.2.1.11","depth":3,"anchor":"#structurecollection","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#structurecollection","articles":[]},{"title":"StructureItem","level":"1.2.1.12","depth":3,"anchor":"#structureitem","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#structureitem","articles":[]},{"title":"StructureDivision","level":"1.2.1.13","depth":3,"anchor":"#structuredivision","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#structuredivision","articles":[]},{"title":"StructureBlock","level":"1.2.1.14","depth":3,"anchor":"#structureblock","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#structureblock","articles":[]},{"title":"StructureElement","level":"1.2.1.15","depth":3,"anchor":"#structureelement","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#structureelement","articles":[]},{"title":"codex","level":"1.2.1.16","depth":3,"anchor":"#codex","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#codex","articles":[]},{"title":"codexItem","level":"1.2.1.17","depth":3,"anchor":"#codex","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#codex","articles":[]}]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"scta-rdf-schema.md","mtime":"2018-05-24T01:47:40.288Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-05-24T20:11:13.900Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"0.0.0 Codename: lightening_oak","level":"1.2","depth":1,"next":{"title":"Resource Types","level":"1.2.1","depth":2,"path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md","articles":[{"title":"Resource","level":"1.2.1.1","depth":3,"anchor":"#resource","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#resource","articles":[]},{"title":"workGroup","level":"1.2.1.2","depth":3,"anchor":"#workgroup","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#workgroup","articles":[]},{"title":"Work","level":"1.2.1.3","depth":3,"anchor":"#work","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#work","articles":[]},{"title":"Text Resources Chart","level":"1.2.1.4","depth":3,"anchor":"#text-resources-chart","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#text-resources-chart","articles":[]},{"title":"Global Text Resource Properties","level":"1.2.1.5","depth":3,"anchor":"#global-text-resource-properties","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#global-text-resource-properties","articles":[]},{"title":"Expression","level":"1.2.1.6","depth":3,"anchor":"#expression","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#expression","articles":[]},{"title":"Manifestation","level":"1.2.1.7","depth":3,"anchor":"#manifestation","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#manifestation","articles":[]},{"title":"Transcription","level":"1.2.1.8","depth":3,"anchor":"#transcription","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#transcription","articles":[]},{"title":"Global Structure properties","level":"1.2.1.9","depth":3,"anchor":"#global-structure-properties","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#global-structure-properties","articles":[]},{"title":"TopLevelStructureCollection","level":"1.2.1.10","depth":3,"anchor":"#toplevelstructurecollection","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#toplevelstructurecollection","articles":[]},{"title":"StructureCollection","level":"1.2.1.11","depth":3,"anchor":"#structurecollection","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#structurecollection","articles":[]},{"title":"StructureItem","level":"1.2.1.12","depth":3,"anchor":"#structureitem","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#structureitem","articles":[]},{"title":"StructureDivision","level":"1.2.1.13","depth":3,"anchor":"#structuredivision","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#structuredivision","articles":[]},{"title":"StructureBlock","level":"1.2.1.14","depth":3,"anchor":"#structureblock","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#structureblock","articles":[]},{"title":"StructureElement","level":"1.2.1.15","depth":3,"anchor":"#structureelement","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#structureelement","articles":[]},{"title":"codex","level":"1.2.1.16","depth":3,"anchor":"#codex","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#codex","articles":[]},{"title":"codexItem","level":"1.2.1.17","depth":3,"anchor":"#codex","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#codex","articles":[]}]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"scta-rdf-schema.md","mtime":"2018-05-27T20:33:44.966Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-05-27T23:16:06.961Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
