@@ -66,7 +66,7 @@ sctar:structureType
 
 sctar:structureElementType
 	rdfs:subClassOf sctar:resource ;
-	rdfs:label "Structure Element Type" .
+	rdfs:label "Structure Element Type" ;
 	dc:description: "The structureElementType is used to divide an Expression (and subsequently a Manifestation and Item) hierarchy, no matter its actual structure, into three privileged parts. A top level expression (normally a top level structureCollection), a structureItem level, and structureBlock level. In addition to these three privileged points, there are structureCollections which contain structureItems and structureDivision which are contained by structureItems but are not structureBlocks" .
 
 
@@ -78,7 +78,7 @@ sctar:person
 
 sctar:personType
 	rdfs:subClassOf sctar:resource ;
-	rdfs:label "Person type" .
+	rdfs:label "Person type" ;
 	dc:description: "The person type class is used to identify person types (patristic, scholastic, classical, biblical, etc) that categorize person resources" .
 
 

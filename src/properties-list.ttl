@@ -29,7 +29,7 @@ sctap:availableExpressionType
 	rdfs:domain sctar:expressionType ;
 	rdfs:range sctar:expressionType ;
 	rdf:label "Available Expression Type" ;
-	dc:description "Indicates avaiable expression types any chilren of this resource can take. For example: if a resource has the expressionType=deanimacommentary then children resource of this resource could have one of this availableExpressionTypes as their expressionType" ;
+	dc:description "Indicates avaiable expression types any chilren of this resource can take. For example: if a resource has the expressionType=deanimacommentary then children resource of this resource could have one of this availableExpressionTypes as their expressionType" .
 
 role:AUT
 	rdfs:domain sctar:text ;
@@ -49,8 +49,8 @@ sctap:contributor
 
 dc:description
 	rdf:type rdfs:Property ;
-	rdfs:domain rdfs: sctar:resource
-  rdfs:range rdfs:Literal
+	rdfs:domain rdfs: sctar:resource ;
+  rdfs:range rdfs:Literal .
 
 # E
 
@@ -186,7 +186,7 @@ sctap:isMentionedBy
 
 sctap:isOnSurface
 	rdfs:domain sctar:manifestation ;
-	rdfs:range sctar:surface .
+	rdfs:range sctar:surface ;
 	dc:description "A property that links the a manifestation to a particular point in the material hierachy of a codex; similar to isOnZone. It should be distinction from hasSurface and isPartOfSurface which are linking properties within the material hierachy" .
 	# isOnZone should be allowed for marginal notes as well
 	# and only manifestations that are items blocks or elements
