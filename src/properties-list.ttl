@@ -49,7 +49,7 @@ sctap:contributor
 
 dc:description
 	rdf:type rdfs:Property ;
-	rdfs:domain rdfs: sctar:resource ;
+	rdfs:domain sctar:resource ;
   rdfs:range rdfs:Literal .
 
 # E
