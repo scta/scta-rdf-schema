@@ -1,0 +1,127 @@
+@prefix scta: <http://scta.info/> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix dbpedia: <http://dbpedia.org/ontology/>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dc: <http://purl.org/dc/elements/1.1/>.
+@prefix role: <http://www.loc.gov/loc.terms/relators/>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+@prefix sctar: <http://scta.info/resource/> .
+@prefix sctap: <http://scta.info/property/> .
+
+sctar:resource
+	rdfs:type rdf:Class ;
+	rdfs:label "Resource" ;
+	dc:description "Base level class from which all other resources inherit and are sub classes" .
+
+sctar:workGroup
+	rdf:type rdfs:Class ;
+	rdfs:label "Work Group" ;
+	dc:description "A Work Group that can contain nested WorkGroups or Works and must contain at least one Expression" .
+
+sctar:text
+	rdf:type rdfs:Class ;
+	rdfs:label "text class" ;
+	dc:description "FRBR super class for grouping all FRBR text categories" .
+
+sctar:work
+	rdf:type rdfs:Class ;
+	rdfs:subClassOf sctar:text ;
+	rdfs:label "Work" ;
+	dc:description "A FRBR Work which is the lowest level WorkGroup; it can contain no other workGroups or Works and can only contain Expressions" .
+
+sctar:textItem
+	rdf:type rdfs:Class ;
+	rdfs:subClassOf sctar:text ;
+	rdfs:label "textItem" ;
+	dc:description "FRBR sub class for group expresssion, manifestation, transcription levels of a text" .
+
+sctar:expression
+	rdf:type rdfs:Class ;
+	rdfs:subClassOf sctar:textItem ;
+	rdfs:label "Expression" ;
+	dc:description "a FRBR Expression of a FRBR Work" .
+
+sctar:manifestation
+	rdf:type rdfs:Class ;
+	rdfs:subClassOf sctar:textItem ;
+	rdfs:label "Manifestation" ;
+	dc:description "a FRBR Manifestation of a FRBR Expression" .
+
+sctar:transcription
+	rdf:type rdfs:Class ;
+	rdfs:subClassOf sctar:textItem ;
+	rdfs:label "Transcription" ;
+	dc:description "a Transcription resource corresponding to FRBR Manifestation" .
+
+sctar:structureType
+	rdf:type rdfs:Class ;
+	rdfs:subClassOf sctar:resource ;
+	rdfs:label "Structure Type" ;
+	dc:description: "The structureType is used to divide an Expression (and subsequently a Manifestation and Item) hierarchy, no matter its actual structure, into three privileged parts. A top level expression (normally a top level structureCollection), a structureItem level, and structureBlock level. In addition to these three privileged points, there are structureCollections which contain structureItems and structureDivision which are contained by structureItems but are not structureBlocks" .
+
+sctar:structureElementType
+	rdfs:subClassOf sctar:resource ;
+	rdfs:label "Structure Element Type" .
+	dc:description: "The structureElementType is used to divide an Expression (and subsequently a Manifestation and Item) hierarchy, no matter its actual structure, into three privileged parts. A top level expression (normally a top level structureCollection), a structureItem level, and structureBlock level. In addition to these three privileged points, there are structureCollections which contain structureItems and structureDivision which are contained by structureItems but are not structureBlocks" .
+
+
+sctar:person
+	rdf:type rdfs:Class ;
+	rdfs:subClassOf sctar:resource ;
+	rdfs:label "Person" ;
+	dc:description "a person class for any identifiable individual" .
+
+sctar:personType
+	rdfs:subClassOf sctar:resource ;
+	rdfs:label "Person type" .
+	dc:description: "The person type class is used to identify person types (patristic, scholastic, classical, biblical, etc) that categorize person resources" .
+
+
+
+## Material Hierarchy Resources
+
+sctar:codex
+	rdfs:subClassOf sctar:resource ;
+	rdfs:label "Codex" .
+
+sctar:quire
+	rdfs:subClassOf sctar:resource ;
+	rdfs:label "Quire" .
+
+sctar:folio
+	rdfs:subClassOf sctar:resource ;
+	rdfs:label "Folio" .
+
+sctar:surface
+	rdfs:subClassOf sctar:resource ;
+	rdfs:label "Surface" .
+
+sctar:zone
+	rdfs:subClassOf sctar:resource ;
+	rdfs:label "Zone" .
+	dc:description: "a Zone on a material surface and must have a isPartOfSurface property" .
+
+sctar:icodex
+	rdfs:subClassOf sctar:resource ;
+	rdfs:label "iCodex" .
+
+sctar:iquire
+	rdfs:subClassOf sctar:resource ;
+	rdfs:label "iquire" .
+
+sctar:ifolio
+	rdfs:subClassOf sctar:resource ;
+	rdfs:label "ifolio" .
+
+sctar:isurface
+	rdfs:subClassOf sctar:resource ;
+	rdfs:label "isurface" .
+
+sctar:izone
+	rdfs:subClassOf sctar:resource ;
+	rdfs:label "izone" .

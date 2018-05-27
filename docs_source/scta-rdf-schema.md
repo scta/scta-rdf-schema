@@ -92,13 +92,12 @@ TODO: prose summary of how x and y axis relate to individual resources and avail
 * sctap:hasTranscription
 * sctap:isManifestationOf
     - Value must be an Expression
-* sctap:hasMaterialObject
-* sctap:surface
-    - should point to each page/side object that this manifestation falls on.
-        + e.g. f. 15r or p. 16
-        + see Surface class below.
+
 * sctap:startsOnSurface
 * sctap:endsOnSurface
+
+* sctap:isOnSurface (only at item, block, and element level)
+* sctap:isOnZone (only block, and element level)
 
 ## Transcription
 
@@ -111,11 +110,6 @@ TODO: prose summary of how x and y axis relate to individual resources and avail
 * sctap:hasDocument
 * sctap:plaintext
 * sctap:status
-
-* sctap:hasZone
-    - should point to the Zones on which this transcription falls.
-    - this is most easily applied at the paragraph level. A paragraph that extends over from one page to the next should have two zones, each zone demarcating the coordinate regions on the respective surface falls.
-    - (TODO: note I'm not yet sure if it logically more precise for a Manifestation to take a hasZone property rather than a Transcription resource. Or perhaps both.)
 
 ## Global Structure properties
 
@@ -169,18 +163,15 @@ TODO: prose summary of how x and y axis relate to individual resources and avail
 
 * sctap:isPartOfStructureBlock
 
+## marginalNote
 
-## codex
-
-* sctap:hasCanonicalCodexItem
-* hasCanonicalCodexItem
-* sctap:hasSurface
-
-## codexItem
-
-* canvasPagedType
-* hasOfficialManifest
-* isCodexItemOf
+* isPartOfStructureBlock
+* isPartOfTopLevelManifestation
+* structureType=structureElement
+* structureElementType=structureElementMarginalNote
+* structureElementText
+* isOnSurface
+* isOnZone
 
 ## person
 
@@ -188,6 +179,104 @@ TODO: prose summary of how x and y axis relate to individual resources and avail
 * personType
 * owl:sameAs (this should be global)
 
+# Material Structure Classes
+
+
+| [Codex](#codex) | [icodex](#codexitem) |
+| [Quire](#quire) | [iquire](#quireitem) |
+| [Folio](#folio) | [ifolio](#folioitem)] |
+| [Surface](#surface) | [isurface](#surfaceitem) |
+| [zone](#zone) | [item](#zoneitem) |
+
+
+## codex
+
+* sctap:hasCanonicalCodexItem
+* sctap:hasSurface
+  - range: sctar:surface
+* dc:hasPart
+  - range: e.g, sctar:quire
+
+* structureType=structureCollection
+
+
+## quire
+
+* sctap:hasCanonicalQuireItem
+* sctap:hasSurface
+  - range: sctar:surface
+* dc:hasPart
+  - range: e.g sctar:folio, surface
+* materialStructureType=materialStructureCollection
+
+## folio
+
+* sctap:hasCanonicalFolioItem
+* sctap:hasSurface
+  - range: sctar:surface
+* dc:hasPart
+  - range: sctar:quire or sctar:codex
+* materialStructureType=materialStructureCollection
+
+## Surface properties
+
+* sctap:isPartOfCodex
+* sctap:next
+* sctap:previous
+* sctap:isPartOf
+    - e.g. folio, quire, or codex
+* materialStructureType=materialStructureItem
+
+
+## Zone properties
+
+* sctap:zoneType
+  - marginRight
+  - marginCenter
+  - marginLeft
+  - marginBottom
+  - marginTop
+  - column
+  - line
+  - general
+* sctap:isPartOfSurface
+* dc:isPartOf
+  - range: sctar:surface, or line is part of column, marginal note could be part of margin
+* materialStructureType=materialStructureBlock
+* height
+* width
+* lrx
+* lry
+* ulx
+* uly
+
+* Note on position/order
+  * sctap:order?
+    - default=1, where there is more than one zone for a given resource, (for example a paragraph that crosses from one column to the next) the zone should be given a order number so that the zones can be ordered correctly.
+    - I think this should be removed and the manifestation pointing to more than one zone should indicate the order using a blank node, e.g hasZone->:bn->zone and order
+
+## icodex
+
+* canvasPagedType
+* hasOfficialManifest
+* isCodexItemOf
+* sctap:hasISurface
+  - range: sctar:isurface
+* dc:hasPart
+  - range: sctar:iquire
+* materialStructureType=materialStructureCollection
+
+## iquire
+
+## ifolio
+
+## isurface
+
+## izone
+
+
+
+#ElementQuotation and Reference Relations
 ---
 
 Below Needs Substantial Review and Revision
@@ -240,46 +329,3 @@ The query would the `@source` attribute of the `quote` to find the quotes, and t
 This also mean that a ref with a corresp attribute could be wrapped in a `cit` tag with its own `bibl`. The `bibl` for the quote should a default modern reference for the actual quote. The `ref` that directly corresponds should take no `cit` or `bibl` because it is covered by the `quote` but the second `ref` with an `@source` and `@corresp` can take its own `bibl` which is the modern citation patter for the reference.
 
 See Gracilis pg-b1q13 for a quotation of Apuleius through Augustine's city of God for another good example.
-
-
-
-## Note
-
-* sctap:isOnMaterialObject
-    - should point to the materiObject for the Manifestation of the Expression that the note most closely refers to.
-    - Thus, a note close connected to a paragraph, should apply to the materialObject  for the Manifestation of the Expression of the paragraph this notation is most closely connected. If the note is more general and does not apply to a particular pargraph, it should be connected a point higher in the Expression hierarchy (i.e. OHCO).
-* hasZone
-    - should point to the Zone abstract coordinate region on which the notation falls.
-
-
-## Zone properties
-
-* sctap:isOnRegion
-    - marginRight
-    - marginCenter
-    - marginLeft
-    - marginBottom
-    - marginTop
-    - column
-* sctap:isOnSurface    
-* sctap:isOnCanvas
-* sctap:order
-    - default=1, where there is more than one zone for a given resource, (for example a paragraph that crosses from one column to the next) the zone should be given a order number so that the zones can be ordered correctly.
-
-## Region Properties
-
-* sctap:hasZone
-* sctap:isOnSurface
-* sctap:isOnCanvas
-* sctap:regionType
-    - margin
-    - column
-    - etc.
-
-## Surface properties
-
-* sctap:hasZone
-* sctap:hasRegion
-* sctap:isOnCanvas
-* sctap:isPartOf
-    - surface should be the smallest unit in the material hierarchy, contained by folio, quire, codex, etc. In modern text, it should normally correspond to a page.

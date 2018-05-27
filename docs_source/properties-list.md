@@ -7,19 +7,15 @@
     - sctar:expressionType
   - Range
     - sctar:expressionType
-* sctap:availableManifestationType
-  - Domain
-    - sctar:expressionType
-  - Range
-    - sctar:expressionType
 
-* role:author
+* role:AUT
   - Domain
     - sctar:expression
     - sctar:manifestation
     - sctar:transcription
   - Range
     - sctar:person
+
 # B
 
 # C
@@ -29,7 +25,7 @@
 * sctap:creationDate
   - I'm not sure this is being used
 
-* role:contributor
+* sctap:contributor
   - Domain
     - sctar:expression
     - sctar:manifestation
@@ -64,6 +60,65 @@
 
 # H
 
+* sctap:hasCanonicalCodexItem
+  - Domain
+    - sctar:codex
+  - Range
+    - sctar:codexItem
+
+* sctap:hasCanonicalManifestation
+  - Domain
+    - sctar:expression
+  - Range
+    - sctar:manifestation
+
+* sctap:hasCanonicalTranscription
+  - Domain
+    - sctar:manifestation
+  - Range
+    - sctar:transcription
+
+* sctap:hasCodexItem
+
+* sctap:hasManifestation
+  - Domain
+    - sctar:expression
+  - Range
+    - sctar:manifestation
+
+* sctap:hasOfficialManifest
+  - Domain
+    - sctar:codexItem
+  - Range
+    - sc:Manifest
+
+* dc:hasPart
+  - Domain
+    - scta:workGroup
+      - Range
+        - sctar:workGroup
+        - sctar:work
+        - sctar:expression
+    - scta:work
+      - Range
+        - sctar:expression
+    - scta:expression (where structureType != structureBlock)
+      - Range
+        - sctar:expression
+    - scta:manifestation (where structureType != structureBlock)
+      - Range
+        - sctar:manifestation
+    - scta:transcription (where structureType != structureBlock)
+      - Range
+        - sctar:transcription
+  - Range
+    - sctar:workGroup
+    - sctar:work
+    - sctar:expression
+    - scta:manifestation
+    - scta:transcription
+  - Notes
+    - does this actually just have a global domain and range?
 
 * sctap:hasStructureBlock
   - Domain
@@ -132,65 +187,24 @@
     - sctar:manifestation (where structureType=structureItem)
     - sctar:transcription (where structureType=structureItem)
 
-
-
-* sctap:hasXML
-* sctap:hasHTML
-* sctap:hasJSON
-* sctap:hasDocument
-
-* sctap:hasCanonicalCodexItem
-* sctap:hasCodexItem
 * sctap:hasSurface
-* sctap:hasOfficialManifest
+  - Domain
+    - Codex, Quire, Folio
+  - Range
+    - Surface
 
 
-* dc:hasPart
-  - Domain
-    - scta:workGroup
-      - Range
-        - sctar:workGroup
-        - sctar:work
-        - sctar:expression
-    - scta:work
-      - Range
-        - sctar:expression
-    - scta:expression (where structureType != structureBlock)
-      - Range
-        - sctar:expression
-    - scta:manifestation (where structureType != structureBlock)
-      - Range
-        - sctar:manifestation
-    - scta:transcription (where structureType != structureBlock)
-      - Range
-        - sctar:transcription
-  - Range
-    - sctar:workGroup
-    - sctar:work
-    - sctar:expression
-    - scta:manifestation
-    - scta:transcription
 
-* sctap:hasManifestation
-  - Domain
-    - sctar:expression
-  - Range
-    - sctar:manifestation
-* sctap:hasCanonicalManifestation
-  - Domain
-    - sctar:expression
-  - Range
-    - sctar:manifestation
 * sctap:hasTranscription
   - Domain
     - sctar:manifestation
   - Range
     - sctar:transcription
-* sctap:hasCanonicalTranscription
-  - Domain
-    - sctar:manifestation
-  - Range
-    - sctar:transcription
+
+* sctap:hasXML
+
+* sctap:hasDocument
+
 
 * hasSlug
   - used in manifestation level (not sure if this is needed)
@@ -257,6 +271,21 @@
     - Note that manifestations and transcriptions are not allowed to be members of workGroups or works. If one wants to find all manifestations in a work group, they should ask for all expression that are members of a work group and then find all manifestations of those expressions
     - toplevel expressions are allowed to be a member of workgroups and works because they are both level 1 of expression hierarchy and lowest level of the group hierarchy. (workGroup->work->expression, and topLevelCollection->collection-item-div-block-element)
 
+* sctap:isOnSurface
+  - Domain
+    - Manifestation (item, block, element)
+  - Range
+    - Surface
+
+* sctap:isOnZone
+  - Domain
+    - Manifestation
+
+* sctap:isPartOfSurface
+  - Domain
+    - Zone
+  - Range
+    - Surface
 
 * sctap:isTranscriptionOf
   - Domain
@@ -496,3 +525,11 @@
       - "string"
 
 # W
+
+# Z
+
+* zoneType
+  - Domain
+    - sctar:zone
+  - Range
+    - sctar:zoneType

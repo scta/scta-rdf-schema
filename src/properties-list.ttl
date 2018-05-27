@@ -1,4 +1,4 @@
-@prefix scta: <http://scta.info/> .
+
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix owl: <http://www.w3.org/2002/07/owl#>.
@@ -9,6 +9,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sc: <http://iiif.io/api/presentation/2#> .
 
 @prefix sctar: <http://scta.info/resource/> .
 @prefix sctap: <http://scta.info/property/> .
@@ -17,196 +18,278 @@
 #########Begin Property Info ##################
 ###############################################
 
-sctap:pubInfo
+#A
+
+sctap:abbreviates
+	rdfs:domain sctar:expression ;
+	rdfs:range sctar:expression ;
+	owl:inverseOf sctap:isAbbreviatedBy .
+
+sctap:availableExpressionType
+	rdfs:domain sctar:expressionType ;
+	rdfs:range sctar:expressionType ;
+	rdf:label "Available Expression Type" ;
+	dc:description "Indicates avaiable expression types any chilren of this resource can take. For example: if a resource has the expressionType=deanimacommentary then children resource of this resource could have one of this availableExpressionTypes as their expressionType" ;
+
+role:AUT
+	rdfs:domain sctar:text ;
+	rdfs:range sctar:person .
+
+# B
+
+# C
+
+sctap:contributor
 	rdf:type rdfs:Property ;
-	rdfs:domain sctar:item .
+	rdfs:domain sctar:textItem ;
+	rdfs:range sctar:person .
+	# remain an open question whether contributor should be blank node allow more qualifications to the kind of contribution.
 
-	rdf:type
-		rdfs:subPropertyOf sctap:pubInfo .
+# D
 
-	sctap:status
-		rdfs:subPropertyOf sctap:pubInfo ;
-		rdfs:dataType rdfs:Literal . # enumerated woudl be better: expects working draft, final draft, reviewed
-
-	dc:title
-		rdfs:subPropertyOf sctap:pubInfo .
-
-	role:AUT
-		rdfs:subPropertyOf sctap:pubInfo .
-
-	role:EDT
-		rdfs:subPropertyOf sctap:pubInfo .
-
-sctap:contentInfo
+dc:description
 	rdf:type rdfs:Property ;
-	rdfs:domain sctar:text .
-   	#rdfs:range scta:element .
+	rdfs:domain rdfs: sctar:resource
+  rdfs:range rdfs:Literal
 
-  dc:description
-		rdfs:subPropertyOf sctap:contentInfo .
+# E
 
-	sctap:questionTitle
-		rdfs:subPropertyOf sctap:contentInfo .
-
-	sctap:quotes
-		rdfs:subPropertyOf sctap:contentInfo ;
-		owl:inverseOf sctap:isQuotedBy .
-
-	sctap:quotedBy
-		rdfs:subPropertyOf sctap:contentInfo ;
-		owl:inverseOf sctap:quotes .
-
-	sctap:mentions
-		rdfs:subPropertyOf sctap:contentInfo ;
-		owl:inverseOf sctap:isMentionedBy .
-
-	sctap:mentionedBy
-		rdfs:subPropertyOf sctap:contentInfo ;
-		owl:inverseOf sctap:mentions .
-
-	sctap:references
-		rdfs:subPropertyOf sctap:contentInfo ;
-		owl:inverseOf sctap:isReferencedBy .
-
-	sctap:referencedBy
-		rdfs:subPropertyOf sctap:contentInfo ;
-		owl:inverseOf sctap:references .
-
-	sctap:abbreviates
-		rdfs:subPropertyOf sctap:contentInfo ;
-		owl:inverseOf sctap:isAbbreviatedBy .
-
-	sctap:abbreviatedBy
-		rdfs:subPropertyOf sctap:contentInfo ;
-		owl:inverseOf sctap:abbreviates .
-
-	sctap:referencedBy
-		rdfs:subPropertyOf sctap:contentInfo ;
-		owl:inverseOf sctap:references .
-
-sctap:linkingInfo
+role:EDT
 	rdf:type rdfs:Property ;
-	rdfs:domain sctar:text .
+	rdfs:domain sctar:manifestation ;
+	rdfs:ranges sctar:person .
 
-	rdfs:seeAlso
-		rdfs:subPropertyOf sctap:linkingInfo .
+sctap:expressionType
+	rdf:type rdfs:Property ;
+	rdfs:domain sctar:expression ;
+	rdfs:range sctar:expressionType ;
+	rdf:label "Expression Type" ;
+	dc:description "Indicates the type of expression of the targeted expression instance" .
 
-	dcterms:hasPart
-		rdfs:subPropertyOf sctap:linkingInfo .
+# F
 
-	dcterms:isPartOf
-		rdfs:subPropertyOf sctap:linkingInfo .
+# G
+
+# H
+
+sctap:hasCanonicalCodexItem
+	rdf:type rdfs:Property ;
+	rdfs:domain sctar:codex ;
+  rdfs:range sctar:codexItem ;
+	rdfs:label "has Canonical Codex Item" ;
+  dc:description "Indicates a canonical/default codex Item resource for the targeted codex resource" .
+
+sctap:hasCanonicalManifestation
+  rdf:type rdfs:Property ;
+	rdfs:label "Has Canonical Manifestation" ;
+  dc:description "Indicates a canonical/default manifestion for a given expression resource" ;
+  rdfs:domain sctar:expression ;
+  rdfs:range sctar:manifestation .
+
+sctap:hasCanonicalTranscription
+  rdf:type rdfs:Property ;
+	rdfs:label "Has Canonical Transcription" ;
+  dc:description "Indicates a canonical/default transcription for a given manifestation resource" ;
+  rdfs:domain sctar:expression ;
+  rdfs:range sctar:manifestation .
+
+sctap:hasCodexItem
+	rdf:type rdfs:Property ;
+	rdfs:domain sctar:codex ;
+	rdfs:range sctar:codexItem ;
+	rdfs:label "has Codex Item" ;
+	dc:description "Indicates a codex Item resource for the targeted codex resource" .
+
+sctap:hasManifestation
+  rdf:type rdfs:Property ;
+	rdfs:subPropertyOf sctap:linkingInfo ;
+	owl:inverseOf sctap:isManifestationOf ;
+  rdfs:label "Has Manifestation" ;
+  dc:description "Indicates a manifestion of a given expression" ;
+  rdfs:domain sctar:expression ;
+  rdfs:range sctar:manifestation .
+
+sctap:hasOfficialManifest
+	rdf:type rdfs:Property ;
+	rdfs:domain sctar:codexItem ;
+	rdfs:range sc:Manifest ;
+	rdfs:label "has official manifest" ;
+	dc:description "Indicates an official manifest resource for a given codexItem" .
+
+dc:hasPart
+	rdfs:domain sctar:resource ;
+	rdfs:range sctar:resource .
+
+sctap:hasStructureBlock
+	rdf:type rdfs:Property ;
+	rdfs:domain sctar:textItem ;
+	rdfs:range sctar:textItem ;
+	rdf:label "has Structure Block" ;
+	dc:description "Indicates whether the targeted resource has any resources with the structureType structureBlock as direct children" .
+
+sctap:hasStructureDivision
+	rdf:type rdfs:Property ;
+	rdfs:domain sctar:textItem ;
+	rdfs:range sctar:textItem ;
+	rdf:label "Has Structure Division" ;
+	dc:description "Indicates whether the targeted resource has any resources with the structureType structureDivision as direct children" .
+
+sctap:hasStructureElement
+	rdf:type rdfs:Property ;
+	rdfs:domain sctar:textItem ;
+	rdfs:range sctar:textItem ;
+	rdf:label "Has Structure Element" ;
+	dc:description "Indicates whether the targeted resource has any resources with the structureType structureElement as direct children" .
+
+sctap:hasStructureItem
+	rdf:type rdfs:Property ;
+	rdfs:domain sctar:textItem ;
+	rdfs:range sctar:textItem ;
+	rdf:label "Has Structure Item" ;
+	dc:description "Indicates whether the targeted resource has any resources with the structureType structureItem as direct children" .
+
+sctap:hasSurface
+	rdfs:domain sctar:codex ;
+	# domain should also include condex quire and folio, or a super class should be created
+	rdfs:range sctar:surface .
+
+sctap:hasTranscription
+  rdf:type rdfs:Property ;
+	rdfs:subPropertyOf sctap:linkingInfo ;
+  owl:inverseOf sctap:isTranscriptionOf ;
+  rdfs:label "Has Transcription" ;
+  dc:description "Indicates a transcription of a given manifestation" ;
+  rdfs:domain sctar:manifestation ;
+  rdfs:range sctar:transcription .
+
+# I
+
+sctap:isAbbreviatedBy
+	rdfs:domain sctar:expression ;
+	rdfs:range sctar:expression ;
+	owl:inverseOf sctap:abbreviates .
+
+sctap:isPartOfSurface
+	rdfs:domain sctar:zone ;
+	rdfs:range sctar:surface .
+
+sctap:isQuotedBy
+	rdfs:domain sctar:expression ;
+	rdfs:range sctar:expression ;
+	owl:inverseOf sctap:quotes .
+
+sctap:isMentionedBy
+	rdfs:domain sctar:expression ;
+	rdfs:range sctar:expression ;
+	owl:inverseOf sctap:mentions .
 
 
-	sctap:isTranscriptionOf
-    rdf:type rdfs:Property ;
-		rdfs:subPropertyOf sctap:linkingInfo ;
-    owl:inverseOf sctap:hasTranscription ;
-    rdfs:label "Is Transcription Of" ;
-    dc:description "Indicates a manifestation for a given transcription" ;
-    rdfs:domain sctar:transcription ;
-    rdfs:range sctar:manifestation .
+sctap:isOnSurface
+	rdfs:domain sctar:manifestation ;
+	rdfs:range sctar:surface .
+	dc:description "A property that links the a manifestation to a particular point in the material hierachy of a codex; similar to isOnZone. It should be distinction from hasSurface and isPartOfSurface which are linking properties within the material hierachy" .
+	# isOnZone should be allowed for marginal notes as well
+	# and only manifestations that are items blocks or elements
 
-	sctap:hasTranscription
-    rdf:type rdfs:Property ;
-		rdfs:subPropertyOf sctap:linkingInfo ;
-    owl:inverseOf sctap:isTranscriptionOf ;
-    rdfs:label "Has Transcription" ;
-    dc:description "Indicates a transcription of a given manifestation" ;
-    rdfs:domain sctar:manifestation ;
-    rdfs:range sctar:transcription .
+sctap:isOnZone
+	rdfs:domain sctar:manifestation ;
+	rdfs:range sctar:zone .
+	# isOnZone should be allowed for marginal notes as well
+	# and only manifestations that are blocks or elements
 
-	sctap:hasManifestation
-    rdf:type rdfs:Property ;
-		rdfs:subPropertyOf sctap:linkingInfo ;
-		owl:inverseOf sctap:isManifestationOf ;
-    rdfs:label "Has Manifestation" ;
-    dc:description "Indicates a manifestion of a given expression" ;
-    rdfs:domain sctar:expression ;
-    rdfs:range sctar:manifestation .
+sctap:isReferencedBy
+	rdfs:domain sctar:expression ;
+	rdfs:range sctar:expression ;
+	owl:inverseOf sctap:references .
 
-	sctap:isManifestationOf
-    rdf:type rdfs:Property ;
-		rdfs:subPropertyOf sctap:linkingInfo ;
-		owl:inverseOf sctap:hasManifestation ;
-    rdfs:label "Is Manifestion Of" ;
-    dc:description "Indicates an expression for a given manifestation" ;
-    rdfs:domain sctar:manifestation ;
-    rdfs:range sctar:expression .
-
-	sctap:hasExpression
-		rdfs:subPropertyOf sctap:linkingInfo ;
-		owl:inverseOf sctap:hasManifestation .
-
-	sctap:isExpressionOf
-		rdfs:subPropertyOf sctap:linkingInfo ;
-		owl:inverseOf sctap:hasExpression .
+dcterms:isPartOf
+	rdfs:subPropertyOf sctap:linkingInfo .
 
 
-####################################################
-###########Properties for Reference Types###########
-####################################################
-###########mostly all apart of the pubInfo data stream#######
+sctap:isTranscriptionOf
+  rdf:type rdfs:Property ;
+	rdfs:subPropertyOf sctap:linkingInfo ;
+  owl:inverseOf sctap:hasTranscription ;
+  rdfs:label "Is Transcription Of" ;
+  dc:description "Indicates a manifestation for a given transcription" ;
+  rdfs:domain sctar:transcription ;
+  rdfs:range sctar:manifestation .
 
-	sctap:personType
-	    rdfs:subPropertyOf sctap:pubInfo ;
-	    rdfs:label "Name Type" ;
-	    rdfs:domain sctar:person .
+sctap:isManifestationOf
+  rdf:type rdfs:Property ;
+	rdfs:subPropertyOf sctap:linkingInfo ;
+	owl:inverseOf sctap:hasManifestation ;
+  rdfs:label "Is Manifestion Of" ;
+  dc:description "Indicates an expression for a given manifestation" ;
+  rdfs:domain sctar:manifestation ;
+  rdfs:range sctar:expression .
 
-  sctap:quotationType
-    rdfs:subPropertyOf sctap:pubInfo ;
-    rdfs:label "Quotation Type" ;
-    rdfs:domain sctar:quotation .
+# M
 
-	sctap:quotationSource # this property should indicate the list source that he quote was retrieved from I.e. auctoritates, vulguate, custom, etc
-		rdfs:subPropertyOf sctap:pubInfo ;
-	    rdfs:label "Quotation Source" ;
-	    rdfs:domain sctar:quotation ;
-	    rdfs:dataType rdfs:Literal .
+sctap:mentions
+	rdfs:domain sctar:expression ;
+	rdfs:range sctar:expression ;
+	owl:inverseOf sctap:isMentionedBy .
 
-	sctap:citation #not sure what the function of this is
-		rdfs:subPropertyOf sctap:pubInfo ;
-		rdfs:domain sctar:quotation .
+# N
 
-	sctap:workType
-	    rdfs:subPropertyOf sctap:pubInfo ;
-	    rdfs:label "Work Type" ;
-	    rdfs:domain sctar:work .
+# O
 
-	sctap:workAuthor
-	    rdfs:subPropertyOf sctap:pubInfo ;
-	    rdfs:label "Work Author" ;
-	    rdfs:domain sctar:work .
+# P
 
-	sctap:fromBiblicalBook
-		rdfs:subPropertyOf sctap:pubInfo ;
-		rdfs:domain sctar:quotation ;
-		rdfs:range sctar:biblicalBook .
+# Q
 
-	sctap:fromBiblicalChapter
-		rdfs:subPropertyOf sctap:pubInfo ;
-		rdfs:domain sctar:quotation ;
-		rdfs:range sctar:biblicalChapter .
+sctap:questionTitle
+	rdf:type rdfs:Property ;
+	rdf:label "Question Title" ;
+	dc:description "in dicates a content heading or question title for a text section" ;
+	rdfs:dataType rdfs:Literal ;
+	rdfs:domain sctar:expression ;
+	rdfs:range rdfs:Literal .
 
-	sctap:fromBiblicalVerse
-		rdfs:subPropertyOf sctap:pubInfo ;
-		rdfs:domain sctar:quotation ;
-		rdfs:range sctar:biblicalVerse .
+sctap:quotes
+	rdfs:domain sctar:expression ;
+	rdfs:range sctar:expression ;
+	owl:inverseOf sctap:isQuotedBy .
 
-	sctap:fromWork
-		rdfs:subPropertyOf sctap:pubInfo ;
-		rdfs:domain sctar:quotation ;
-		rdfs:range sctar:work .
+# R
 
-	sctap:fromWorkBook
-		rdfs:subPropertyOf sctap:pubInfo ;
-		rdfs:domain sctar:quotation ;
-		rdfs:range sctar:workBook .
+sctap:references
+	rdfs:domain sctar:expression ;
+	rdfs:range sctar:expression ;
+	owl:inverseOf sctap:isReferencedBy .
 
-	sctap:fromWorkChapter
-		rdfs:subPropertyOf sctap:pubInfo ;
-		rdfs:domain sctar:quotation ;
-		rdfs:range sctar:workChapter .
+# S
 
-	sctap:quotation
-		rdfs:subPropertyOf sctap:pubInfo .
+rdfs:seeAlso
+	rdfs:subPropertyOf sctap:linkingInfo .
+
+sctap:status
+	rdf:type rdfs:Property ;
+	rdfs:dataType rdfs:Literal ;
+	rdfs:domain sctar:textItem ;
+	rdfs:range rdfs:Literal .
+
+sctap:structureType
+	rdfs:domain sctar:textItem ;
+	rdfs:range sctar:structureType ;
+	rdfs:label "Structure Type" ;
+	dc:description "indicates the structure type of textItem resource (Expression, Manifestation, Item), where the object is an instance of the structureType class (strucutreCollection, item, division, block, element, etc)" .
+
+sctap:personType
+  rdfs:label "Person Type" ;
+  rdfs:domain sctar:person ;
+	rdfs:range sctar:personType .
+
+sctap:quotationType
+	rdf:type rdfs:Property ;
+  rdfs:label "Quotation Type" ;
+  rdfs:domain sctar:quotation .
+
+# Z
+
+sctap:zoneType
+	rdf:type rdfs:Property ;
+	rdfs:label "Zone Type" ;
+	rdfs:domain sctar:zone ;
+	rdfs:range sctar:zoneType .
