@@ -232,7 +232,7 @@ sctap:isManifestationOf
 sctap:longTitle
 	rdf:type rdfs:Property ;
 	rdfs:domain sctar:expression ;
-	rdfs:range rdfs:Literal
+	rdfs:range rdfs:Literal .
 # M
 
 sctap:mentions
@@ -277,7 +277,7 @@ stap:shortId
 	rdf:type rdfs:Property ;
 	rdfs:domain sctar:resource ;
 	rdfs:range rdfs:Literal .
-	
+
 sctap:status
 	rdf:type rdfs:Property ;
 	rdfs:dataType rdfs:Literal ;
