@@ -36,6 +36,9 @@ All resources inherit the global properties of the generic resource type
 * sctap:citation
     - a string offering a best practice example of how this should be cited
 
+## Text
+  A super class for grouping work with expressions, manifestations, and transcriptions
+
 ## Work
 
 * role:author
@@ -48,9 +51,11 @@ All resources inherit the global properties of the generic resource type
 * sctap:hasCanonicalExpression
 * sctap:level
 
-## Text Resources Chart
+# textItem
 
-TODO: prose summary of how x and y axis relate to individual resources and available properties.
+A super class for expressions, manifestations, and transcriptions
+
+## textItem Resources Chart
 
 | | [Expression](#expression) | [Manifestation](#manifestation) | [Transcription](#transcription) |
 | ---------- | ---------- | ------------- | ------------- |
@@ -61,7 +66,7 @@ TODO: prose summary of how x and y axis relate to individual resources and avail
 | [StructureBlock](#structureblock) | [ExpressionBlock](#expressionblock) | [ManifestationBlock](#manifestationblock) | [ItemBlock](#itemblock) |
 | [StructureElement](#structureelement) | [ExpressionElement](#expressionelement) | [ManifestationElement](#manifestationelement) | [ItemElement](#itemelement) |
 
-## Global Text Resource Properties
+## Global textItem Resource Properties
 
 * role:author
 * role:editor (is this global? I think maybe only a manifestation can have an editor)
@@ -110,6 +115,9 @@ TODO: prose summary of how x and y axis relate to individual resources and avail
 * sctap:hasDocument
 * sctap:plaintext
 * sctap:status
+
+---
+The following are not classes but properties that that textItem classes can take
 
 ## Global Structure properties
 
@@ -163,6 +171,23 @@ TODO: prose summary of how x and y axis relate to individual resources and avail
 
 * sctap:isPartOfStructureBlock
 
+---
+The following are not classes, but could be considered sub classes that are the resultant combination of a textItem class and a structure type
+---
+
+## TopLevelCollectionExpression
+
+## TopLevelCollectionManifestation
+
+## TopLevelCollectionTranscription
+
+## ExpressionCollection
+
+---
+end of textItem explanation
+return to resource classes
+---
+
 ## marginalNote
 
 * isPartOfStructureBlock
@@ -180,7 +205,6 @@ TODO: prose summary of how x and y axis relate to individual resources and avail
 * owl:sameAs (this should be global)
 
 # Material Structure Classes
-
 
 | [Codex](#codex) | [icodex](#codexitem) |
 | [Quire](#quire) | [iquire](#quireitem) |
@@ -218,17 +242,21 @@ TODO: prose summary of how x and y axis relate to individual resources and avail
   - range: sctar:quire or sctar:codex
 * materialStructureType=materialStructureCollection
 
-## Surface properties
+## Surface 
 
 * sctap:isPartOfCodex
 * sctap:next
 * sctap:previous
-* sctap:isPartOf
+* dc:isPartOf
     - e.g. folio, quire, or codex
+* dc:hasPart
+    - range: directChildren
+* sctap:hasZone
+  - all descendant zones at any level
 * materialStructureType=materialStructureItem
 
 
-## Zone properties
+## zone
 
 * sctap:zoneType
   - marginRight
@@ -240,6 +268,7 @@ TODO: prose summary of how x and y axis relate to individual resources and avail
   - line
   - general
 * sctap:isPartOfSurface
+  - inverse of hasZone
 * dc:isPartOf
   - range: sctar:surface, or line is part of column, marginal note could be part of margin
 * materialStructureType=materialStructureBlock

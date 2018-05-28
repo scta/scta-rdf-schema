@@ -883,6 +883,8 @@
 </ul>
 </li>
 </ul>
+<h2 id="text">Text</h2>
+<p>  A super class for grouping work with expressions, manifestations, and transcriptions</p>
 <h2 id="work">Work</h2>
 <ul>
 <li>role:author</li>
@@ -899,8 +901,9 @@
 <li>sctap:hasCanonicalExpression</li>
 <li>sctap:level</li>
 </ul>
-<h2 id="text-resources-chart">Text Resources Chart</h2>
-<p>TODO: prose summary of how x and y axis relate to individual resources and available properties.</p>
+<h1 id="textitem">textItem</h1>
+<p>A super class for expressions, manifestations, and transcriptions</p>
+<h2 id="textitem-resources-chart">textItem Resources Chart</h2>
 <table>
 <thead>
 <tr>
@@ -949,7 +952,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="global-text-resource-properties">Global Text Resource Properties</h2>
+<h2 id="global-textitem-resource-properties">Global textItem Resource Properties</h2>
 <ul>
 <li>role:author</li>
 <li>role:editor (is this global? I think maybe only a manifestation can have an editor)</li>
@@ -1011,6 +1014,8 @@
 <li>sctap:plaintext</li>
 <li>sctap:status</li>
 </ul>
+<hr>
+<p>The following are not classes but properties that that textItem classes can take</p>
 <h2 id="global-structure-properties">Global Structure properties</h2>
 <ul>
 <li>sctap:structureType<ul>
@@ -1081,6 +1086,15 @@
 <ul>
 <li>sctap:isPartOfStructureBlock</li>
 </ul>
+<hr>
+<h2 id="the-following-are-not-classes-but-could-be-considered-sub-classes-that-are-the-resultant-combination-of-a-textitem-class-and-a-structure-type">The following are not classes, but could be considered sub classes that are the resultant combination of a textItem class and a structure type</h2>
+<h2 id="toplevelcollectionexpression">TopLevelCollectionExpression</h2>
+<h2 id="toplevelcollectionmanifestation">TopLevelCollectionManifestation</h2>
+<h2 id="toplevelcollectiontranscription">TopLevelCollectionTranscription</h2>
+<h2 id="expressioncollection">ExpressionCollection</h2>
+<hr>
+<p>end of textItem explanation</p>
+<h2 id="return-to-resource-classes">return to resource classes</h2>
 <h2 id="marginalnote">marginalNote</h2>
 <ul>
 <li>isPartOfStructureBlock</li>
@@ -1144,18 +1158,26 @@
 </li>
 <li>materialStructureType=materialStructureCollection</li>
 </ul>
-<h2 id="surface-properties">Surface properties</h2>
+<h2 id="surface">Surface</h2>
 <ul>
 <li>sctap:isPartOfCodex</li>
 <li>sctap:next</li>
 <li>sctap:previous</li>
-<li>sctap:isPartOf<ul>
+<li>dc:isPartOf<ul>
 <li>e.g. folio, quire, or codex</li>
+</ul>
+</li>
+<li>dc:hasPart<ul>
+<li>range: directChildren</li>
+</ul>
+</li>
+<li>sctap:hasZone<ul>
+<li>all descendant zones at any level</li>
 </ul>
 </li>
 <li>materialStructureType=materialStructureItem</li>
 </ul>
-<h2 id="zone-properties">Zone properties</h2>
+<h2 id="zone">zone</h2>
 <ul>
 <li>sctap:zoneType<ul>
 <li>marginRight</li>
@@ -1168,7 +1190,10 @@
 <li>general</li>
 </ul>
 </li>
-<li>sctap:isPartOfSurface</li>
+<li>sctap:isPartOfSurface<ul>
+<li>inverse of hasZone</li>
+</ul>
+</li>
 <li>dc:isPartOf<ul>
 <li>range: sctar:surface, or line is part of column, marginal note could be part of margin</li>
 </ul>
@@ -1291,7 +1316,7 @@ communia, quemadmoduin et dona.</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"0.0.0 Codename: lightening_oak","level":"1.2","depth":1,"next":{"title":"Resource Types","level":"1.2.1","depth":2,"path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md","articles":[{"title":"Resource","level":"1.2.1.1","depth":3,"anchor":"#resource","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#resource","articles":[]},{"title":"workGroup","level":"1.2.1.2","depth":3,"anchor":"#workgroup","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#workgroup","articles":[]},{"title":"Work","level":"1.2.1.3","depth":3,"anchor":"#work","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#work","articles":[]},{"title":"Text Resources Chart","level":"1.2.1.4","depth":3,"anchor":"#text-resources-chart","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#text-resources-chart","articles":[]},{"title":"Global Text Resource Properties","level":"1.2.1.5","depth":3,"anchor":"#global-text-resource-properties","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#global-text-resource-properties","articles":[]},{"title":"Expression","level":"1.2.1.6","depth":3,"anchor":"#expression","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#expression","articles":[]},{"title":"Manifestation","level":"1.2.1.7","depth":3,"anchor":"#manifestation","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#manifestation","articles":[]},{"title":"Transcription","level":"1.2.1.8","depth":3,"anchor":"#transcription","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#transcription","articles":[]},{"title":"Global Structure properties","level":"1.2.1.9","depth":3,"anchor":"#global-structure-properties","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#global-structure-properties","articles":[]},{"title":"TopLevelStructureCollection","level":"1.2.1.10","depth":3,"anchor":"#toplevelstructurecollection","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#toplevelstructurecollection","articles":[]},{"title":"StructureCollection","level":"1.2.1.11","depth":3,"anchor":"#structurecollection","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#structurecollection","articles":[]},{"title":"StructureItem","level":"1.2.1.12","depth":3,"anchor":"#structureitem","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#structureitem","articles":[]},{"title":"StructureDivision","level":"1.2.1.13","depth":3,"anchor":"#structuredivision","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#structuredivision","articles":[]},{"title":"StructureBlock","level":"1.2.1.14","depth":3,"anchor":"#structureblock","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#structureblock","articles":[]},{"title":"StructureElement","level":"1.2.1.15","depth":3,"anchor":"#structureelement","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#structureelement","articles":[]},{"title":"codex","level":"1.2.1.16","depth":3,"anchor":"#codex","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#codex","articles":[]},{"title":"codexItem","level":"1.2.1.17","depth":3,"anchor":"#codex","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#codex","articles":[]}]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"scta-rdf-schema.md","mtime":"2018-05-27T20:33:44.966Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-05-27T23:16:06.961Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"0.0.0 Codename: lightening_oak","level":"1.2","depth":1,"next":{"title":"Resource Types","level":"1.2.1","depth":2,"path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md","articles":[{"title":"Resource","level":"1.2.1.1","depth":3,"anchor":"#resource","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#resource","articles":[]},{"title":"workGroup","level":"1.2.1.2","depth":3,"anchor":"#workgroup","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#workgroup","articles":[]},{"title":"Work","level":"1.2.1.3","depth":3,"anchor":"#work","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#work","articles":[]},{"title":"Text Resources Chart","level":"1.2.1.4","depth":3,"anchor":"#text-resources-chart","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#text-resources-chart","articles":[]},{"title":"Global Text Resource Properties","level":"1.2.1.5","depth":3,"anchor":"#global-text-resource-properties","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#global-text-resource-properties","articles":[]},{"title":"Expression","level":"1.2.1.6","depth":3,"anchor":"#expression","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#expression","articles":[]},{"title":"Manifestation","level":"1.2.1.7","depth":3,"anchor":"#manifestation","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#manifestation","articles":[]},{"title":"Transcription","level":"1.2.1.8","depth":3,"anchor":"#transcription","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#transcription","articles":[]},{"title":"Global Structure properties","level":"1.2.1.9","depth":3,"anchor":"#global-structure-properties","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#global-structure-properties","articles":[]},{"title":"TopLevelStructureCollection","level":"1.2.1.10","depth":3,"anchor":"#toplevelstructurecollection","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#toplevelstructurecollection","articles":[]},{"title":"StructureCollection","level":"1.2.1.11","depth":3,"anchor":"#structurecollection","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#structurecollection","articles":[]},{"title":"StructureItem","level":"1.2.1.12","depth":3,"anchor":"#structureitem","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#structureitem","articles":[]},{"title":"StructureDivision","level":"1.2.1.13","depth":3,"anchor":"#structuredivision","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#structuredivision","articles":[]},{"title":"StructureBlock","level":"1.2.1.14","depth":3,"anchor":"#structureblock","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#structureblock","articles":[]},{"title":"StructureElement","level":"1.2.1.15","depth":3,"anchor":"#structureelement","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#structureelement","articles":[]},{"title":"codex","level":"1.2.1.16","depth":3,"anchor":"#codex","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#codex","articles":[]},{"title":"codexItem","level":"1.2.1.17","depth":3,"anchor":"#codex","path":"scta-rdf-schema.md","ref":"scta-rdf-schema.md#codex","articles":[]}]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"scta-rdf-schema.md","mtime":"2018-05-28T13:29:02.443Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-05-28T14:00:41.549Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
