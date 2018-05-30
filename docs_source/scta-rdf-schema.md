@@ -5,11 +5,6 @@
 All resources inherit the global properties of the generic resource type
 
 * rdf:type
-  - http://scta.info/resource/workGroup
-  - http://scta.info/resource/work
-  - http://scta.info/resource/expression
-  - http://scta.info/resource/manifestation
-  - http://scta.info/resource/transcription
   - etc.
 * dc:title
   - e.g. Wodeham Oxford Reportatio
@@ -19,7 +14,7 @@ All resources inherit the global properties of the generic resource type
   - Moby Dick the Novel
   - Moby Dick the Screen Play
 * dc:description
-* sctap:shortId
+* [sctap:shortId](http://scta.info/property/shortId)
 * ldp:inbox
 
 
@@ -29,9 +24,9 @@ All resources inherit the global properties of the generic resource type
     - if the workGroup is not level=1 it must specify its parent part. This must be another workGroup.
 * dcterms:hasPart
     - a work group can take either another workGroup or a work as its direct part (or child)
-* sctap:hasExpression
+* [sctap:hasExpression](http://scta.info/property/hasExpression)
     - every work group should list every expression contained within it, no matter what level
-* sctap:level
+* [sctap:level](http://scta.info/property/level)
     - 1,2,3
 * sctap:citation
     - a string offering a best practice example of how this should be cited
@@ -57,7 +52,9 @@ A super class for expressions, manifestations, and transcriptions
 
 ## textItem Resources Chart
 
-| | [Expression](#expression) | [Manifestation](#manifestation) | [Transcription](#transcription) |
+![View visualization](images/SCTASCHEMA-Viz.png)
+
+| ----- | [Expression](#expression) | [Manifestation](#manifestation) | [Transcription](#transcription) |
 | ---------- | ---------- | ------------- | ------------- |
 | [TopLevelStructureCollection](#toplevelstructurecollection) | [TopLevelCollectionExpression](toplevelcollectionexpression) | [TopLevelCollectionManifestation](#toplevelcollectionmanifestation) |  [TopLevelCollectionTranscription](#toplevelcollectiontranscription) |
 | [StructureCollection](#structurecollection) | [ExpressionCollection](#expressioncollection) | [ManifestationCollection](#manifestationcollection) | [TranscriptionCollection](#transcriptioncollection) |
@@ -77,17 +74,18 @@ A super class for expressions, manifestations, and transcriptions
 
 * rdf:type=http://scta.info/resource/expression
 * sctap:status
-* sctap:expressionType
+* [sctap:expressionType](http://scta.info/property/expressionType)
     - e.g. available expressionTypes should be enumerated in the WorkType or WorkGroupType class
     - e.g. a Work within the WorkGroup where workGroupType="SentencesCommentaries" the value of expressionType given here must be one of the values of the availableExpressionType listed in that workGroupType. See WorkGroupType and WorkType below.
-* sctap:hasManifestation
-* sctap:hasCanonicalManifestation
-* sctap:isPartOfTopLevelExpression <!-- I would like to see this change just isPartOfTopLevel and become a property of structures -->
+* [sctap:hasManifestation](http://scta.info/property/hasManifestation)
+* [sctap:hasCanonicalManifestation](http://scta.info/property/hasCanonicalManifestation)
+* [sctap:isPartOfTopLevelExpression](http://scta.info/property/hasCanonicalManifestation)<!-- I would like to see this change just isPartOfTopLevel and become a property of structures -->
     - all non top level Expressions should point to the top level Expression of which they are a part.
 
 ## Manifestation
 
-* sctap:manfestationType
+* [sctap:manfestationType](http://scta.info/property/manifestationType)
+    - e.g.
     - manuscript
     - incunabula
     - earlyEdition
@@ -97,16 +95,13 @@ A super class for expressions, manifestations, and transcriptions
 * sctap:hasTranscription
 * sctap:isManifestationOf
     - Value must be an Expression
-
-* sctap:startsOnSurface
-* sctap:endsOnSurface
-
 * sctap:isOnSurface (only at item, block, and element level)
 * sctap:isOnZone (only block, and element level)
 
 ## Transcription
 
-* sctap:transcriptionType
+* [sctap:transcriptionType](http://scta.info/property/transcriptionType)
+    - e.g.
     - diplomatic
     - critical
     - translation
@@ -117,7 +112,11 @@ A super class for expressions, manifestations, and transcriptions
 * sctap:status
 
 ---
-The following are not classes but properties that that textItem classes can take
+
+Note: The following are not classes but critical properties that that textItem classes can take
+that effectively divide textItem classes into subclasses
+
+--
 
 ## Global Structure properties
 
@@ -171,22 +170,33 @@ The following are not classes but properties that that textItem classes can take
 
 * sctap:isPartOfStructureBlock
 
----
-The following are not classes, but could be considered sub classes that are the resultant combination of a textItem class and a structure type
----
 
-## TopLevelCollectionExpression
-
-## TopLevelCollectionManifestation
-
-## TopLevelCollectionTranscription
-
-## ExpressionCollection
+## Virtual textItem Classes
 
 ---
-end of textItem explanation
-return to resource classes
+
+Note: The following are not explicitly classes,
+but could be considered sub classes that are the resultant combination of a
+textItem class and a structure type
+
 ---
+### TopLevelCollectionExpression
+### ExpressionCollection
+### ExpressionItem
+### ExpressionBlock
+### ExpressionElement
+### TopLevelCollectionManifestation
+### ManifestationCollection
+### ManifestationItem
+### ManifestationBlock
+### ManifestationElement
+### TopLevelCollectionTranscription
+### TranscriptionCollection
+### TranscriptionItem
+### TranscriptionBlock
+### TranscriptionElement
+
+
 
 ## marginalNote
 
@@ -204,13 +214,19 @@ return to resource classes
 * personType
 * owl:sameAs (this should be global)
 
-# Material Structure Classes
+# materialResource
 
-| [Codex](#codex) | [icodex](#codexitem) |
-| [Quire](#quire) | [iquire](#quireitem) |
-| [Folio](#folio) | [ifolio](#folioitem)] |
-| [Surface](#surface) | [isurface](#surfaceitem) |
-| [zone](#zone) | [item](#zoneitem) |
+A super class for materialResource subclasses
+
+![View visualization](images/SurfaceVisualization.png)
+
+| MaterialManifestation | MatieralItem |
+| ---------- | ---------- |
+| [Codex](#codex) | [icodex](#icodex) |
+| [Quire](#quire) | [iquire](#iquire) |
+| [Folio](#folio) | [ifolio](#ifolio) |
+| [Surface](#surface) | [isurface](#isurface) |
+| [zone](#zone) | [izone](#izone) |
 
 
 ## codex
@@ -232,6 +248,8 @@ return to resource classes
 * dc:hasPart
   - range: e.g sctar:folio, surface
 * materialStructureType=materialStructureCollection
+* isMemberOf
+  - each ancestor of this quire (codex should be listed)
 
 ## folio
 
@@ -241,8 +259,10 @@ return to resource classes
 * dc:hasPart
   - range: sctar:quire or sctar:codex
 * materialStructureType=materialStructureCollection
+* isMemberOf
+  - each ancestor of this folio (quire, codex should be listed)
 
-## Surface 
+## surface
 
 * sctap:isPartOfCodex
 * sctap:next
@@ -254,6 +274,8 @@ return to resource classes
 * sctap:hasZone
   - all descendant zones at any level
 * materialStructureType=materialStructureItem
+* isMemberOf
+  - each ancestor of this surface (folio, quire, codex should be listed)
 
 
 ## zone
@@ -278,6 +300,8 @@ return to resource classes
 * lry
 * ulx
 * uly
+* isMemberOf
+  - each ancestor of this zone (surface, folio, quire, codex should be listed)
 
 * Note on position/order
   * sctap:order?
