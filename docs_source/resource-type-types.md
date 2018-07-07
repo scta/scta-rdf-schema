@@ -26,6 +26,8 @@ The object of those predicates are of rdf:type=expressionType
  * sctap:isMemberOf
   - Range
     - ssctar:expressionType
+* NOTE
+  - Considering changing isPartOf and hasPart to a subClass superClass relationship, so that "sentences commentary" is a sub class of "commentary" rather than a "part" of a commentary.
 
 # ManifestationType
 
