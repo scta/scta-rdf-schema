@@ -110,6 +110,28 @@ A super class for expressions, manifestations, and transcriptions
 * sctap:hasDocument
 * sctap:plaintext
 * sctap:status
+* Version Chain Properties
+  - A transcription can forms part of a version chain, allows select transcriptions to be linked together in a version chain.
+  - A version chain is not an RDF class, but an idea of transcriptions resources linked together by the following properties.
+  * sctap:hasAncestor
+    - indicates all previous versions within a version chain. An transcription MAY have many `hasAncestor` properties
+  * sctap:hasDescendant
+    - indicates all subsequent versions within a version chain. A transcription MAY have many `hasDescendant` properties
+  * sctap:hasSuccessor
+    - indicates the transcription immediately following this this transcription within the version chain.
+    A transcription MAY have ONLY one `hasSuccessor` property
+  * sctap:hasPredecessor
+    - indicates the transcription immediately preceding this transcription within the version chain. A transcription MAY have ONLY one `hasPredecessor` property
+  * sctap:isVersionDefault
+    - Within a version chain, a transcription can be identified as the `versionDefault`. The `versionDefault=true` assertion indicates that this transcription that will be associated with a manifestation via the `hasTranscription` property and will be used for extraction purposes in processing. Only one transcription within a version chain should be the object of a manifestation's `hasTranscription` property, while each transcription within the version chain has a `isTranscriptionOf` property.
+  * sctap:isHeadTranscription
+    - No matter which version is the listed as the `versionDefault` the `isHeadTranscription=true` indicates which transcription stands at the top of the versionChain. the transcription with the `isHeadTranscription=true` will always have the highest `versionOrderNumber` within a series
+  * sctap:versionOrderNumber
+    - the `versionOrderNumber` indicates the order of a transcription within a version chain. The first transcription will always have the version number "0001" and the head transcription will always have the highest number within the series.
+  * sctap:versionNo
+    - A version Number 1.0.0 or 1.0.0. Ideally version number will match a git tag or or part of a git tag.
+  * sctap:versionLabel
+    - A human readable version label designed for display.
 
 ---
 

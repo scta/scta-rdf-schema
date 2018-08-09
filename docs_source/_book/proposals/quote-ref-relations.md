@@ -150,14 +150,10 @@ The query would the `@source` attribute of the `quote` (isIstance) to find the q
 This also mean that a ref with a `@corresp` attribute could be wrapped in a `cit` tag with its own `bibl`. The `bibl` for the quote should a default modern reference for the actual quote. The `ref` that directly corresponds should take no `cit` or `bibl` because it is covered by the `quote` but the second `ref` with an `@source` and `@corresp` can take its own `bibl` which is the modern citation patter for the reference.
 
 Below are some other good examples of similar patterns.
-
-See Gracilis pg-b1q13 for a quotation of Apuleius through Augustine's city of God for another good example.
-
-Another good example of quotation connections occurs in Gracilis q. 19. Here Gracilis quotes a Augustine, and then provides a reference to lombard and says this quote is in lombard. The quote in lombard is much longer than the passage cited by gracilis. The passage quoted by Gracilis is contained with the passage quoted by Lombard.
-
-Quote source in Gracilis is Augustine, but the reference is to Lombard. Currently I've set the reference to the paragraph containing the quotation. But it would be more precise to set the target of the reference to the quotation id of the quotation in lombard.
-
-The canonical quotation pattern doesn't work to well here, because the quotation in gracilis and in lombard cannot be said to be the instance of the same quotation exemplar. (See Gracilis paragraph: pgb1q19-d1e234)
+  * See Gracilis pg-b1q13 for a quotation of Apuleius through Augustine's city of God for another good example.
+  * Another good example of quotation connections occurs in Gracilis q. 19. Here Gracilis quotes a Augustine, and then provides a reference to lombard and says this quote is in lombard. The quote in lombard is much longer than the passage cited by gracilis. The passage quoted by Gracilis is contained with the passage quoted by Lombard.
+  * Quote source in Gracilis is Augustine, but the reference is to Lombard. Currently I've set the reference to the paragraph containing the quotation. But it would be more precise to set the target of the reference to the quotation id of the quotation in lombard.
+    * The canonical quotation pattern doesn't work to well here, because the quotation in gracilis and in lombard cannot be said to be the instance of the same quotation exemplar. (See Gracilis paragraph: pgb1q19-d1e234)
 
 ## Example 5
 
@@ -166,3 +162,51 @@ What about a case in which almost every word is a quote, in the case of a word b
 ## Example 6
 
 What about a case where the quotation is used primarily as a point of reference or incipit in a reference, such as in a pointer to a quote from the "glossa ordinaria".
+
+## Example 7
+
+We also have cases where a single ref could be functioning as a reference for two quotations. In this case the `@corresp` attributes needs to be able to take two values separated by white space.
+
+See the example in Gracilis pg-b1q8
+
+```xml
+<p xml:id="pgb1q8-d1e572">
+  Tertio,
+  <cit>
+    <quote xml:id="pg-b1q8-Qd1e575">
+      quidquid de ratione formali est principium productivum
+      alicuius secundum suam rationem formalem
+      in quocumque illud est erit a se principium productivum alicuius
+    </quote>
+    <bibl>
+      <name>Scotus</name>,
+      <title>Ordinatio</title>
+      I, d. 2, pars 2, q. 4
+      (Vatican II, 263, ll. 15-18).
+      <!-- dbcheck -->
+    </bibl>
+  </cit>.
+  Sed
+  <cit>
+    <quote xml:id="pg-b1q8-Qd1e592">
+      intellectus habens obiectum sibi
+      praesens ex ratione formali est principium notitiae genitae
+    </quote>
+    <bibl>
+      <name>Scotus</name>,
+      <title>Ordinatio</title>
+      I, d. 2, pars 2, q. 4
+      (Vatican II, 259, ll. 10-12).
+      <!-- dbcheck -->
+    </bibl>
+  </cit>,
+  ergo cum talis sit in Deo,
+  sequitur quod ibi sit notitia genita.
+  Haec est ratio
+  <ref xml:id="pg-b1q8-Rd1e4255" corresp="#pg-b1q8-Qd1e575 #pg-b1q8-Qd1e592">
+    <!-- first ref example I have with two correspon quotes; seems like it could be a common use case. -->
+    <name ref="#Scotus">Scoti</name>,
+    distinctione secunda primi
+  </ref>
+</p>
+```

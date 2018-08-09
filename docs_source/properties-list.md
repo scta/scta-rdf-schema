@@ -60,6 +60,12 @@
 
 # H
 
+* sctap:hasAncestor
+  - Domain
+    - sctar:transcription
+  - Range
+    - sctar:transcription
+
 * sctap:hasCanonicalCodexItem
   - Domain
     - sctar:codex
@@ -79,6 +85,12 @@
     - sctar:transcription
 
 * sctap:hasCodexItem
+
+* sctap:hasDescendant
+  - Domain
+    - sctar:transcription
+  - Range
+    - sctar:transcription
 
 * sctap:hasManifestation
   - Domain
@@ -119,6 +131,12 @@
     - scta:transcription
   - Notes
     - does this actually just have a global domain and range?
+
+* sctap:hasPredecessor
+  - Domain
+    - sctar:transcription
+  - Range
+    - sctar:transcription
 
 * sctap:hasStructureBlock
   - Domain
@@ -187,6 +205,12 @@
     - sctar:manifestation (where structureType=structureItem)
     - sctar:transcription (where structureType=structureItem)
 
+* sctap:hasSuccessor
+  - Domain
+    - sctar:transcription
+  - Range
+    - sctar:transcription
+
 * sctap:hasSurface
   - Domain
     - Codex, Quire, Folio
@@ -205,10 +229,15 @@
 
 * sctap:hasDocument
 
-
 * hasSlug
   - used in manifestation level (not sure if this is needed)
   - hasn't this be replaced by shortId
+
+* sctap:hash
+  - Domain
+    - sctar:transcription
+  - Range
+    - "string"
 
 # I
 
@@ -232,6 +261,11 @@
   - Range
     - sctar:codex
 
+* sctap:isHeadTranscription
+  - Domain
+    - sctar:transcription
+  - Range
+    - string ("true")
 
 * sctap:isManifestationOf
   - Domain
@@ -398,6 +432,12 @@
     - scta:manifestation
     - scta:transcription
 
+* sctap:isVersionDefault
+  - Domain
+    - sctar:transcription
+  - Range
+    - string ("true")
+
 # L
 
 * sctap:level
@@ -518,11 +558,23 @@
 
 # V
 
-  * sctap:version
-    - Domain
-      - sctar:transcription
-    - Range
-      - "string"
+* sctap:versionLabel
+  - Domain
+    - sctar:transcription
+  - Range
+    - "string"
+
+* sctap:versionNo
+  - Domain
+    - sctar:transcription
+  - Range
+    - "string"
+
+* sctap:versionOrderNumber
+  - Domain
+    - sctar:transcription
+  - Range
+    - "string"
 
 # W
 

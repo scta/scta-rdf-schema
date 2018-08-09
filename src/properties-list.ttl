@@ -72,6 +72,13 @@ sctap:expressionType
 
 # H
 
+sctap:hasAncestor
+	rdf:type rdfs:Property ;
+	rdfs:domain sctar:transcription ;
+	rdfs:range sctar:transcription ;
+	rdf:label "has Descendant" ;
+	dc:description "indicates all previous versions within a version chain. A transcription MAY have many hasAncestor properties" .
+
 sctap:hasCanonicalCodexItem
 	rdf:type rdfs:Property ;
 	rdfs:domain sctar:codex ;
@@ -100,6 +107,13 @@ sctap:hasCodexItem
 	rdfs:label "has Codex Item" ;
 	dc:description "Indicates a codex Item resource for the targeted codex resource" .
 
+sctap:hasDescendant
+	rdf:type rdfs:Property ;
+	rdfs:domain sctar:transcription ;
+	rdfs:range sctar:transcription ;
+	rdf:label "has Descendant" ;
+	dc:description "indicates all subsequent versions within a version chain. A transcription MAY have many hasDescendant properties" .
+
 sctap:hasManifestation
   rdf:type rdfs:Property ;
 	rdfs:subPropertyOf sctap:linkingInfo ;
@@ -119,6 +133,13 @@ sctap:hasOfficialManifest
 dc:hasPart
 	rdfs:domain sctar:resource ;
 	rdfs:range sctar:resource .
+
+sctap:hasPredecessor
+	rdf:type rdfs:Property ;
+	rdfs:domain sctar:transcription ;
+	rdfs:range sctar:transcription ;
+	rdf:label "has Predecessor" ;
+	dc:description "indicates the transcription immediately preceding the subject transcription within the version chain. A transcription may have ONLY one hasPredecessor property" .
 
 sctap:hasStructureBlock
 	rdf:type rdfs:Property ;
@@ -148,6 +169,13 @@ sctap:hasStructureItem
 	rdf:label "Has Structure Item" ;
 	dc:description "Indicates whether the targeted resource has any resources with the structureType structureItem as direct children" .
 
+sctap:hasSuccessor
+	rdf:type rdfs:Property ;
+	rdfs:domain sctar:transcription ;
+	rdfs:range sctar:transcription ;
+	rdf:label "has Successor" ;
+	dc:description "indicates the transcription immediately following this this transcription within the version chain. A transcription may have ONLY one hasSuccessor property" .
+
 sctap:hasSurface
 	rdfs:domain sctar:codex ;
 	# domain should also include condex quire and folio, or a super class should be created
@@ -168,6 +196,11 @@ sctap:isAbbreviatedBy
 	rdfs:domain sctar:expression ;
 	rdfs:range sctar:expression ;
 	owl:inverseOf sctap:abbreviates .
+
+sctap:isHeadTranscription
+	rdfs:domain sctar:transcription ;
+	rdfs:range rdf:Literal ;
+	dc:description "the isHeadTranscription value should be 'true' and when present indicates which transcription stands at the top of a version chain. The transcription whose isHeadTranscription is 'true' will always have the highest `versionOrderNumber` within a series" .
 
 sctap:isPartOfSurface
 	rdfs:domain sctar:zone ;
@@ -227,6 +260,11 @@ sctap:isManifestationOf
   dc:description "Indicates an expression for a given manifestation" ;
   rdfs:domain sctar:manifestation ;
   rdfs:range sctar:expression .
+
+sctap:isVersionDefault
+	rdfs:domain sctar:transcription ;
+	rdfs:range rdf:Literal ;
+	dc:description "Within a version chain, a transcription can be identified as the versionDefault. The versionDefault=true assertion indicates that this transcription that will be associated with a manifestation via the hasTranscription property and will be used for extraction purposes in processing. Only one transcription within a version chain MAY be the object of a manifestation's hasTranscription property, while each transcription within the version chain SHOULD have a isTranscriptionOf property." .
 
 # L
 sctap:longTitle
@@ -299,6 +337,29 @@ sctap:quotationType
 	rdf:type rdfs:Property ;
   rdfs:label "Quotation Type" ;
   rdfs:domain sctar:quotation .
+
+# S
+
+sctap:versionNo
+	rdf:type rdfs:Property ;
+  rdfs:label "Version No" ;
+	rdfs:domain sctar:transcription ;
+	rdfs:range rdfs:Literal ;
+	dc:description "A version Number (e.g. 1.0.0 or 1.0.0). Ideally the version number will match a git tag or or part of a git tag." .
+
+sctap:versionLabel
+	rdf:type rdfs:Property ;
+  rdfs:label "Version Label" ;
+	rdfs:domain sctar:transcription ;
+	rdfs:range rdfs:Literal ;
+	dc:description "A human readable version label designed for display." .
+
+sctap:versionOrderNumber
+	rdf:type rdfs:Property ;
+  rdfs:label "Version Order Number" ;
+	rdfs:domain sctar:transcription ;
+	rdfs:range rdfs:Literal ;
+	dc:description "Indicates the order of a transcription within a version chain. The first transcription will always have the version number 0001 and the head transcription will always have the highest number within the series." .
 
 # Z
 

@@ -1136,6 +1136,18 @@
 </ul>
 <h1 id="h">H</h1>
 <ul>
+<li><p>sctap:hasAncestor</p>
+<ul>
+<li>Domain<ul>
+<li>sctar:transcription</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>sctar:transcription</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><p>sctap:hasCanonicalCodexItem</p>
 <ul>
 <li>Domain<ul>
@@ -1173,6 +1185,18 @@
 </ul>
 </li>
 <li><p>sctap:hasCodexItem</p>
+</li>
+<li><p>sctap:hasDescendant</p>
+<ul>
+<li>Domain<ul>
+<li>sctar:transcription</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>sctar:transcription</li>
+</ul>
+</li>
+</ul>
 </li>
 <li><p>sctap:hasManifestation</p>
 <ul>
@@ -1250,6 +1274,18 @@
 </li>
 <li>Notes<ul>
 <li>does this actually just have a global domain and range?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>sctap:hasPredecessor</p>
+<ul>
+<li>Domain<ul>
+<li>sctar:transcription</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>sctar:transcription</li>
 </ul>
 </li>
 </ul>
@@ -1394,6 +1430,18 @@
 </li>
 </ul>
 </li>
+<li><p>sctap:hasSuccessor</p>
+<ul>
+<li>Domain<ul>
+<li>sctar:transcription</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>sctar:transcription</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><p>sctap:hasSurface</p>
 <ul>
 <li>Domain<ul>
@@ -1424,11 +1472,22 @@
 </li>
 <li><p>sctap:hasDocument</p>
 </li>
-</ul>
+<li><p>hasSlug</p>
 <ul>
-<li>hasSlug<ul>
 <li>used in manifestation level (not sure if this is needed)</li>
 <li>hasn&apos;t this be replaced by shortId</li>
+</ul>
+</li>
+<li><p>sctap:hash</p>
+<ul>
+<li>Domain<ul>
+<li>sctar:transcription</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>&quot;string&quot;</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1460,7 +1519,8 @@
 </li>
 </ul>
 <ul>
-<li>sctap:isCodexItemOf<ul>
+<li><p>sctap:isCodexItemOf</p>
+<ul>
 <li>Domain<ul>
 <li>sctar:codexItem</li>
 </ul>
@@ -1471,9 +1531,20 @@
 </li>
 </ul>
 </li>
-</ul>
+<li><p>sctap:isHeadTranscription</p>
 <ul>
-<li>sctap:isManifestationOf<ul>
+<li>Domain<ul>
+<li>sctar:transcription</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>string (&quot;true&quot;)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>sctap:isManifestationOf</p>
+<ul>
 <li>Domain<ul>
 <li>sctar:manifestation</li>
 </ul>
@@ -1750,7 +1821,8 @@
 </li>
 </ul>
 <ul>
-<li>dc:isPartOf<ul>
+<li><p>dc:isPartOf</p>
+<ul>
 <li>Domain<ul>
 <li>scta:workGroup (where workGroup != top level work group is not a top level workGroup)<ul>
 <li>Range<ul>
@@ -1797,6 +1869,18 @@
 <li>sctar:expression</li>
 <li>scta:manifestation</li>
 <li>scta:transcription</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>sctap:isVersionDefault</p>
+<ul>
+<li>Domain<ul>
+<li>sctar:transcription</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>string (&quot;true&quot;)</li>
 </ul>
 </li>
 </ul>
@@ -2001,7 +2085,32 @@ but I think it should apply only to transcription level</p>
 <h1 id="u">U</h1>
 <h1 id="v">V</h1>
 <ul>
-<li>sctap:version<ul>
+<li><p>sctap:versionLabel</p>
+<ul>
+<li>Domain<ul>
+<li>sctar:transcription</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>&quot;string&quot;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>sctap:versionNo</p>
+<ul>
+<li>Domain<ul>
+<li>sctar:transcription</li>
+</ul>
+</li>
+<li>Range<ul>
+<li>&quot;string&quot;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>sctap:versionOrderNumber</p>
+<ul>
 <li>Domain<ul>
 <li>sctar:transcription</li>
 </ul>
@@ -2071,7 +2180,7 @@ but I think it should apply only to transcription level</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Properties List","level":"1.2.3","depth":2,"next":{"title":"A","level":"1.2.3.1","depth":3,"anchor":"#a","path":"properties-list.md","ref":"properties-list.md#a","articles":[]},"previous":{"title":"personType","level":"1.2.2.5","depth":3,"anchor":"#transcriptiontype","path":"resource-type-types.md","ref":"resource-type-types.md#transcriptiontype","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"properties-list.md","mtime":"2018-05-27T22:03:11.635Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-06-11T23:05:50.274Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Properties List","level":"1.2.3","depth":2,"next":{"title":"A","level":"1.2.3.1","depth":3,"anchor":"#a","path":"properties-list.md","ref":"properties-list.md#a","articles":[]},"previous":{"title":"personType","level":"1.2.2.5","depth":3,"anchor":"#transcriptiontype","path":"resource-type-types.md","ref":"resource-type-types.md#transcriptiontype","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"properties-list.md","mtime":"2018-08-09T17:40:33.457Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-08-09T17:55:08.696Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
