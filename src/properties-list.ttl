@@ -23,9 +23,17 @@
 sctap:abbreviates
 	rdfs:domain sctar:expression ;
 	rdfs:range sctar:expression ;
-	owl:inverseOf sctap:isAbbreviatedBy ;
+	owl:inverseOf sctap:abbreviatedBy ;
 	rdf:label "Abbreviates" ;
 	dc:description "Indicates that the subject text resource abbreviates the object text resource" ;
+	rdf:type sctar:textRelation .
+
+sctap:abbreviatedBy
+	rdfs:domain sctar:expression ;
+	rdfs:range sctar:expression ;
+	owl:inverseOf sctap:abbreviates ;
+	rdf:label "Abbreviated By" ;
+	dc:description "Indicates that the subject text resource is abbreviated by the object text resource" ;
 	rdf:type sctar:textRelation .
 
 sctap:availableExpressionType
@@ -48,10 +56,18 @@ sctap:contributor
 	rdfs:range sctar:person .
 	# remain an open question whether contributor should be blank node allow more qualifications to the kind of contribution.
 
+sctap:copiedBy
+	rdfs:domain sctar:expression ;
+	rdfs:range sctar:expression ;
+	owl:inverseOf sctap:copies ;
+	rdf:label "Copied By" ;
+	dc:description "Indicates that the subject text resource is copied by the object text resource" ;
+	rdf:type sctar:textRelation .
+
 sctap:copies
 	rdfs:domain sctar:expression ;
 	rdfs:range sctar:expression ;
-	owl:inverseOf sctap:isCopiedBy ;
+	owl:inverseOf sctap:copiedBy ;
 	rdf:label "Copies" ;
 	dc:description "Indicates that the subject text resource copies the object text resource" ;
 	rdf:type sctar:textRelation .
@@ -203,21 +219,6 @@ sctap:hasTranscription
 
 # I
 
-sctap:isAbbreviatedBy
-	rdfs:domain sctar:expression ;
-	rdfs:range sctar:expression ;
-	owl:inverseOf sctap:abbreviates ;
-	rdf:label "Abbreviated By" ;
-	dc:description "Indicates that the subject text resource is abbreviated by the object text resource" ;
-	rdf:type sctar:textRelation .
-
-sctap:isCopiedBy
-	rdfs:domain sctar:expression ;
-	rdfs:range sctar:expression ;
-	owl:inverseOf sctap:copies ;
-	rdf:label "Copied By" ;
-	dc:description "Indicates that the subject text resource is copied by the object text resource" ;
-	rdf:type sctar:textRelation .
 
 sctap:isHeadTranscription
 	rdfs:domain sctar:transcription ;
@@ -231,15 +232,6 @@ sctap:isPartOfSurface
 sctap:isPartOfTopLevelExpression
 	rdfs:domain sctar:expression ;
 	rdfs:range sctar:expression .
-
-sctap:isQuotedBy
-	rdfs:domain sctar:expression ;
-	rdfs:range sctar:expression ;
-	owl:inverseOf sctap:quotes ;
-	rdf:label "Quotes" ;
-	dc:description "Indicates that the subject text resource quotes the object text resource" ;
-	rdf:type sctar:textRelation .
-
 
 sctap:isMentionedBy
 	rdfs:domain sctar:expression ;
@@ -263,14 +255,6 @@ sctap:isOnZone
 dcterms:isPartOf
 	rdfs:subPropertyOf sctap:linkingInfo .
 
-
-sctap:isReferencedBy
-	rdfs:domain sctar:expression ;
-	rdfs:range sctar:expression ;
-	owl:inverseOf sctap:references ;
-	rdf:label "Referenced By" ;
-	dc:description "Indicates that the subject text resource is referenced by the object text resource" ;
-	rdf:type sctar:textRelation .
 
 sctap:isRelatedTo
 	rdfs:domain sctar:expression ;
@@ -331,20 +315,36 @@ sctap:questionTitle
 	rdfs:domain sctar:expression ;
 	rdfs:range rdfs:Literal .
 
+sctap:quotedBy
+	rdfs:domain sctar:expression ;
+	rdfs:range sctar:expression ;
+	owl:inverseOf sctap:quotes ;
+	rdf:label "Quotes" ;
+	dc:description "Indicates that the subject text resource quotes the object text resource" ;
+	rdf:type sctar:textRelation .
+
 sctap:quotes
 	rdfs:domain sctar:expression ;
 	rdfs:range sctar:expression ;
-	owl:inverseOf sctap:isQuotedBy ;
+	owl:inverseOf sctap:quotedBy ;
 	rdf:label "Quoted By" ;
 	dc:description "Indicates that the subject text resource is quoted by the object text resource" ;
 	rdf:type sctar:textRelation .
 
 # R
 
+sctap:referencedBy
+	rdfs:domain sctar:expression ;
+	rdfs:range sctar:expression ;
+	owl:inverseOf sctap:references ;
+	rdf:label "Referenced By" ;
+	dc:description "Indicates that the subject text resource is referenced by the object text resource" ;
+	rdf:type sctar:textRelation .
+
 sctap:references
 	rdfs:domain sctar:expression ;
 	rdfs:range sctar:expression ;
-	owl:inverseOf sctap:isReferencedBy ;
+	owl:inverseOf sctap:referencedBy ;
 	rdf:label "References" ;
 	dc:description "Indicates that the subject text resource references the object text resource" ;
 	rdf:type sctar:textRelation .
