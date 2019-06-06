@@ -125,3 +125,10 @@ sctar:isurface
 sctar:izone
 	rdfs:subClassOf sctar:resource ;
 	rdfs:label "izone" .
+
+# Propety classes
+
+sctar:textRelation
+	rdfs:type rdf:Class ;
+	rdfs:label "Text Relation" ;
+	dc:description "A class that groups together all text relation properties (e.g. abbreviates, quotes, isRelatedTo, etc)" .

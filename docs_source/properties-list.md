@@ -2,6 +2,8 @@
 
 # A
 
+* sctap:abbreviates
+
 * sctap:availableExpressionType
   - Domain
     - sctar:expressionType
@@ -21,6 +23,9 @@
 # C
 
 * sctap:canvasPagedType
+
+* sctap:copies
+
 * sctap:citation (not used)
 * sctap:creationDate
   - I'm not sure this is being used

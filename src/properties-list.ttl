@@ -23,7 +23,10 @@
 sctap:abbreviates
 	rdfs:domain sctar:expression ;
 	rdfs:range sctar:expression ;
-	owl:inverseOf sctap:isAbbreviatedBy .
+	owl:inverseOf sctap:isAbbreviatedBy ;
+	rdf:label "Abbreviates" ;
+	dc:description "Indicates that the subject text resource abbreviates the object text resource" ;
+	rdf:type sctar:textRelation .
 
 sctap:availableExpressionType
 	rdfs:domain sctar:expressionType ;
@@ -44,6 +47,14 @@ sctap:contributor
 	rdfs:domain sctar:textItem ;
 	rdfs:range sctar:person .
 	# remain an open question whether contributor should be blank node allow more qualifications to the kind of contribution.
+
+sctap:copies
+	rdfs:domain sctar:expression ;
+	rdfs:range sctar:expression ;
+	owl:inverseOf sctap:isCopiedBy ;
+	rdf:label "Copies" ;
+	dc:description "Indicates that the subject text resource copies the object text resource" ;
+	rdf:type sctar:textRelation .
 
 # D
 
@@ -195,7 +206,18 @@ sctap:hasTranscription
 sctap:isAbbreviatedBy
 	rdfs:domain sctar:expression ;
 	rdfs:range sctar:expression ;
-	owl:inverseOf sctap:abbreviates .
+	owl:inverseOf sctap:abbreviates ;
+	rdf:label "Abbreviated By" ;
+	dc:description "Indicates that the subject text resource is abbreviated by the object text resource" ;
+	rdf:type sctar:textRelation .
+
+sctap:isCopiedBy
+	rdfs:domain sctar:expression ;
+	rdfs:range sctar:expression ;
+	owl:inverseOf sctap:copies ;
+	rdf:label "Copied By" ;
+	dc:description "Indicates that the subject text resource is copied by the object text resource" ;
+	rdf:type sctar:textRelation .
 
 sctap:isHeadTranscription
 	rdfs:domain sctar:transcription ;
@@ -213,7 +235,11 @@ sctap:isPartOfTopLevelExpression
 sctap:isQuotedBy
 	rdfs:domain sctar:expression ;
 	rdfs:range sctar:expression ;
-	owl:inverseOf sctap:quotes .
+	owl:inverseOf sctap:quotes ;
+	rdf:label "Quotes" ;
+	dc:description "Indicates that the subject text resource quotes the object text resource" ;
+	rdf:type sctar:textRelation .
+
 
 sctap:isMentionedBy
 	rdfs:domain sctar:expression ;
@@ -234,13 +260,24 @@ sctap:isOnZone
 	# isOnZone should be allowed for marginal notes as well
 	# and only manifestations that are blocks or elements
 
+dcterms:isPartOf
+	rdfs:subPropertyOf sctap:linkingInfo .
+
+
 sctap:isReferencedBy
 	rdfs:domain sctar:expression ;
 	rdfs:range sctar:expression ;
-	owl:inverseOf sctap:references .
+	owl:inverseOf sctap:references ;
+	rdf:label "Referenced By" ;
+	dc:description "Indicates that the subject text resource is referenced by the object text resource" ;
+	rdf:type sctar:textRelation .
 
-dcterms:isPartOf
-	rdfs:subPropertyOf sctap:linkingInfo .
+sctap:isRelatedTo
+	rdfs:domain sctar:expression ;
+	rdfs:range sctar:expression ;
+	rdf:label "is Related to" ;
+	dc:description "Indicates that the subject text resource has a generic relationship to the object text resource" ;
+	rdf:type sctar:textRelation .
 
 
 sctap:isTranscriptionOf
@@ -297,14 +334,20 @@ sctap:questionTitle
 sctap:quotes
 	rdfs:domain sctar:expression ;
 	rdfs:range sctar:expression ;
-	owl:inverseOf sctap:isQuotedBy .
+	owl:inverseOf sctap:isQuotedBy ;
+	rdf:label "Quoted By" ;
+	dc:description "Indicates that the subject text resource is quoted by the object text resource" ;
+	rdf:type sctar:textRelation .
 
 # R
 
 sctap:references
 	rdfs:domain sctar:expression ;
 	rdfs:range sctar:expression ;
-	owl:inverseOf sctap:isReferencedBy .
+	owl:inverseOf sctap:isReferencedBy ;
+	rdf:label "References" ;
+	dc:description "Indicates that the subject text resource references the object text resource" ;
+	rdf:type sctar:textRelation .
 
 # S
 
