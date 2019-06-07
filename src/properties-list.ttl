@@ -319,16 +319,16 @@ sctap:quotedBy
 	rdfs:domain sctar:expression ;
 	rdfs:range sctar:expression ;
 	owl:inverseOf sctap:quotes ;
-	rdf:label "Quotes" ;
-	dc:description "Indicates that the subject text resource quotes the object text resource" ;
+	rdf:label "Quoted by" ;
+	dc:description "Indicates that the subject text resource is quoted by the object text resource" ;
 	rdf:type sctar:textRelation .
 
 sctap:quotes
 	rdfs:domain sctar:expression ;
 	rdfs:range sctar:expression ;
 	owl:inverseOf sctap:quotedBy ;
-	rdf:label "Quoted By" ;
-	dc:description "Indicates that the subject text resource is quoted by the object text resource" ;
+	rdf:label "Quotes" ;
+	dc:description "Indicates that the subject text resource quotes the object text resource" ;
 	rdf:type sctar:textRelation .
 
 # R
