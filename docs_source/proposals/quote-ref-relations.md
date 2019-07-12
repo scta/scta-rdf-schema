@@ -173,11 +173,88 @@ Example
     * Here Gracilis provides a quotation of Apuleius through Augustine's City of God.
 
 
-## Example 5
+## Example 5 (gloss)
 
 What about a case in which almost every word is a quote, in the case of a word by word commentary
 
-## Example 6
+One very common example  can be found in Bonaventure. (See Bonaventure bb-l4d49p2s1a2q1(alias))
+
+Here he quotes a bible verse and then begin explaining the meaning of each word. In the traditional print edition, the bible verse is marked as italic, and then each re-quoted word is marked in italic.s
+
+```xml
+<p>Respondeo : Dicendum quod numerus istarum dotium sive qualitatum perficientium corpus accipitur ex Sapientiae 3, 7 :
+  <cit>
+    <quote ana="#sap3_7">Fulgebunt iusti et tanquam scintillae in arundineto discurrent</quote>
+  </cit> :
+  in
+  fulgore <!-- visually encoded in italis -->
+  claritas ;
+  in iustitia <!-- visually encoded in italis -->
+  impassibilitas, quia iustitia est perpetua et immortalis ;
+  in scintillae <!-- visually encoded in italis -->
+  nomine subtilitas ; in discursu agilitas.
+</p>
+```
+One option might be to mark each word with "quote" but that doesn't feel right to me because he's not actually re-quoting
+and the words are not even precisely found in the quote as restated. Instead they seem to function as anchors to refer back to smaller part of the quote he wants to clarify.
+
+I think `<mentioned>` might be most appropriate, but it might be nice to give `<mentioned>` an `@corresp` that points back to the quotation (namely the quotation `@xml:id` that it is a part of. Perhaps `<mentioned>` could take an `@type=gloss` and if so, why not use `<quote>` even for these individual words, but qualified with the `@type` gloss.
+
+But the case might be more complicated if the author starts quoting and commenting on single words without ever providing a full quote beforehand. Shoud these be `<quote>` or `<mentioned>`
+
+## Example 6 (lemma)
+
+Related to the use of a quote qualifier like `gloss` we have also played around with options where the quotation is given a `@type=lemma`
+
+In this case, we seem to mean that a quotation is given, but its function is different than regular quotes.
+
+```xml
+<p xml:id="pgb1q1-cadanl">
+  <cit>
+    <quote xml:id="pg-b1q1-Qd1e3733" source="http://scta.info/resource/pll1prol-cadzdd" type="lemma">
+      Cupientes aliquid de penuria</quote>
+    <bibl>
+      <ref target="http://scta.info/resource/pll1prol-cadzdd">
+        <name>Lombardus</name>,
+        <title>Sent.</title>
+        I, prol., [n. 1]
+        (Brady I, 3, ll. 1).
+      </ref>
+    </bibl>
+  </cit>
+  etc.
+  Istud est prooemium
+  libri
+  <title ref="#lombardsententia">Sententiarum</title>
+  qui liber dividitur in prooemium et tractatum.
+  Secunda incipit ibi
+  <cit>
+    <quote xml:id="pg-b1q1-Qd1e3742" source="http://scta.info/resource/pll1d1c1-vanspv" type="lemma">
+      veteris ac novae legis
+    </quote>
+    <bibl>
+      <ref target="http://scta.info/resource/pll1d1c1-vanspv">
+        <name>Lombardus</name>,
+        <title>Sent.</title>
+        I, d. 1, c. 1, [n. 1]
+        (Brady I, 55, ll. 5).
+      </ref>
+    </bibl>
+  </cit>.
+</p>
+```
+
+## Example 7 (paraphrase/allusion)
+
+There are also cases where an author seems to be quoting. "ille dicit: " but what follows cannot be regarded as a direct quote but a summary or paraphrase of what is being said. Nevertheless the paraphrased content is clearly attributed to the author of the quote. It has a clear ending and beginning. It would be nice to be able to capture these quotations and compare them against direct quotes.
+
+So far we generally use the type "paraphrase" to describe this.
+
+But what if the use of the quote is much weaker. For example it doesn't start with "ille dicit" but just sort of flows into a sentence that is more or less what another author says. It might be tempting to mark this as well, `@type=allusion` could be a possible way to mark this.
+
+ But at certain point, the editor is no longer marking what appears in the text, but is really making an editorial comment about their recognition, as editor, that what they a reading here sounds a lot like what someone else says. In this case, I think these assertions should be collected elsewhere, perhaps in the "info.xml" file.
+
+## Example 8
 
 What about a case where the quotation is used primarily as a point of reference or incipit in a reference, such as in a pointer to a quote from the "glossa ordinaria".
 
@@ -189,7 +266,7 @@ Examples:
 * But I still debate whether it is correct to treat the bible verse as a quote rather than as a part of the reference.
   * Bonaventure is really trying to say: At the point in the bible that says..., the Glossa says...
 
-## Example 7
+## Example 9
 
 We also have cases where a single ref could be functioning as a reference for two quotations. In this case the `@corresp` attributes needs to be able to take two values separated by white space.
 
