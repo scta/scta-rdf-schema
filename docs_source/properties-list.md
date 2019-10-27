@@ -10,11 +10,9 @@
   - Range
     - sctar:expressionType
 
-* role:AUT
+* sctap:author
   - Domain
     - sctar:expression
-    - sctar:manifestation
-    - sctar:transcription
   - Range
     - sctar:person
 
@@ -27,11 +25,19 @@
 * sctap:copies
 
 * sctap:citation (not used)
+
 * sctap:creationDate
   - I'm not sure this is being used
 
+* sctap:creator
+  - Domain
+    - sctar:work
+  - Range
+    - sctar:person
+
 * sctap:contributor
   - Domain
+    - sctar:work
     - sctar:expression
     - sctar:manifestation
     - sctar:transcription
@@ -50,7 +56,7 @@
 
 # E
 
-* role:editor
+* sctap:editor
   - Domain
     - sctar:manifestation
   - Range
@@ -543,6 +549,11 @@
   - Range (predicate type)
     - "string"
 
+* sctap:transcriber
+  - Domain
+    - sctar:transcription
+  - Range
+    - sctar:person
 
 * sctap:transcriptionType
   - Domain (object type)

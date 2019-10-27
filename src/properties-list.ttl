@@ -42,8 +42,8 @@ sctap:availableExpressionType
 	rdf:label "Available Expression Type" ;
 	dc:description "Indicates avaiable expression types any chilren of this resource can take. For example: if a resource has the expressionType=deanimacommentary then children resource of this resource could have one of this availableExpressionTypes as their expressionType" .
 
-role:AUT
-	rdfs:domain sctar:text ;
+sctap:author
+	rdfs:domain sctar:expression ;
 	rdfs:range sctar:person .
 
 # B
@@ -55,6 +55,11 @@ sctap:contributor
 	rdfs:domain sctar:textItem ;
 	rdfs:range sctar:person .
 	# remain an open question whether contributor should be blank node allow more qualifications to the kind of contribution.
+
+sctap:creator
+	rdf:type rdfs:Property ;
+	rdfs:domain sctar:work ;
+	rdfs:range sctar:person .
 
 sctap:copiedBy
 	rdfs:domain sctar:expression ;
@@ -81,10 +86,9 @@ dc:description
 
 # E
 
-role:EDT
-	rdf:type rdfs:Property ;
+sctap:editor
 	rdfs:domain sctar:manifestation ;
-	rdfs:ranges sctar:person .
+	rdfs:range sctar:person .
 
 sctap:expressionType
 	rdf:type rdfs:Property ;
@@ -382,6 +386,12 @@ sctap:quotationType
   rdfs:domain sctar:quotation .
 
 # S
+
+# T
+
+sctap:transcriber
+	rdfs:domain sctar:transcription ;
+	rdfs:range sctar:person .
 
 sctap:versionNo
 	rdf:type rdfs:Property ;
