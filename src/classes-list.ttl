@@ -44,13 +44,15 @@ sctar:expression
 	rdf:type rdfs:Class ;
 	rdfs:subClassOf sctar:textItem ;
 	rdfs:label "Expression" ;
-	dc:description "a FRBR Expression of a FRBR Work" .
+  dc:description "a FRBR Expression of a FRBR Work" ;
+  owl:disjointClasses sctar:manifestation, sctar:transcription .
 
 sctar:manifestation
 	rdf:type rdfs:Class ;
 	rdfs:subClassOf sctar:textItem ;
 	rdfs:label "Manifestation" ;
-	dc:description "a FRBR Manifestation of a FRBR Expression" .
+	dc:description "a FRBR Manifestation of a FRBR Expression" ;
+  owl:disjointClasses sctar:transcription .
 
 sctar:transcription
 	rdf:type rdfs:Class ;
