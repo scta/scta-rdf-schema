@@ -141,6 +141,13 @@ sctap:hasDescendant
 	rdf:label "has Descendant" ;
 	dc:description "indicates all subsequent versions within a version chain. A transcription MAY have many hasDescendant properties" .
 
+sctap:hasExpression
+	rdf:type rdfs:Property ;
+	rdfs:domain sctar:workGroup ;
+	rdfs:range sctar:expression ;
+	rdf:label "has Expression" ;
+	dc:description "Indicates a expression contained within a workGroup" .
+
 sctap:hasManifestation
   rdf:type rdfs:Property ;
 	rdfs:subPropertyOf sctap:linkingInfo ;
